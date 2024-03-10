@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.sale.SaleFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/search_layout"
+        style="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="@color/darkGreen">
+
+            <TextView
+                android:id="@+id/tvSearch"
+                style="@style/h4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dimen15dp"
+                android:layout_marginEnd="@dimen/dimen15dp"
+                android:layout_marginBottom="@dimen/dimen10dp"
+                android:background="@color/white"
+                android:drawablePadding="@dimen/dimen10dp"
+                android:paddingStart="@dimen/dimen8dp"
+                android:paddingTop="@dimen/dimen12dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="@dimen/dimen12dp"
+                android:text="@string/finding"
+                app:drawableStartCompat="@drawable/ic_search" />
+        </FrameLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/titleForRcv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:padding="@dimen/dimen10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/code"
+            android:textColor="@color/blackAgri"
+            android:textSize="@dimen/dimen14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/info_order"
+            android:textColor="@color/blackAgri"
+            android:textSize="@dimen/dimen14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:text="@string/status"
+            android:textColor="@color/blackAgri"
+            android:textSize="@dimen/dimen14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvSale"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:listitem="@layout/sale_list_item"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleForRcv" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/empty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleForRcv">
+
+        <ImageView
+            android:id="@+id/imgCartEmpty"
+            android:layout_width="@dimen/dimen200dp"
+            android:layout_height="@dimen/dimen200dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/img_cart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvNoOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/no_order"
+            android:textColor="@color/orange"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/imgCartEmpty"
+            app:layout_constraintStart_toStartOf="@id/imgCartEmpty"
+            app:layout_constraintTop_toBottomOf="@id/imgCartEmpty" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

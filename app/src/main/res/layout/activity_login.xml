@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.loginRegister.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen24dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen200dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/login" />
+
+        <TextView
+            style="@style/h1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dimen24dp"
+            android:paddingEnd="@dimen/dimen24dp"
+            android:text="@string/sign_in" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:paddingStart="@dimen/dimen24dp"
+            android:paddingEnd="@dimen/dimen24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputEmail"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:autofillHints="emailAddress"
+                android:background="@drawable/custom_border"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:paddingStart="@dimen/dimen24dp"
+            android:paddingEnd="@dimen/dimen24dp"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="password"
+                android:background="@drawable/custom_border"
+                android:hint="@string/hint_password"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonLogin"
+            style="@style/h3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen24dp"
+            android:layout_marginTop="@dimen/dimen24dp"
+            android:layout_marginRight="@dimen/dimen24dp"
+            android:layout_marginBottom="@dimen/dimen24dp"
+            android:background="@color/yellow"
+            android:text="@string/btn_sign_in"
+            android:textAllCaps="false" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen1dp"
+            android:layout_marginTop="@dimen/dimen10dp"
+            android:layout_marginBottom="@dimen/dimen10dp"
+            android:background="@color/gray" />
+
+        <TextView
+            android:id="@+id/textViewSignUp"
+            style="@style/h5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen10dp"
+            android:gravity="center"
+            android:text="@string/new_customer_create_account" />
+
+        <TextView
+            android:id="@+id/forgetPassword"
+            style="@style/h5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/forgot_pass" />
+
+        <TextView
+            style="@style/h5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen70dp"
+            android:drawablePadding="@dimen/dimen5dp"
+
+            android:paddingStart="@dimen/dimen24dp"
+            android:paddingEnd="@dimen/dimen24dp"
+            android:text="@string/agrimart_2024"
+            android:textSize="12sp"
+            app:drawableStartCompat="@drawable/ic_copyright_24" />
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>

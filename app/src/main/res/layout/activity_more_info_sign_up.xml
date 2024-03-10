@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightBlue"
+    tools:context=".view.loginRegister.MoreInfoSignUpActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen24dp">
+
+        <TextView
+            android:id="@+id/agrimart"
+            style="@style/h2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightBlue"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="@string/appName"
+            app:layout_constraintBottom_toTopOf="@+id/fullnameApp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fullnameApp"
+            style="@style/h3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightBlue"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen10dp"
+            android:text="@string/fullNameApp"
+            app:layout_constraintBottom_toTopOf="@id/image_forget"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/agrimart" />
+
+
+        <TextView
+            style="@style/h1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingStart="@dimen/dimen24dp"
+            android:paddingEnd="@dimen/dimen24dp"
+            android:text="@string/sign_up" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/type_saler"
+            android:paddingLeft="@dimen/dimen24dp"
+            android:paddingRight="@dimen/dimen24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtTypeSaler"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_border"
+                android:inputType="textPersonName"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/number_bank_account"
+            android:paddingLeft="@dimen/dimen24dp"
+            android:paddingRight="@dimen/dimen24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtBankAccount"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_border"
+                android:inputType="number"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/account_owner"
+            android:paddingLeft="@dimen/dimen24dp"
+            android:paddingRight="@dimen/dimen24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtAccountOwner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_border"
+                android:inputType="textPersonName"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/bank"
+            android:paddingLeft="@dimen/dimen24dp"
+            android:paddingRight="@dimen/dimen24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtBankName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_border"
+                android:inputType="text"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/branch"
+            android:paddingLeft="@dimen/dimen24dp"
+            android:paddingRight="@dimen/dimen24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtBranch"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_border"
+                android:inputType="text"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="@dimen/dimen24dp"
+            android:paddingRight="@dimen/dimen24dp"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkboxRobot"
+                style="@style/h4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/i_m_not_a_robot"
+                android:layout_weight="9"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/recaptcha"
+                android:layout_weight="1"
+                android:layout_gravity="center|end"
+                android:importantForAccessibility="no" />
+
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkboxAgree"
+            style="@style/h4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen24dp"
+            android:layout_marginBottom="@dimen/dimen24dp"
+            android:text="@string/agreeWithPolicy" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnBack"
+                style="@style/h3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_white_border"
+                android:text="@string/back"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSave"
+                style="@style/h3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_yellow_border"
+                android:text="@string/save"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

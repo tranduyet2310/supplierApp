@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightBlue"
+    tools:context=".view.warehouse.NewWarehouseFragment">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/nameLayout"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/dimen8dp"
+          android:layout_marginBottom="@dimen/dimen8dp"
+          app:layout_constraintEnd_toEndOf="@id/guideline1"
+          app:layout_constraintStart_toStartOf="@id/guideline0"
+          app:layout_constraintTop_toTopOf="parent">
+
+          <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/inputName"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:background="@drawable/custom_border"
+              android:hint="@string/nameOfWarehouse"
+              android:inputType="text"
+              android:padding="@dimen/dimen5dp" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/personLayout"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/dimen8dp"
+          android:layout_marginBottom="@dimen/dimen8dp"
+          app:layout_constraintEnd_toEndOf="@id/guideline1"
+          app:layout_constraintStart_toStartOf="@id/guideline0"
+          app:layout_constraintTop_toBottomOf="@id/nameLayout">
+
+          <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/inputPerson"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:background="@drawable/custom_border"
+              android:hint="@string/person"
+              android:inputType="textPersonName"
+              android:padding="@dimen/dimen5dp" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/phoneLayout"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/dimen8dp"
+          android:layout_marginBottom="@dimen/dimen8dp"
+          app:layout_constraintEnd_toEndOf="@id/guideline1"
+          app:layout_constraintStart_toStartOf="@id/guideline0"
+          app:layout_constraintTop_toBottomOf="@id/personLayout">
+
+          <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/inputPhone"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:background="@drawable/custom_border"
+              android:hint="@string/phone"
+              android:inputType="phone"
+              android:padding="@dimen/dimen5dp" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/typeSalerLayout"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/dimen8dp"
+          android:layout_marginBottom="@dimen/dimen8dp"
+          app:layout_constraintEnd_toEndOf="@id/guideline1"
+          app:layout_constraintStart_toStartOf="@id/guideline0"
+          app:layout_constraintTop_toBottomOf="@id/phoneLayout">
+
+          <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/inputEmail"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:background="@drawable/custom_border"
+              android:hint="@string/email"
+              android:inputType="textEmailAddress"
+              android:padding="@dimen/dimen5dp" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/provinceLayout"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/dimen8dp"
+          android:layout_marginBottom="@dimen/dimen8dp"
+          app:layout_constraintEnd_toEndOf="@id/guideline1"
+          app:layout_constraintStart_toStartOf="@id/guideline0"
+          app:layout_constraintTop_toBottomOf="@id/typeSalerLayout">
+
+          <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/inputProvince"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:background="@drawable/custom_border"
+              android:hint="@string/provinceCity"
+              android:inputType="text"
+              android:padding="@dimen/dimen5dp" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/districtLayout"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/dimen8dp"
+          android:layout_marginBottom="@dimen/dimen8dp"
+          app:layout_constraintEnd_toEndOf="@id/guideline1"
+          app:layout_constraintStart_toStartOf="@id/guideline0"
+          app:layout_constraintTop_toBottomOf="@id/provinceLayout">
+
+          <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/inputDistrict"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:background="@drawable/custom_border"
+              android:hint="@string/district"
+              android:inputType="text"
+              android:padding="@dimen/dimen5dp" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/wardLayout"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/dimen8dp"
+          android:layout_marginBottom="@dimen/dimen8dp"
+          app:layout_constraintEnd_toEndOf="@id/guideline1"
+          app:layout_constraintStart_toStartOf="@id/guideline0"
+          app:layout_constraintTop_toBottomOf="@id/districtLayout">
+
+          <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/inputWard"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:background="@drawable/custom_border"
+              android:hint="@string/ward"
+              android:inputType="text"
+              android:padding="@dimen/dimen5dp" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/branchLayout"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/dimen8dp"
+          android:layout_marginBottom="@dimen/dimen8dp"
+          app:layout_constraintEnd_toEndOf="@id/guideline1"
+          app:layout_constraintStart_toStartOf="@id/guideline0"
+          app:layout_constraintTop_toBottomOf="@id/wardLayout">
+
+          <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/inputDetail"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:background="@drawable/custom_border"
+              android:hint="@string/detail"
+              android:inputType="text"
+              android:padding="@dimen/dimen5dp" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <CheckBox
+          android:id="@+id/checkboxWarehouse"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:fontFamily="@font/inter_semibold"
+          android:text="@string/enableWarehouse"
+          android:textSize="@dimen/dimen16sp"
+          app:layout_constraintStart_toStartOf="@id/guideline0"
+          app:layout_constraintTop_toBottomOf="@id/branchLayout" />
+
+      <View
+          android:id="@+id/lineGray"
+          android:layout_width="match_parent"
+          android:layout_height="2dp"
+          android:background="@color/gray"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/checkboxWarehouse" />
+
+      <androidx.appcompat.widget.AppCompatButton
+          android:id="@+id/btnCancel"
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_margin="10dp"
+          android:background="@drawable/button_white_border"
+          android:text="@string/cancel"
+          android:textAllCaps="false"
+          app:layout_constraintEnd_toStartOf="@id/btnSave"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/lineGray" />
+
+      <androidx.appcompat.widget.AppCompatButton
+          android:id="@+id/btnSave"
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_margin="10dp"
+          android:background="@drawable/button_yellow_border"
+          android:text="@string/save"
+          android:textAllCaps="false"
+          android:textColor="@color/white"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@id/btnCancel"
+          app:layout_constraintTop_toBottomOf="@id/lineGray" />
+
+      <View
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/dimen20dp"
+          android:background="@color/lightBlue"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/btnSave"/>
+
+
+      <androidx.constraintlayout.widget.Guideline
+          android:id="@+id/guideline0"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          app:layout_constraintGuide_percent="0.04" />
+
+      <androidx.constraintlayout.widget.Guideline
+          android:id="@+id/guideline1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          app:layout_constraintGuide_percent="0.96" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

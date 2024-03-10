@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.loginRegister.SignUpActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen24dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen200dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/signup" />
+
+        <TextView
+            style="@style/h1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dimen24dp"
+            android:gravity="center"
+            android:paddingEnd="@dimen/dimen24dp"
+            android:text="@string/sign_up" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/fullNameUser"
+            android:paddingLeft="@dimen/dimen24dp"
+            android:paddingRight="@dimen/dimen24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtUserName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_border"
+                android:inputType="textPersonName"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/shopName"
+            android:paddingLeft="@dimen/dimen24dp"
+            android:paddingRight="@dimen/dimen24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtShopName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_border"
+                android:inputType="text"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/emailUser"
+            android:paddingLeft="@dimen/dimen24dp"
+            android:paddingRight="@dimen/dimen24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtUserEmail"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_border"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/phone"
+            android:paddingLeft="@dimen/dimen24dp"
+            android:paddingRight="@dimen/dimen24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_border"
+                android:inputType="phone"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/user_cccd"
+            android:paddingLeft="@dimen/dimen24dp"
+            android:paddingRight="@dimen/dimen24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtCMND"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_border"
+                android:inputType="number"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/tax"
+            android:paddingLeft="@dimen/dimen24dp"
+            android:paddingRight="@dimen/dimen24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtTax"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_border"
+                android:inputType="text"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/provinceCity"
+            android:paddingLeft="@dimen/dimen24dp"
+            android:paddingRight="@dimen/dimen24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtProvince"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_border"
+                android:inputType="textPersonName"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/password"
+            android:paddingLeft="@dimen/dimen24dp"
+            android:paddingRight="@dimen/dimen24dp"
+            app:passwordToggleContentDescription="Nhập mật khẩu của bạn"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtUserPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_border"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:padding="@dimen/dimen5dp"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            style="@style/h4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen24dp"
+            android:drawablePadding="@dimen/dimen10dp"
+            android:paddingLeft="@dimen/dimen24dp"
+            android:paddingRight="@dimen/dimen24dp"
+            android:text="@string/eight_characters"
+            app:drawableStartCompat="@drawable/ic_info" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnContinue"
+            style="@style/h3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen24dp"
+            android:layout_marginRight="@dimen/dimen24dp"
+            android:layout_marginBottom="@dimen/dimen24dp"
+            android:background="@color/yellow"
+            android:padding="@dimen/dimen12dp"
+            android:text="@string/next"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/tvLogin"
+            style="@style/h4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen24dp"
+            android:gravity="center"
+            android:text="@string/already_have_account" />
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>

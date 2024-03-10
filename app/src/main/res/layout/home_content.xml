@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/lightBlue">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/incomeBackground"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen70dp"
+            android:layout_marginTop="@dimen/dimen10dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="@id/guideline0"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_layout" />
+
+        <TextView
+            android:id="@+id/titleIncome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/inter_regular"
+            android:gravity="center"
+            android:text="@string/doanh_so"
+            android:textColor="@color/grayAgri"
+            android:textSize="@dimen/dimen14sp"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/ic_money"
+            app:layout_constraintStart_toStartOf="@id/guideline0"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_layout" />
+
+        <TextView
+            android:id="@+id/tvMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen5dp"
+            android:fontFamily="@font/inter_regular"
+            android:gravity="center"
+            android:text="@string/_02_2024"
+            android:textColor="@color/grayAgri"
+            android:textSize="@dimen/dimen14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/titleIncome"
+            app:layout_constraintStart_toEndOf="@id/titleIncome"
+            app:layout_constraintTop_toTopOf="@id/titleIncome" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:text="@string/_5_000_000"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/dimen14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/tvMonth"
+            app:layout_constraintStart_toStartOf="@id/titleIncome"
+            app:layout_constraintTop_toBottomOf="@id/titleIncome" />
+
+        <TextView
+            android:id="@+id/titleTotalProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawablePadding="@dimen/dimen5dp"
+            android:fontFamily="@font/inter_regular"
+            android:gravity="center"
+            android:text="@string/total_product"
+            android:textColor="@color/grayAgri"
+            android:textSize="@dimen/dimen14sp"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/ic_warehouse_24"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_layout" />
+
+        <TextView
+            android:id="@+id/tvTotalProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:text="@string/_5_000_000"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/dimen14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/titleTotalProduct"
+            app:layout_constraintStart_toStartOf="@id/titleTotalProduct"
+            app:layout_constraintTop_toBottomOf="@id/titleTotalProduct" />
+
+        <TextView
+            android:id="@+id/titleOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen10dp"
+            android:fontFamily="@font/inter_bold"
+            android:gravity="center"
+            android:text="@string/order"
+            android:textAllCaps="true"
+            android:textColor="@color/blackAgri"
+            android:textSize="@dimen/dimen16sp"
+            app:layout_constraintStart_toStartOf="@id/guideline0"
+            app:layout_constraintTop_toBottomOf="@id/incomeBackground" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/orderContentLayout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen200dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="@id/guideline0"
+            app:layout_constraintTop_toBottomOf="@id/titleOrder">
+
+            <ImageView
+                android:id="@+id/imgCartEmpty"
+                android:layout_width="125dp"
+                android:layout_height="80dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/img_cart"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvNoOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/havent_orders"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/dimen14sp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@id/imgCartEmpty"
+                app:layout_constraintStart_toStartOf="@+id/imgCartEmpty"
+                app:layout_constraintTop_toBottomOf="@id/imgCartEmpty" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvOrderToday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:minHeight="@dimen/dimen200dp"
+                android:visibility="invisible"
+                tools:listitem="@layout/order_today_list_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/titleRecentOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen10dp"
+            android:fontFamily="@font/inter_bold"
+            android:gravity="center"
+            android:text="@string/recentOrder"
+            android:textAllCaps="true"
+            android:textColor="@color/blackAgri"
+            android:textSize="@dimen/dimen16sp"
+            app:layout_constraintStart_toStartOf="@id/guideline0"
+            app:layout_constraintTop_toBottomOf="@id/orderContentLayout" />
+
+        <LinearLayout
+            android:id="@+id/titleForRecentOrder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/lightGray"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="@id/guideline0"
+            app:layout_constraintTop_toBottomOf="@id/titleRecentOrder">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/stt"
+                android:textColor="@color/blackAgri"
+                android:textSize="@dimen/dimen14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/client"
+                android:textColor="@color/blackAgri"
+                android:textSize="@dimen/dimen14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/status"
+                android:textColor="@color/blackAgri"
+                android:textSize="@dimen/dimen14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/sum"
+                android:textColor="@color/blackAgri"
+                android:textSize="@dimen/dimen14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recentOrderContentLayout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen200dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="@id/guideline0"
+            app:layout_constraintTop_toBottomOf="@id/titleForRecentOrder">
+
+            <ImageView
+                android:id="@+id/imgCartEmptyV2"
+                android:layout_width="125dp"
+                android:layout_height="80dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/img_cart"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvNoOrderV2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/havent_recent_order"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/dimen14sp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@id/imgCartEmptyV2"
+                app:layout_constraintStart_toStartOf="@+id/imgCartEmptyV2"
+                app:layout_constraintTop_toBottomOf="@id/imgCartEmptyV2" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvRecentOrder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:minHeight="@dimen/dimen200dp"
+                tools:listitem="@layout/recent_order_list_item"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/titleRecentReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen10dp"
+            android:fontFamily="@font/inter_bold"
+            android:gravity="center"
+            android:text="@string/recent_review"
+            android:textAllCaps="true"
+            android:textColor="@color/blackAgri"
+            android:textSize="@dimen/dimen16sp"
+            app:layout_constraintStart_toStartOf="@id/guideline0"
+            app:layout_constraintTop_toBottomOf="@id/recentOrderContentLayout" />
+
+        <LinearLayout
+            android:id="@+id/titleForRecentReview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/lightGray"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="@id/guideline0"
+            app:layout_constraintTop_toBottomOf="@id/titleRecentReview">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/product"
+                android:textColor="@color/blackAgri"
+                android:textSize="@dimen/dimen14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/client"
+                android:textColor="@color/blackAgri"
+                android:textSize="@dimen/dimen14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/rating"
+                android:textColor="@color/blackAgri"
+                android:textSize="@dimen/dimen14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recentReviewContentLayout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen200dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="@id/guideline0"
+            app:layout_constraintTop_toBottomOf="@id/titleForRecentReview">
+
+            <ImageView
+                android:id="@+id/imgCartEmptyV3"
+                android:layout_width="125dp"
+                android:layout_height="80dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/img_cart"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvNoOrderV3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/havent_review"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/dimen14sp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@id/imgCartEmptyV3"
+                app:layout_constraintStart_toStartOf="@+id/imgCartEmptyV3"
+                app:layout_constraintTop_toBottomOf="@id/imgCartEmptyV3" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvRecentReview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:minHeight="@dimen/dimen200dp"
+                android:visibility="invisible"
+                tools:listitem="@layout/recent_review_list_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.04" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.96" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
