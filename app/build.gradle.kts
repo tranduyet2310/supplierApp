@@ -89,7 +89,8 @@ dependencies {
     // lottie
     val lottie_version = "6.0.0"
     implementation("com.airbnb.android:lottie:$lottie_version")
-
+    // Image slider
+    implementation ("com.github.denzcoskun:ImageSlideshow:0.1.0")
     // SafetyNet
     implementation ("com.google.android.gms:play-services-safetynet:18.0.1")
 

@@ -217,4 +217,26 @@
     <string name="order_state">Trạng thái:</string>
     <string name="payment_state">Trạng thái thanh toán:</string>
     <string name="list_product">Danh sách sản phẩm</string>
+    <string name="garden_intro">Giới thiệu về Vườn</string>
+    <string name="intro_shop">Giới thiệu về Shop</string>
+    <string name="harvest_time">Giai đoạn thu hoạch</string>
+    <string name="chemical_time">Giai đoạn phòng trừ sâu bệnh</string>
+    <string name="take_care_time">Giai đoạn chăm sóc cây</string>
+    <string name="germination_time">Giai đoạn cây nảy mầm</string>
+    <string name="sow_seed_time">Giai đoạn gieo hạt giống</string>
+    <string name="make_land_time">Giai đoạn làm đất trồng</string>
+    <string name="crops">Cây trồng:</string>
+    <string name="season">Mùa vụ:</string>
+    <string name="land_area">Diện tích vườn:</string>
+    <string name="estimate_yield">Sản lượng dự kiến:</string>
+    <string name="shop_intro">Giới thiệu về Cửa hàng</string>
+    <string name="no_shop_info">Cửa hàng chưa có thông tin nào</string>
+    <string name="shop_info">Thông tin cửa hàng</string>
+    <string name="garden_info">Thông tin Vườn cây</string>
+    <string name="no_info_current_crops">Chưa có thông tin về cây trồng hiện tại</string>
+    <string name="basic_info">Thông tin cơ bản</string>
+    <string name="current_crop">Mùa vụ hiện tại</string>
+    <string name="current_crops">Cây đang trồng</string>
+    <string name="planting_stage">Giai đoạn cây trồng</string>
+    <string name="estimate_crop_yield">Sản luợng dự kiến</string>
 </resources>

@@ -23,6 +23,9 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileBinding.inflate(inflater)
+
+
+
         return binding.root
     }
 
@@ -42,7 +45,17 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             R.id.linearLogOut -> logOut()
             R.id.linearUserInfo -> updateUserInfoAccount()
             R.id.constraintProfile -> updateInfoAccount()
+            R.id.linearShopInfo -> shopInfo()
+            R.id.linearGardenInfo -> gardenInfo()
         }
+    }
+
+    private fun gardenInfo() {
+        navController.navigate(R.id.action_profileFragment_to_gardenInfoFragment)
+    }
+
+    private fun shopInfo() {
+        navController.navigate(R.id.action_profileFragment_to_shopInfoFragment)
     }
 
     private fun updateInfoAccount() {

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.ShopInfoFragment">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_yellow_border"
+        android:text="@string/update"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/smooch_regular"
+        android:text="@string/shop_intro"
+        android:textColor="@color/yellowAgri"
+        android:textSize="26sp"
+        app:drawableEndCompat="@drawable/grain"
+        app:drawableStartCompat="@drawable/sprout"
+        app:layout_constraintBottom_toTopOf="@id/line"
+        app:layout_constraintEnd_toStartOf="@id/btnUpdate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/grayAgri"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnUpdate" />
+
+    <ImageView
+        android:id="@+id/imagePlaceholder"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/questions_bro"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/imagePlaceholder"
+        app:layout_constraintEnd_toEndOf="@id/imagePlaceholder"
+        app:layout_constraintTop_toBottomOf="@id/imagePlaceholder"
+        android:text="@string/no_shop_info"
+        android:textSize="16sp"
+        android:visibility="visible"
+        android:fontFamily="@font/inter_semibold"
+        android:textColor="@color/orange"
+        android:id="@+id/textAnnounce"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/contentLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/titleIntro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/intro_shop"
+                android:textColor="@color/yellowAgri"
+                android:textSize="16sp"
+                app:drawableEndCompat="@drawable/sunlight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvShopInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="top|start"
+                android:maxHeight="300dp"
+                android:minLines="3"
+                android:text="@string/infor_product_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleIntro" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/shopIntroCard"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_margin="10dp"
+                android:background="@color/lightBlue"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvShopInfo">
+
+                <com.denzcoskun.imageslider.ImageSlider
+                    android:id="@+id/imageShopIntro"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@color/lightBlue"
+                    app:iss_auto_cycle="true"
+                    app:iss_corner_radius="20"
+                    app:iss_delay="2000"
+                    app:iss_error_image="@drawable/banner"
+                    app:iss_period="2000"
+                    app:iss_placeholder="@drawable/banner" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/titleGarden"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/garden_intro"
+                android:textColor="@color/orange"
+                android:textSize="16sp"
+                app:drawableEndCompat="@drawable/leaf"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/shopIntroCard" />
+
+            <TextView
+                android:id="@+id/tvGardenInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="top|start"
+                android:maxHeight="300dp"
+                android:minLines="3"
+                android:text="@string/infor_product_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleGarden" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/gardenImageCard"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_margin="10dp"
+                android:background="@color/lightBlue"
+                app:cardCornerRadius="@dimen/dimen20dp"
+                app:cardElevation="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvGardenInfo">
+
+                <com.denzcoskun.imageslider.ImageSlider
+                    android:id="@+id/imageGardenIntro"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@color/lightBlue"
+                    app:iss_auto_cycle="true"
+                    app:iss_corner_radius="20"
+                    app:iss_delay="2000"
+                    app:iss_error_image="@drawable/banner"
+                    app:iss_period="2000"
+                    app:iss_placeholder="@drawable/banner" />
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/gardenImageCard" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

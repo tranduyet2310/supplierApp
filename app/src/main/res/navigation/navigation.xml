@@ -33,6 +33,12 @@
         <action
             android:id="@+id/action_profileFragment_to_userInfoFragment"
             app:destination="@id/userInfoFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_gardenInfoFragment"
+            app:destination="@id/gardenInfoFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_shopInfoFragment"
+            app:destination="@id/shopInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/saleFragment"
@@ -117,5 +123,47 @@
         <action
             android:id="@+id/action_userInfoFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gardenInfoFragment"
+        android:name="com.example.suppileragrimart.view.GardenInfoFragment"
+        android:label="fragment_garden_info"
+        tools:layout="@layout/fragment_garden_info" >
+        <action
+            android:id="@+id/action_gardenInfoFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_gardenInfoFragment_to_updateGardenInfoFragment"
+            app:destination="@id/updateGardenInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shopInfoFragment"
+        android:name="com.example.suppileragrimart.view.ShopInfoFragment"
+        android:label="fragment_shop_info"
+        tools:layout="@layout/fragment_shop_info" >
+        <action
+            android:id="@+id/action_shopInfoFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_shopInfoFragment_to_updateShopInfoFragment"
+            app:destination="@id/updateShopInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateShopInfoFragment"
+        android:name="com.example.suppileragrimart.view.UpdateShopInfoFragment"
+        android:label="fragment_update_shop_info"
+        tools:layout="@layout/fragment_update_shop_info" >
+        <action
+            android:id="@+id/action_updateShopInfoFragment_to_shopInfoFragment"
+            app:destination="@id/shopInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateGardenInfoFragment"
+        android:name="com.example.suppileragrimart.view.UpdateGardenInfoFragment"
+        android:label="fragment_update_garden_info"
+        tools:layout="@layout/fragment_update_garden_info" >
+        <action
+            android:id="@+id/action_updateGardenInfoFragment_to_gardenInfoFragment"
+            app:destination="@id/gardenInfoFragment" />
     </fragment>
 </navigation>
