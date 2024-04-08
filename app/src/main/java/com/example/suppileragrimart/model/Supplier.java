@@ -23,7 +23,8 @@ public class Supplier implements Parcelable {
     private String bankBranchName;
     private String avatar;
     private String rsaPublicKey;
-    private String rsaPrivateKey;
+    private String aesKey;
+    private String iv;
 
     public Supplier() {
     }
@@ -55,7 +56,6 @@ public class Supplier implements Parcelable {
         bankBranchName = in.readString();
         avatar = in.readString();
         rsaPublicKey = in.readString();
-        rsaPrivateKey = in.readString();
     }
 
     @Override
@@ -77,7 +77,6 @@ public class Supplier implements Parcelable {
         dest.writeString(bankBranchName);
         dest.writeString(avatar);
         dest.writeString(rsaPublicKey);
-        dest.writeString(rsaPrivateKey);
     }
 
     @Override
@@ -233,11 +232,19 @@ public class Supplier implements Parcelable {
         this.rsaPublicKey = rsaPublicKey;
     }
 
-    public String getRsaPrivateKey() {
-        return rsaPrivateKey;
+    public String getAesKey() {
+        return aesKey;
     }
 
-    public void setRsaPrivateKey(String rsaPrivateKey) {
-        this.rsaPrivateKey = rsaPrivateKey;
+    public void setAesKey(String aesKey) {
+        this.aesKey = aesKey;
+    }
+
+    public String getIv() {
+        return iv;
+    }
+
+    public void setIv(String iv) {
+        this.iv = iv;
     }
 }

@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">SuppilerAgriMart</string>
+    <string name="app_name">SuppilerApp</string>
     <string name="slogan">An toàn - Uy tín - Chất lượng</string>
     <string name="fullNameApp">Hệ thống phân phối nông sản</string>
     <string name="fullNameAppV2">Bán hàng với AgriMart</string>
-    <string name="appName"><font color='#ff8800'>Argi</font><font color='#3BD98C'>Mart</font></string>
+    <string name="appName"><font color='#ff8800'>Agri</font><font color='#3BD98C'>Mart</font></string>
     <string name="menu_Home">Trang chủ</string>
     <string name="menu_Product">Sản phẩm</string>
     <string name="menu_Warehouse">Kho hàng</string>
@@ -242,5 +242,7 @@
 
     <string name="loading">Đang tải …</string>
     <string name="ok">Đồng ý</string>
+    <string name="need_agree">Bạn cần đồng ý với điều khoản để thực hiện chức năng này</string>
+    <string name="supplier_request">Tạo tài khoản bán hàng thành công</string>
 
 </resources>

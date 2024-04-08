@@ -2,7 +2,7 @@ package com.example.suppileragrimart.utils;
 
 public class Constants {
     // API
-    public static final String LOCALHOST = "http://192.168.55.105:8080/";
+    public static final String LOCALHOST = "http://172.20.10.3:8080/";
     // SharedPreference
     public static final String SHARED_PREF_NAME = "shared_preference";
     public static final String HISTORY_DATA = "history_data";

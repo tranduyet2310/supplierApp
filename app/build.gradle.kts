@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs")
+    id("kotlinx-serialization")
+    id("kotlin-kapt")
 }
 
 android {
@@ -10,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.suppileragrimart"
-        minSdk = 21
+        minSdk = 24
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -37,7 +39,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    dataBinding{
+    dataBinding {
         enable = true
     }
 }
@@ -46,12 +48,12 @@ dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.8.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
+    // Design Support
+    implementation("com.google.android.material:material:1.8.0")
     // Navigation Component
     val nav_version = "2.5.3"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
@@ -69,13 +71,13 @@ dependencies {
     val retrofit_version = "2.4.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
     implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
+    implementation ("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
     // Paging
-    val paging_version = "2.0.0"
-    implementation("androidx.paging:paging-runtime:$paging_version")
+    implementation("androidx.paging:paging-runtime-ktx:3.0.0-alpha06")
     // Glide
     val glide_version = "4.12.0"
     implementation("com.github.bumptech.glide:glide:$glide_version")
-    annotationProcessor("com.github.bumptech.glide:compiler:$glide_version")
+    kapt("com.github.bumptech.glide:compiler:$glide_version")
     // Circle ImageView
     val CircleImgVersion = "3.1.0"
     implementation("de.hdodenhof:circleimageview:$CircleImgVersion")
@@ -89,12 +91,16 @@ dependencies {
     // lottie
     val lottie_version = "6.0.0"
     implementation("com.airbnb.android:lottie:$lottie_version")
+    //stepView
+    implementation ("com.github.shuhart:stepview:1.5.1")
     // Image slider
-    implementation ("com.github.denzcoskun:ImageSlideshow:0.1.0")
+    implementation("com.github.denzcoskun:ImageSlideshow:0.1.0")
     // coroutines
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
     // Okhttp
-    implementation ("com.squareup.okhttp3:okhttp:3.12.1")
-    implementation ("com.squareup.okhttp3:logging-interceptor:3.6.0")
+    implementation("com.squareup.okhttp3:okhttp:3.12.1")
+    implementation("com.squareup.okhttp3:logging-interceptor:3.6.0")
+    // network connection
+    implementation ("androidx.localbroadcastmanager:localbroadcastmanager:1.0.0")
 
 }

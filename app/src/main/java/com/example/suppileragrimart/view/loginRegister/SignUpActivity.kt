@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.example.suppileragrimart.databinding.ActivitySignUpBinding
 import com.example.suppileragrimart.model.Supplier
 import com.example.suppileragrimart.utils.Constants.FIELD_REQUIRED
@@ -13,7 +12,6 @@ import com.example.suppileragrimart.utils.Constants.SUPPLIER
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.RSA
 import com.example.suppileragrimart.utils.Validation
-import com.example.suppileragrimart.viewmodel.SupplierViewModel
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -148,7 +146,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun generateRSAKey() {
         val rsa = RSA()
         rsa.init()
-        supplier!!.rsaPrivateKey = rsa.privateKey
+        supplier!!.rsaPublicKey = rsa.publicKey
         loginUtils.saveRSAKey(rsa.privateKey, rsa.publicKey)
     }
 }
