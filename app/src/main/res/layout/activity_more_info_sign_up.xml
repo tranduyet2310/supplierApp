@@ -84,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/custom_border"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:padding="@dimen/dimen5dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -146,34 +146,34 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:paddingLeft="@dimen/dimen24dp"
-            android:paddingRight="@dimen/dimen24dp"
-            android:layout_marginTop="@dimen/dimen8dp"
-            android:layout_marginBottom="@dimen/dimen8dp"
-            android:orientation="horizontal">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:paddingLeft="@dimen/dimen24dp"-->
+<!--            android:paddingRight="@dimen/dimen24dp"-->
+<!--            android:layout_marginTop="@dimen/dimen8dp"-->
+<!--            android:layout_marginBottom="@dimen/dimen8dp"-->
+<!--            android:orientation="horizontal">-->
 
-            <CheckBox
-                android:id="@+id/checkboxRobot"
-                style="@style/h4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/i_m_not_a_robot"
-                android:layout_weight="9"
-                android:textStyle="bold"/>
+<!--            <CheckBox-->
+<!--                android:id="@+id/checkboxRobot"-->
+<!--                style="@style/h4"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/i_m_not_a_robot"-->
+<!--                android:layout_weight="9"-->
+<!--                android:textStyle="bold"/>-->
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/recaptcha"
-                android:layout_weight="1"
-                android:layout_gravity="center|end"
-                android:importantForAccessibility="no" />
+<!--            <ImageView-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:src="@drawable/recaptcha"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_gravity="center|end"-->
+<!--                android:importantForAccessibility="no" />-->
 
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
         <CheckBox
             android:id="@+id/checkboxAgree"

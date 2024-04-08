@@ -30,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen8dp"
+            android:id="@+id/textFieldEmail"
             android:layout_marginBottom="@dimen/dimen8dp"
             android:paddingStart="@dimen/dimen24dp"
             android:paddingEnd="@dimen/dimen24dp">
@@ -50,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen8dp"
+            android:id="@+id/textFieldPassword"
             android:layout_marginBottom="@dimen/dimen8dp"
             android:paddingStart="@dimen/dimen24dp"
             android:paddingEnd="@dimen/dimen24dp"
@@ -61,6 +63,7 @@
                 android:autofillHints="password"
                 android:background="@drawable/custom_border"
                 android:hint="@string/hint_password"
+                android:id="@+id/inputPassword"
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"

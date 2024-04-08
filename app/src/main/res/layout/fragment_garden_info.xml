@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/lightBlue"
-    tools:context=".view.GardenInfoFragment">
+    tools:context=".view.profile.GardenInfoFragment">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnUpdate"

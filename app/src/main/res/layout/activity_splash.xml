@@ -49,12 +49,11 @@
         style="@style/h1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/tvRightAddressMargin"
         android:gravity="center"
         android:text="@string/fullNameAppV2"
         android:textAlignment="center"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@id/ellipse"
+
         app:layout_constraintEnd_toEndOf="@id/ellipse"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="@id/ellipse"
@@ -77,9 +76,9 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/texture_right"
         android:layout_marginBottom="10dp"
         android:importantForAccessibility="no"
+        android:src="@drawable/texture_right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guidelineLeftTexture" />
@@ -87,7 +86,7 @@
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="120dp"
         app:layout_constraintEnd_toEndOf="@id/tvSlogan"
         app:layout_constraintStart_toStartOf="@id/tvSlogan"
         app:layout_constraintTop_toBottomOf="@id/tvSlogan"
@@ -130,7 +129,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.48" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,7 @@
     <string name="app_name">SuppilerAgriMart</string>
     <string name="slogan">An toàn - Uy tín - Chất lượng</string>
     <string name="fullNameApp">Hệ thống phân phối nông sản</string>
-    <string name="fullNameAppV2">Hệ thống phân phối\n nông sản</string>
+    <string name="fullNameAppV2">Bán hàng với AgriMart</string>
     <string name="appName"><font color='#ff8800'>Argi</font><font color='#3BD98C'>Mart</font></string>
     <string name="menu_Home">Trang chủ</string>
     <string name="menu_Product">Sản phẩm</string>
@@ -239,4 +239,8 @@
     <string name="current_crops">Cây đang trồng</string>
     <string name="planting_stage">Giai đoạn cây trồng</string>
     <string name="estimate_crop_yield">Sản luợng dự kiến</string>
+
+    <string name="loading">Đang tải …</string>
+    <string name="ok">Đồng ý</string>
+
 </resources>

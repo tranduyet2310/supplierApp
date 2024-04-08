@@ -91,7 +91,10 @@ dependencies {
     implementation("com.airbnb.android:lottie:$lottie_version")
     // Image slider
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.0")
-    // SafetyNet
-    implementation ("com.google.android.gms:play-services-safetynet:18.0.1")
+    // coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    // Okhttp
+    implementation ("com.squareup.okhttp3:okhttp:3.12.1")
+    implementation ("com.squareup.okhttp3:logging-interceptor:3.6.0")
 
 }

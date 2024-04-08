@@ -126,7 +126,7 @@
     </fragment>
     <fragment
         android:id="@+id/gardenInfoFragment"
-        android:name="com.example.suppileragrimart.view.GardenInfoFragment"
+        android:name="com.example.suppileragrimart.view.profile.GardenInfoFragment"
         android:label="fragment_garden_info"
         tools:layout="@layout/fragment_garden_info" >
         <action
@@ -138,7 +138,7 @@
     </fragment>
     <fragment
         android:id="@+id/shopInfoFragment"
-        android:name="com.example.suppileragrimart.view.ShopInfoFragment"
+        android:name="com.example.suppileragrimart.view.profile.ShopInfoFragment"
         android:label="fragment_shop_info"
         tools:layout="@layout/fragment_shop_info" >
         <action
@@ -150,7 +150,7 @@
     </fragment>
     <fragment
         android:id="@+id/updateShopInfoFragment"
-        android:name="com.example.suppileragrimart.view.UpdateShopInfoFragment"
+        android:name="com.example.suppileragrimart.view.profile.UpdateShopInfoFragment"
         android:label="fragment_update_shop_info"
         tools:layout="@layout/fragment_update_shop_info" >
         <action
@@ -159,7 +159,7 @@
     </fragment>
     <fragment
         android:id="@+id/updateGardenInfoFragment"
-        android:name="com.example.suppileragrimart.view.UpdateGardenInfoFragment"
+        android:name="com.example.suppileragrimart.view.profile.UpdateGardenInfoFragment"
         android:label="fragment_update_garden_info"
         tools:layout="@layout/fragment_update_garden_info" >
         <action

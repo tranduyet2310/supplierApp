@@ -1,4 +1,4 @@
-package com.example.suppileragrimart.view
+package com.example.suppileragrimart.view.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
