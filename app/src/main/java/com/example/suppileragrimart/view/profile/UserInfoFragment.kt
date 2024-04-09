@@ -23,6 +23,9 @@ class UserInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
        binding = FragmentUserInfoBinding.inflate(inflater)
+
+        binding.toolbarLayout.titleToolbar.text = getString(R.string.personal_info)
+
         return binding.root
     }
 
@@ -30,7 +33,7 @@ class UserInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-        val userInfoFragment = arrayListOf<Fragment>(
+        val userInfoFragment = arrayListOf(
             GeneralInfoFragment(),
             BankInfoFragment()
         )
@@ -42,13 +45,15 @@ class UserInfoFragment : Fragment() {
         binding.viewpagerUserInfo.adapter = viewPager2Adapter
         TabLayoutMediator(binding.tabLayout, binding.viewpagerUserInfo) { tab, position ->
             when (position) {
-                0 -> tab.text = "Thông tin chung"
-                1 -> tab.text = "Thông tin ngân hàng"
+                0 -> tab.text = getString(R.string.general_info)
+                1 -> tab.text = getString(R.string.bank_info)
 
             }
         }.attach()
 
-
+        binding.toolbarLayout.imgBack.setOnClickListener{
+            navController.navigateUp()
+        }
     }
 
 }

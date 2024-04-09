@@ -22,6 +22,9 @@ class ChangePasswordFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentChangePasswordBinding.inflate(inflater, container, false)
+
+        binding.toolbarLayout.titleToolbar.text = getString(R.string.password_assistance)
+
         return binding.root
     }
 
@@ -31,6 +34,10 @@ class ChangePasswordFragment : Fragment(), View.OnClickListener {
 
         binding.cancel.setOnClickListener(this)
         binding.saveChanges.setOnClickListener(this)
+
+        binding.toolbarLayout.imgBack.setOnClickListener{
+            navController.navigateUp()
+        }
     }
 
     override fun onDestroyView() {

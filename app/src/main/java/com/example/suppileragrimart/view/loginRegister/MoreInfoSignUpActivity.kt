@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.suppileragrimart.R
 import com.example.suppileragrimart.databinding.ActivityMoreInfoSignUpBinding
 import com.example.suppileragrimart.model.AESResponse
+import com.example.suppileragrimart.model.RsaKey
 import com.example.suppileragrimart.model.Supplier
 import com.example.suppileragrimart.network.Api
 import com.example.suppileragrimart.network.RetrofitClient
@@ -20,6 +21,7 @@ import com.example.suppileragrimart.utils.Constants.SUPPLIER
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
 import com.example.suppileragrimart.utils.RSA
+import com.example.suppileragrimart.utils.RsaKeyDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -109,10 +111,13 @@ class MoreInfoSignUpActivity : AppCompatActivity(), View.OnClickListener {
                 val result = response.body()
                 if (result != null) {
                     val rsa = RSA()
-                    val rsaPrivateKey = rsa.getOriginalPrivateKey(loginUtils.getRSAPrivateKey())
-                    val rsaPublicKey = rsa.getOriginalPublicKey(loginUtils.getRSAPublicKey())
+                    val rsaPrivateKeyInString = loginUtils.getRSAPrivateKey()
+                    val rsaPublicKeyInString = loginUtils.getRSAPublicKey()
+                    val rsaPrivateKey = rsa.getOriginalPrivateKey(rsaPrivateKeyInString)
+                    val rsaPublicKey = rsa.getOriginalPublicKey(rsaPublicKeyInString)
                     rsa.setPrivateKey(rsaPrivateKey)
                     rsa.setPublicKey(rsaPublicKey)
+
                     val decryptAESKey = rsa.decrypt(result.aesKey)
                     val decryptIv = rsa.decrypt(result.iv)
                     val decryptAESResponse = AESResponse()
@@ -121,6 +126,9 @@ class MoreInfoSignUpActivity : AppCompatActivity(), View.OnClickListener {
                     decryptAESResponse.rsaPublicKeyServer = result.rsaPublicKeyServer
 
                     loginUtils.saveResponseKeys(decryptAESResponse)
+
+                    val rsaKey = RsaKey(0, supplier!!.email, rsaPublicKeyInString, rsaPrivateKeyInString)
+                    RsaKeyDatabase.getDatabase(this@MoreInfoSignUpActivity).rsaKeyDao().addRsaKey(rsaKey)
                 }
             }
         }

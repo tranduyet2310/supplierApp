@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".view.warehouse.WarehouseFragment">
 
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/search_layout"
         style="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -13,7 +20,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -121,11 +128,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="invisible"
-        tools:listitem="@layout/warehouse_list_item"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleForRcv" />
+        app:layout_constraintTop_toBottomOf="@id/titleForRcv"
+        tools:listitem="@layout/warehouse_list_item" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/empty_layout"

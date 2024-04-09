@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".view.profile.ShopInfoFragment">
 
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnUpdate"
         android:layout_width="wrap_content"
@@ -16,7 +23,7 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbarLayout" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,7 +38,7 @@
         app:layout_constraintBottom_toTopOf="@id/line"
         app:layout_constraintEnd_toStartOf="@id/btnUpdate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbarLayout" />
 
     <View
         android:id="@+id/line"

@@ -244,5 +244,18 @@
     <string name="ok">Đồng ý</string>
     <string name="need_agree">Bạn cần đồng ý với điều khoản để thực hiện chức năng này</string>
     <string name="supplier_request">Tạo tài khoản bán hàng thành công</string>
+    <string name="pub_key_not_found">Không tìm thấy public key trên thiết bị này</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="warehouse">Kho hàng</string>
+    <string name="add_warehouse">Thêm kho hàng</string>
+    <string name="sale">Bán hàng</string>
+    <string name="order_detail">Chi tiết đơn hàng</string>
+    <string name="product_list">Danh sách sản phẩm</string>
+    <string name="add_product">Thêm mới sản phẩm</string>
+    <string name="personal_info">Thông tin cá nhân</string>
+    <string name="general_info">Thông tin chung</string>
+    <string name="bank_info">Thông tin ngân hàng</string>
+    <string name="account_info">Thông tin tài khoản</string>
+    <string name="update_info">Cập nhật thông tin</string>
 
 </resources>

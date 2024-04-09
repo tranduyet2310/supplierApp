@@ -20,6 +20,9 @@ class UserAccountFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentUserAccountBinding.inflate(inflater, container, false)
+
+        binding.toolbarLayout.titleToolbar.text = getString(R.string.account_info)
+
         return binding.root
     }
 
@@ -29,6 +32,10 @@ class UserAccountFragment : Fragment(), View.OnClickListener {
 
         binding.tvUpdatePassword.setOnClickListener(this)
         binding.buttonSave.setOnClickListener(this)
+
+        binding.toolbarLayout.imgBack.setOnClickListener{
+            navController.navigateUp()
+        }
     }
 
     override fun onDestroyView() {

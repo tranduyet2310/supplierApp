@@ -25,4 +25,7 @@ interface Api {
 
     @POST("/api/auth/keys")
     suspend fun createAESKeyRequest(@Body aesResponse: AESResponse): Response<AESResponse>
+
+    @POST("/api/auth/key")
+    suspend fun getSessionKey(@Body aesResponse: AESResponse): Response<AESResponse>
 }

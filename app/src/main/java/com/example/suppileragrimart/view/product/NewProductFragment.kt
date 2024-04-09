@@ -21,6 +21,7 @@ class NewProductFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentNewProductBinding.inflate(inflater)
+        binding.toolbarLayout.titleToolbar.text = getString(R.string.add_product)
 
         val categoryValues = arrayOf("Danh mục sản phẩm *", "Rau củ", "Hoa quả", "Gia vị")
         val subCategoryValues = arrayOf("Danh mục con *", "Rau củ", "Hoa quả", "Gia vị")
@@ -40,6 +41,9 @@ class NewProductFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
+        binding.toolbarLayout.imgBack.setOnClickListener{
+            navController.navigateUp()
+        }
     }
 
     override fun onClick(v: View?) {

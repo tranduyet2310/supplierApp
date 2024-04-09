@@ -22,6 +22,7 @@ class ShopInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentShopInfoBinding.inflate(inflater)
+        binding.toolbarLayout.titleToolbar.text = getString(R.string.shop_info)
 
         setupShopImages();
         setupGardenImages()
@@ -41,6 +42,10 @@ class ShopInfoFragment : Fragment() {
         binding.contentLayout.visibility = View.VISIBLE
         binding.imagePlaceholder.visibility = View.GONE
         binding.textAnnounce.visibility = View.GONE
+
+        binding.toolbarLayout.imgBack.setOnClickListener{
+            navController.navigateUp()
+        }
     }
 
     private fun setupShopImages() {

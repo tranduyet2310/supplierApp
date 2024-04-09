@@ -21,6 +21,9 @@ class SaleFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSaleBinding.inflate(inflater)
+        binding.toolbarLayout.titleToolbar.text = getString(R.string.sale)
+        binding.toolbarLayout.imgBack.visibility = View.GONE
+
         return binding.root
     }
 

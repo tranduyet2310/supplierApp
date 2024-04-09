@@ -102,5 +102,9 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:3.6.0")
     // network connection
     implementation ("androidx.localbroadcastmanager:localbroadcastmanager:1.0.0")
+    // Room components
+    implementation ("androidx.room:room-runtime:2.2.5")
+    kapt ("androidx.room:room-compiler:2.2.5")
+    implementation ("androidx.room:room-ktx:2.2.5")
 
 }

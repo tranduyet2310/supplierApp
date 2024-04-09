@@ -45,38 +45,38 @@
                 android:layout_gravity="center|start"
                 android:textSize="@dimen/dimen16sp" />
 
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen200dp"
-                android:background="@color/darkGreen"
-                android:clipToPadding="false"
-                android:layout_gravity="center|end"
-                android:layout_marginEnd="@dimen/dimen10dp"
-                android:focusable="true"
-                android:padding="16dp">
+<!--            <FrameLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="@dimen/dimen200dp"-->
+<!--                android:background="@color/darkGreen"-->
+<!--                android:clipToPadding="false"-->
+<!--                android:layout_gravity="center|end"-->
+<!--                android:layout_marginEnd="@dimen/dimen10dp"-->
+<!--                android:focusable="true"-->
+<!--                android:padding="16dp">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:importantForAccessibility="no"
-                    android:src="@drawable/ic_notification"
-                    app:tint="@color/white" />
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:importantForAccessibility="no"-->
+<!--                    android:src="@drawable/ic_notification"-->
+<!--                    app:tint="@color/white" />-->
 
-                <TextView
-                    android:id="@+id/tvCartBadge"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_gravity="top|end"
-                    android:layout_marginTop="-4dp"
-                    android:layout_marginEnd="-4dp"
-                    android:background="@drawable/badge_shape"
-                    android:gravity="center"
-                    android:text="@string/_5"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-            </FrameLayout>
+<!--                <TextView-->
+<!--                    android:id="@+id/tvCartBadge"-->
+<!--                    android:layout_width="18dp"-->
+<!--                    android:layout_height="18dp"-->
+<!--                    android:layout_gravity="top|end"-->
+<!--                    android:layout_marginTop="-4dp"-->
+<!--                    android:layout_marginEnd="-4dp"-->
+<!--                    android:background="@drawable/badge_shape"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="@string/_5"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="12sp" />-->
+<!--            </FrameLayout>-->
 
         </FrameLayout>
 

@@ -7,6 +7,5 @@ import java.security.PublicKey
 
 class SupplierViewModel: ViewModel() {
     var supplier: Supplier? = null
-    private lateinit var publicKey: PublicKey
-    private lateinit var privateKey: PrivateKey
+    var isValidPublicKey: Boolean = false
 }

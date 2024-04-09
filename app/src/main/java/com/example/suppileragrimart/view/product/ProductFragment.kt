@@ -20,6 +20,9 @@ class ProductFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProductBinding.inflate(inflater)
+        binding.toolbarLayout.titleToolbar.text = getString(R.string.product_list)
+        binding.toolbarLayout.imgBack.visibility = View.GONE
+
         return binding.root
     }
 
@@ -27,6 +30,8 @@ class ProductFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         binding.btnAddNewProduct.setOnClickListener(this)
+
+
     }
 
     override fun onClick(v: View?) {

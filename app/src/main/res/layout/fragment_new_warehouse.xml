@@ -11,6 +11,13 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent">
 
+      <include
+          android:id="@+id/toolbarLayout"
+          layout="@layout/toolbar_layout"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
       <com.google.android.material.textfield.TextInputLayout
           android:id="@+id/nameLayout"
           android:layout_width="0dp"
@@ -19,7 +26,7 @@
           android:layout_marginBottom="@dimen/dimen8dp"
           app:layout_constraintEnd_toEndOf="@id/guideline1"
           app:layout_constraintStart_toStartOf="@id/guideline0"
-          app:layout_constraintTop_toTopOf="parent">
+          app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
           <com.google.android.material.textfield.TextInputEditText
               android:id="@+id/inputName"

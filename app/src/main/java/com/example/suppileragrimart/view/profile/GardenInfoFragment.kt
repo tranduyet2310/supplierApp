@@ -20,6 +20,7 @@ class GardenInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View{
         binding = FragmentGardenInfoBinding.inflate(inflater)
+        binding.toolbarLayout.titleToolbar.text = getString(R.string.garden_info)
 
         return binding.root
     }
@@ -31,6 +32,10 @@ class GardenInfoFragment : Fragment() {
         binding.btnUpdate.setOnClickListener {
             Snackbar.make(requireView(), "Clicked", Snackbar.LENGTH_SHORT).show()
             navController.navigate(R.id.action_gardenInfoFragment_to_updateGardenInfoFragment)
+        }
+
+        binding.toolbarLayout.imgBack.setOnClickListener{
+            navController.navigateUp()
         }
     }
 

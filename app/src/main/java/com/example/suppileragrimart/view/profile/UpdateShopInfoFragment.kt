@@ -19,6 +19,7 @@ class UpdateShopInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentUpdateShopInfoBinding.inflate(inflater)
+        binding.toolbarLayout.titleToolbar.text = getString(R.string.update_info)
 
         return binding.root
     }
@@ -32,6 +33,10 @@ class UpdateShopInfoFragment : Fragment() {
         }
         binding.btnBack.setOnClickListener {
             navController.navigate(R.id.action_updateShopInfoFragment_to_shopInfoFragment)
+        }
+
+        binding.toolbarLayout.imgBack.setOnClickListener{
+            navController.navigateUp()
         }
     }
 

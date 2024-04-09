@@ -11,6 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include
+            android:id="@+id/toolbarLayout"
+            layout="@layout/toolbar_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ProgressBar
             android:id="@+id/progressbarAccount"
             android:layout_width="wrap_content"
@@ -30,7 +37,7 @@
             app:layout_constraintEnd_toEndOf="@id/rightGuideline"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="@id/leftGuideline"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/toolbarLayout" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageEdit"

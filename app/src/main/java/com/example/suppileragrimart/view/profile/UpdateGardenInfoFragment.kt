@@ -20,6 +20,7 @@ class UpdateGardenInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentUpdateGardenInfoBinding.inflate(inflater)
+        binding.toolbarLayout.titleToolbar.text = getString(R.string.update_info)
 
         return binding.root
     }
@@ -28,6 +29,8 @@ class UpdateGardenInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-
+        binding.toolbarLayout.imgBack.setOnClickListener{
+            navController.navigateUp()
+        }
     }
 }

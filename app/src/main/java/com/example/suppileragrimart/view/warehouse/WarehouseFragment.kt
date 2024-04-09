@@ -22,14 +22,20 @@ class WarehouseFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentWarehouseBinding.inflate(inflater)
+
+        binding.toolbarLayout.titleToolbar.text = getString(R.string.warehouse)
+        binding.toolbarLayout.imgBack.visibility = View.GONE
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+
         binding.tvSearch.setOnClickListener(this)
         binding.btnAddWareHouse.setOnClickListener(this)
+
     }
 
     override fun onClick(v: View?) {

@@ -8,291 +8,307 @@
     android:fillViewport="true"
     tools:context=".view.profile.UpdateShopInfoFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/dimen24dp">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/agrimart"
-            style="@style/h2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/lightBlue"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="@string/appName"
-            app:layout_constraintBottom_toTopOf="@+id/fullnameApp"
+        <include
+            android:id="@+id/toolbarLayout"
+            layout="@layout/toolbar_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/fullnameApp"
-            style="@style/h3"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/lightBlue"
-            android:gravity="center"
-            android:paddingBottom="@dimen/dimen10dp"
-            android:text="@string/fullNameApp"
-            app:layout_constraintBottom_toTopOf="@id/image_forget"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/agrimart" />
+            app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
-
-        <TextView
-            style="@style/h1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingStart="@dimen/dimen24dp"
-            android:paddingEnd="@dimen/dimen24dp"
-            android:text="@string/shop_info" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/inter_semibold"
-            android:gravity="start"
-            android:text="@string/shop_info"
-            android:textAllCaps="true"
-            android:textColor="@color/yellowAgri"
-            android:textSize="16sp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen8dp"
-            android:layout_marginBottom="@dimen/dimen8dp"
-            android:hint="@string/intro_about_shop">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtShopIntro"
+            <TextView
+                android:id="@+id/agrimart"
+                style="@style/h2"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/custom_border"
-                android:inputType="textMultiLine"
-                android:padding="@dimen/dimen5dp" />
+                android:layout_height="wrap_content"
+                android:background="@color/lightBlue"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/appName"
+                app:layout_constraintBottom_toTopOf="@+id/fullnameApp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/tvShopImage"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="@dimen/dimen8dp"
-            android:layout_marginBottom="@dimen/dimen8dp"
-            android:background="@drawable/custom_border"
-            android:gravity="center|start"
-            android:padding="10dp"
-            android:text="@string/image_info"
-            app:drawableEndCompat="@drawable/ic_edit_black" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageShop_1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="#B8B5B2"
-                android:importantForAccessibility="no"
-                android:src="@drawable/image_gallery"
-                app:layout_constraintEnd_toEndOf="@id/guideline1"
-                app:layout_constraintStart_toStartOf="@id/guideline0"
-                app:layout_constraintTop_toBottomOf="@id/tvProductImage" />
-
-            <ImageView
-                android:id="@+id/imageShop_2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="#B8B5B2"
-                android:importantForAccessibility="no"
-                android:src="@drawable/image_gallery"
-                app:layout_constraintEnd_toEndOf="@id/guideline1"
-                app:layout_constraintStart_toStartOf="@id/guideline0"
-                app:layout_constraintTop_toBottomOf="@id/tvProductImage" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageShop_3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="#B8B5B2"
-                android:importantForAccessibility="no"
-                android:src="@drawable/image_gallery"
-                app:layout_constraintEnd_toEndOf="@id/guideline1"
-                app:layout_constraintStart_toStartOf="@id/guideline0"
-                app:layout_constraintTop_toBottomOf="@id/tvProductImage" />
-
-            <ImageView
-                android:id="@+id/imageShop_4"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="#B8B5B2"
-                android:importantForAccessibility="no"
-                android:src="@drawable/image_gallery" />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:textAllCaps="true"
-            android:textSize="16sp"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/yellowAgri"
-            android:fontFamily="@font/inter_semibold"
-            android:text="@string/garden" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen8dp"
-            android:layout_marginBottom="@dimen/dimen8dp"
-            android:hint="@string/garden_intro">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtGardenIntro"
+            <TextView
+                android:id="@+id/fullnameApp"
+                style="@style/h3"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:background="@color/lightBlue"
+                android:gravity="center"
+                android:paddingBottom="@dimen/dimen10dp"
+                android:text="@string/fullNameApp"
+                app:layout_constraintBottom_toTopOf="@id/image_forget"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/agrimart" />
+
+
+            <TextView
+                style="@style/h1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingStart="@dimen/dimen24dp"
+                android:paddingEnd="@dimen/dimen24dp"
+                android:text="@string/shop_info" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="start"
+                android:text="@string/shop_info"
+                android:textAllCaps="true"
+                android:textColor="@color/yellowAgri"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen8dp"
+                android:layout_marginBottom="@dimen/dimen8dp"
+                android:hint="@string/intro_about_shop">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtShopIntro"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/custom_border"
+                    android:inputType="textMultiLine"
+                    android:padding="@dimen/dimen5dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvShopImage"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/dimen8dp"
+                android:layout_marginBottom="@dimen/dimen8dp"
                 android:background="@drawable/custom_border"
-                android:inputType="textMultiLine"
-                android:padding="@dimen/dimen5dp" />
+                android:gravity="center|start"
+                android:padding="10dp"
+                android:text="@string/image_info"
+                app:drawableEndCompat="@drawable/ic_edit_black" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvGardenImage"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="@dimen/dimen8dp"
-            android:layout_marginBottom="@dimen/dimen8dp"
-            android:background="@drawable/custom_border"
-            android:gravity="center|start"
-            android:padding="10dp"
-            android:text="@string/image_info"
-            app:drawableEndCompat="@drawable/ic_edit_black" />
+                <ImageView
+                    android:id="@+id/imageShop_1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#B8B5B2"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/image_gallery"
+                    app:layout_constraintEnd_toEndOf="@id/guideline1"
+                    app:layout_constraintStart_toStartOf="@id/guideline0"
+                    app:layout_constraintTop_toBottomOf="@id/tvProductImage" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageGarden_1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="#B8B5B2"
-                android:importantForAccessibility="no"
-                android:src="@drawable/image_gallery"
-                app:layout_constraintEnd_toEndOf="@id/guideline1"
-                app:layout_constraintStart_toStartOf="@id/guideline0"
-                app:layout_constraintTop_toBottomOf="@id/tvProductImage" />
-
-            <ImageView
-                android:id="@+id/imageGarden_2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="#B8B5B2"
-                android:importantForAccessibility="no"
-                android:src="@drawable/image_gallery"
-                app:layout_constraintEnd_toEndOf="@id/guideline1"
-                app:layout_constraintStart_toStartOf="@id/guideline0"
-                app:layout_constraintTop_toBottomOf="@id/tvProductImage" />
+                <ImageView
+                    android:id="@+id/imageShop_2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#B8B5B2"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/image_gallery"
+                    app:layout_constraintEnd_toEndOf="@id/guideline1"
+                    app:layout_constraintStart_toStartOf="@id/guideline0"
+                    app:layout_constraintTop_toBottomOf="@id/tvProductImage" />
 
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imageGarden_3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="#B8B5B2"
-                android:importantForAccessibility="no"
-                android:src="@drawable/image_gallery"
-                app:layout_constraintEnd_toEndOf="@id/guideline1"
-                app:layout_constraintStart_toStartOf="@id/guideline0"
-                app:layout_constraintTop_toBottomOf="@id/tvProductImage" />
+                <ImageView
+                    android:id="@+id/imageShop_3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#B8B5B2"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/image_gallery"
+                    app:layout_constraintEnd_toEndOf="@id/guideline1"
+                    app:layout_constraintStart_toStartOf="@id/guideline0"
+                    app:layout_constraintTop_toBottomOf="@id/tvProductImage" />
 
-            <ImageView
-                android:id="@+id/imageGarden_4"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="#B8B5B2"
-                android:importantForAccessibility="no"
-                android:src="@drawable/image_gallery" />
+                <ImageView
+                    android:id="@+id/imageShop_4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#B8B5B2"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/image_gallery" />
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnBack"
-                style="@style/h3"
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/button_white_border"
-                android:text="@string/back"
-                android:textAllCaps="false"
-                android:textColor="@color/black" />
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="start"
+                android:text="@string/garden"
+                android:textAllCaps="true"
+                android:textColor="@color/yellowAgri"
+                android:textSize="16sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSave"
-                style="@style/h3"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/button_yellow_border"
-                android:text="@string/update"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:layout_marginTop="@dimen/dimen8dp"
+                android:layout_marginBottom="@dimen/dimen8dp"
+                android:hint="@string/garden_intro">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtGardenIntro"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/custom_border"
+                    android:inputType="textMultiLine"
+                    android:padding="@dimen/dimen5dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvGardenImage"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/dimen8dp"
+                android:layout_marginBottom="@dimen/dimen8dp"
+                android:background="@drawable/custom_border"
+                android:gravity="center|start"
+                android:padding="10dp"
+                android:text="@string/image_info"
+                app:drawableEndCompat="@drawable/ic_edit_black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageGarden_1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#B8B5B2"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/image_gallery"
+                    app:layout_constraintEnd_toEndOf="@id/guideline1"
+                    app:layout_constraintStart_toStartOf="@id/guideline0"
+                    app:layout_constraintTop_toBottomOf="@id/tvProductImage" />
+
+                <ImageView
+                    android:id="@+id/imageGarden_2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#B8B5B2"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/image_gallery"
+                    app:layout_constraintEnd_toEndOf="@id/guideline1"
+                    app:layout_constraintStart_toStartOf="@id/guideline0"
+                    app:layout_constraintTop_toBottomOf="@id/tvProductImage" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageGarden_3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#B8B5B2"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/image_gallery"
+                    app:layout_constraintEnd_toEndOf="@id/guideline1"
+                    app:layout_constraintStart_toStartOf="@id/guideline0"
+                    app:layout_constraintTop_toBottomOf="@id/tvProductImage" />
+
+                <ImageView
+                    android:id="@+id/imageGarden_4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#B8B5B2"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/image_gallery" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnBack"
+                    style="@style/h3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_white_border"
+                    android:text="@string/back"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnSave"
+                    style="@style/h3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_yellow_border"
+                    android:text="@string/update"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
