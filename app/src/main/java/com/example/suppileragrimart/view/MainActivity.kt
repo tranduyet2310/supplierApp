@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         setupNavHost()
 
         supplier = loginUtils.getSupplierInfo()
+        supplierViewModel.supplier = supplier
 
         lifecycleScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main){

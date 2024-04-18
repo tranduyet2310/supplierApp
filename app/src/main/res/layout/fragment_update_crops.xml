@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightBlue"
+    tools:context=".view.garden.UpdateCropsFragment">
+
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+
+        <TextView
+            android:id="@+id/agrimart"
+            style="@style/h2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightBlue"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="@string/appName"
+            app:layout_constraintBottom_toTopOf="@+id/fullnameApp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fullnameApp"
+            style="@style/h3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightBlue"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen10dp"
+            android:text="@string/fullNameApp"
+            app:layout_constraintBottom_toTopOf="@id/image_forget"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/agrimart" />
+
+
+        <TextView
+            style="@style/h1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingStart="@dimen/dimen24dp"
+            android:paddingEnd="@dimen/dimen24dp"
+            android:text="@string/garden_info" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/dimen24dp"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="start"
+            android:text="@string/basic_info"
+            android:textAllCaps="true"
+            android:textColor="@color/yellowAgri"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen24dp"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginEnd="@dimen/dimen24dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/current_crop">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtCurrentCrop"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_border"
+                android:inputType="text"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/custom_border"
+            android:id="@+id/spCropsType"
+            android:layout_marginStart="@dimen/dimen24dp"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginEnd="@dimen/dimen24dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/crops_type" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen24dp"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginEnd="@dimen/dimen24dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/current_crops">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtCurrentCrops"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_border"
+                android:inputType="text"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen24dp"
+            android:layout_marginTop="@dimen/dimen8dp"
+            android:layout_marginEnd="@dimen/dimen24dp"
+            android:layout_marginBottom="@dimen/dimen8dp"
+            android:hint="@string/land_area">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtLandArea"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_border"
+                android:inputType="text"
+                android:padding="@dimen/dimen5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen24dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="@dimen/dimen24dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnBack"
+                style="@style/h3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_white_border"
+                android:text="@string/back"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSave"
+                style="@style/h3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_yellow_border"
+                android:text="@string/update"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

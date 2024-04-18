@@ -23,8 +23,9 @@ class UserInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
        binding = FragmentUserInfoBinding.inflate(inflater)
-
         binding.toolbarLayout.titleToolbar.text = getString(R.string.personal_info)
+
+
 
         return binding.root
     }

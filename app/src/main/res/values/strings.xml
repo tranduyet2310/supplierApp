@@ -189,7 +189,7 @@
     <string name="account_number">Số tài khoản:</string>
     <string name="bank_name">Ngân hàng:</string>
     <string name="price">Giá bán:</string>
-    <string name="created_date">Ngày tạo:</string>
+    <string name="created_date">Kho hàng:</string>
     <string name="quanity">Số lượng:</string>
     <string name="sdt">SĐT:</string>
     <string name="product_info">Thông tin sản phẩm</string>
@@ -219,9 +219,12 @@
     <string name="list_product">Danh sách sản phẩm</string>
     <string name="garden_intro">Giới thiệu về Vườn</string>
     <string name="intro_shop">Giới thiệu về Shop</string>
+    <string name="add_garden">Thêm vườn</string>
     <string name="harvest_time">Giai đoạn thu hoạch</string>
     <string name="chemical_time">Giai đoạn phòng trừ sâu bệnh</string>
     <string name="take_care_time">Giai đoạn chăm sóc cây</string>
+    <string name="fruiting_time">Giai đoạn cây kết trái</string>
+    <string name="flowering_time">Giai đoạn cây ra hoa</string>
     <string name="germination_time">Giai đoạn cây nảy mầm</string>
     <string name="sow_seed_time">Giai đoạn gieo hạt giống</string>
     <string name="make_land_time">Giai đoạn làm đất trồng</string>
@@ -233,12 +236,18 @@
     <string name="no_shop_info">Cửa hàng chưa có thông tin nào</string>
     <string name="shop_info">Thông tin cửa hàng</string>
     <string name="garden_info">Thông tin Vườn cây</string>
+    <string name="create_garden">Thêm mới Vườn</string>
+    <string name="garden_detail">Chi tiết Vườn cây</string>
+    <string name="garden_list">Danh sách cây trồng</string>
     <string name="no_info_current_crops">Chưa có thông tin về cây trồng hiện tại</string>
+    <string name="no_detail_crops">Chưa có chi tiết về cây trồng hiện tại</string>
     <string name="basic_info">Thông tin cơ bản</string>
     <string name="current_crop">Mùa vụ hiện tại</string>
+    <string name="crops_type">Loại cây trồng</string>
     <string name="current_crops">Cây đang trồng</string>
     <string name="planting_stage">Giai đoạn cây trồng</string>
     <string name="estimate_crop_yield">Sản luợng dự kiến</string>
+    <string name="estimate_price">Giá đề xuất (Đơn vị: VNĐ/1 kg)</string>
 
     <string name="loading">Đang tải …</string>
     <string name="ok">Đồng ý</string>
@@ -257,5 +266,24 @@
     <string name="bank_info">Thông tin ngân hàng</string>
     <string name="account_info">Thông tin tài khoản</string>
     <string name="update_info">Cập nhật thông tin</string>
+    <string name="create_warehouse">Tạo mới kho hàng thành công</string>
+    <string name="update_warehouse">Cập nhật kho hàng</string>
+    <string name="updated_warehouse">Cập nhật kho hàng thành công</string>
+    <string name="delete_warehouse">Xóa kho hàng thành công</string>
+    <string name="warehouse_question">Bạn có chắc chắn muốn xóa kho hàng này?</string>
+    <string name="warehouse_placeholder">Điểm lấy hàng *</string>
+    <string name="category_placeholder">Danh mục sản phẩm *</string>
+    <string name="subcategory_placeholder">Danh mục con *</string>
+    <string name="created_product">Thêm mới sản phẩm thành công</string>
+    <string name="state">Trạng thái</string>
+    <string name="no_cooperation">Danh sách yêu cầu hiện đang trống</string>
+    <string name="crops_detail">Chi tiết Vườn</string>
+    <string name="list_request">Danh sách yêu cầu</string>
+    <string name="cropsName">Tên cây trồng:</string>
+    <string name="stage">Giai đoạn:</string>
+    <string name="date_created">Ngày tạo:</string>
+    <string name="detail_v2">Chi tiết:</string>
+    <string name="complete">Hoàn thành</string>
+    <string name="complete_season">Khi vụ mùa kết thúc, hãy chọn Hoàn thành</string>
 
 </resources>

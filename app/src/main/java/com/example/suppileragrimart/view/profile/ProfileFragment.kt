@@ -51,7 +51,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     }
 
     private fun gardenInfo() {
-        navController.navigate(R.id.action_profileFragment_to_gardenInfoFragment)
+        navController.navigate(R.id.action_profileFragment_to_cropsInfoFragment)
     }
 
     private fun shopInfo() {

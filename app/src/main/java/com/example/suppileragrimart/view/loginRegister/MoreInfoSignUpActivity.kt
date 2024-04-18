@@ -139,7 +139,7 @@ class MoreInfoSignUpActivity : AppCompatActivity(), View.OnClickListener {
 
         val aesKey = loginUtils.getAESKey()
         val iv = loginUtils.getIv()
-        val aesAlgorithm = AES()
+        val aesAlgorithm = AES.getInstance()
         aesAlgorithm.initFromString(aesKey, iv)
 
         encryptSupplier.contactName = aesAlgorithm.encrypt(supplier!!.contactName)

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/lightBlue"
-    tools:context=".view.profile.GardenInfoFragment">
+    tools:context=".view.garden.GardenGeneralFragment">
 
     <include
         android:id="@+id/toolbarLayout"
@@ -20,7 +20,7 @@
         android:layout_height="48dp"
         android:layout_margin="10dp"
         android:background="@drawable/button_yellow_border"
-        android:backgroundTint="@color/greenLight"
+        android:backgroundTint="@color/darkGreen"
         android:text="@string/update"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -52,39 +52,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnUpdate" />
 
-    <ImageView
-        android:id="@+id/imagePlaceholder"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:importantForAccessibility="no"
-        android:src="@drawable/gardening_cuate"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line" />
-
-    <TextView
-        android:id="@+id/textAnnounce"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_semibold"
-        android:text="@string/no_info_current_crops"
-        android:textColor="@color/orange"
-        android:textSize="16sp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@id/imagePlaceholder"
-        app:layout_constraintStart_toStartOf="@id/imagePlaceholder"
-        app:layout_constraintTop_toBottomOf="@id/imagePlaceholder" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvGardenInfo"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:background="@color/white"
-        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line"
+        app:tabIndicator="@null"
+        app:tabMode="scrollable"
+        app:tabRippleColor="@color/white"
+        app:tabSelectedTextColor="#D17206"
+        app:tabTextAppearance="@style/tabLayout_text" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpagerUserInfo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line" />
+        app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

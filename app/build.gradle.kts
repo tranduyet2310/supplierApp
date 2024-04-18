@@ -98,8 +98,8 @@ dependencies {
     // coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
     // Okhttp
-    implementation("com.squareup.okhttp3:okhttp:3.12.1")
-    implementation("com.squareup.okhttp3:logging-interceptor:3.6.0")
+    implementation("com.squareup.okhttp3:okhttp:4.8.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.8.1")
     // network connection
     implementation ("androidx.localbroadcastmanager:localbroadcastmanager:1.0.0")
     // Room components

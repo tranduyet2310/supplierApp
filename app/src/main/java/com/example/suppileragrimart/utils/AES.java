@@ -13,6 +13,17 @@ public class AES {
     private SecretKey key;
     private final int T_LEN = 128;
     private byte[] IV;
+    private static AES instance;
+
+    private AES() {
+    }
+
+    public static AES getInstance(){
+        if (instance == null){
+            instance = new AES();
+        }
+        return instance;
+    }
 
     public void initFromString(String secretKey, String IV) {
         key = new SecretKeySpec(decode(secretKey), "AES");
