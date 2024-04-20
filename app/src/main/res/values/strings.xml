@@ -285,5 +285,29 @@
     <string name="detail_v2">Chi tiết:</string>
     <string name="complete">Hoàn thành</string>
     <string name="complete_season">Khi vụ mùa kết thúc, hãy chọn Hoàn thành</string>
+    <string name="supplier">Nhà cung cấp</string>
+    <string name="shop_name">Tên nhà cung cấp:</string>
+    <string name="supplier_name">Tên người đại diện:</string>
+    <string name="user">Khách hàng</string>
+    <string name="crops_name">Loại cây hợp tác:</string>
+    <string name="investment">"Tổng tiền: "</string>
+    <string name="description">Mô tả:</string>
+    <string name="payment_status">Trạng thái thanh toán:</string>
+    <string name="delivery">Địa chỉ giao hàng:</string>
+    <string name="no_payment">Chưa thanh toán</string>
+    <string name="updated_status">Cập nhật trạng thái thành công</string>
+    <string name="received">Khách đã nhận hàng</string>
+    <string name="terminated">Đã chấm dứt hợp tác</string>
+    <string name="delivery_order">Giao cho bên vận chuyển</string>
+    <string name="PROCESSING">Đang xử lý</string>
+    <string name="CONFIRMED">Đã chấp nhận</string>
+    <string name="DELIVERING">Đang giao hàng</string>
+    <string name="COMPLETED">Giao hàng thành công</string>
+    <string name="accept">Chấp nhận</string>
+    <string name="request">Chi tiết yêu cầu</string>
+    <string name="no_address">Khách hàng chưa cập nhật địa chỉ</string>
+    <string name="bank_owner">Chủ tài khoản:</string>
+    <string name="branch_v2">Chi nhánh:</string>
+    <string name="update_success">Cập nhật thông tin thành công</string>
 
 </resources>

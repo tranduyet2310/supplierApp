@@ -2,6 +2,8 @@ package com.example.suppileragrimart.network
 
 import com.example.suppileragrimart.model.AESResponse
 import com.example.suppileragrimart.model.CategoryApiResponse
+import com.example.suppileragrimart.model.Cooperation
+import com.example.suppileragrimart.model.CooperationApiResponse
 import com.example.suppileragrimart.model.FieldApiResponse
 import com.example.suppileragrimart.model.FieldDetail
 import com.example.suppileragrimart.model.LoginApiResponse
@@ -11,6 +13,7 @@ import com.example.suppileragrimart.model.Product
 import com.example.suppileragrimart.model.ProductApiResponse
 import com.example.suppileragrimart.model.RegisterApiResponse
 import com.example.suppileragrimart.model.Supplier
+import com.example.suppileragrimart.model.UserAddress
 import com.example.suppileragrimart.model.Warehouse
 import com.example.suppileragrimart.model.WarehouseApiResponse
 import okhttp3.MultipartBody
@@ -199,5 +202,41 @@ interface Api {
         @Header("Authorization") token: String,
         @Path("fieldDetailId") fieldId: Long,
     ): Call<MessageResponse>
+    // Cooperation
+    @GET("api/cooperation/{supplierId}/list/{fieldId}")
+    suspend fun getCooperationBySupplierId(
+        @Path("supplierId") supplierId: Long,
+        @Path("fieldId") fieldId: Long,
+        @Query("pageNo") pageNo: String,
+        @Query("sortBy") sortBy: String,
+        @Query("sortDir") sortDir: String
+    ): Response<CooperationApiResponse>
 
+    @PATCH("api/cooperation/{cooperationId}")
+    fun updateCooperationStatus(
+        @Header("Authorization") token: String,
+        @Path("cooperationId") cooperationId: Long,
+        @Body cooperationResponse: Cooperation
+    ): Call<Cooperation>
+
+    @GET("/api/users/addresses/{id}")
+    suspend fun getAddressByIdV2(@Path("id") addressId: Long): Response<UserAddress>
+
+    // Supplier
+    @GET("api/suppliers/{supplierId}")
+    fun getSupplierById(
+        @Path("supplierId") supplierId: Long
+    ): Call<Supplier>
+    @PATCH("api/suppliers/{supplierId}/general")
+    fun updateGeneralInfo(
+        @Header("Authorization") token: String,
+        @Path("supplierId") supplierId: Long,
+        @Body supplier: Supplier
+    ): Call<Supplier>
+    @PATCH("api/suppliers/{supplierId}/bank")
+    fun updateBankInfo(
+        @Header("Authorization") token: String,
+        @Path("supplierId") supplierId: Long,
+        @Body supplier: Supplier
+    ): Call<Supplier>
 }

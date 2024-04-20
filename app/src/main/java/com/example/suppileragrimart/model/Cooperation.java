@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import com.example.suppileragrimart.utils.OrderStatus;
 import com.google.gson.annotations.SerializedName;
 
-public class CooperationResponse implements Parcelable {
+public class Cooperation implements Parcelable {
     @SerializedName("id")
     private long id;
     @SerializedName("fullName")
@@ -37,10 +37,30 @@ public class CooperationResponse implements Parcelable {
     private OrderStatus cooperationStatus;
     @SerializedName("supplierContactName")
     private String supplierName;
-    public CooperationResponse() {
+    @SerializedName("addressId")
+    private Long addressId;
+    @SerializedName("paymentStatus")
+    private String paymentStatus;
+    public Cooperation() {
     }
 
-    protected CooperationResponse(Parcel in) {
+    public Long getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Long addressId) {
+        this.addressId = addressId;
+    }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    protected Cooperation(Parcel in) {
         id = in.readLong();
         fullName = in.readString();
         description = in.readString();
@@ -54,17 +74,52 @@ public class CooperationResponse implements Parcelable {
         supplierPhone = in.readString();
         fieldId = in.readLong();
         supplierName = in.readString();
+        if (in.readByte() == 0) {
+            addressId = null;
+        } else {
+            addressId = in.readLong();
+        }
+        paymentStatus = in.readString();
     }
 
-    public static final Creator<CooperationResponse> CREATOR = new Creator<CooperationResponse>() {
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(fullName);
+        dest.writeString(description);
+        dest.writeString(cropsName);
+        dest.writeDouble(requireYield);
+        dest.writeString(investment);
+        dest.writeString(contact);
+        dest.writeLong(userId);
+        dest.writeLong(supplierId);
+        dest.writeString(shopName);
+        dest.writeString(supplierPhone);
+        dest.writeLong(fieldId);
+        dest.writeString(supplierName);
+        if (addressId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(addressId);
+        }
+        dest.writeString(paymentStatus);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Cooperation> CREATOR = new Creator<Cooperation>() {
         @Override
-        public CooperationResponse createFromParcel(Parcel in) {
-            return new CooperationResponse(in);
+        public Cooperation createFromParcel(Parcel in) {
+            return new Cooperation(in);
         }
 
         @Override
-        public CooperationResponse[] newArray(int size) {
-            return new CooperationResponse[size];
+        public Cooperation[] newArray(int size) {
+            return new Cooperation[size];
         }
     };
 
@@ -180,26 +235,5 @@ public class CooperationResponse implements Parcelable {
         this.supplierName = supplierName;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeLong(id);
-        dest.writeString(fullName);
-        dest.writeString(description);
-        dest.writeString(cropsName);
-        dest.writeDouble(requireYield);
-        dest.writeString(investment);
-        dest.writeString(contact);
-        dest.writeLong(userId);
-        dest.writeLong(supplierId);
-        dest.writeString(shopName);
-        dest.writeString(supplierPhone);
-        dest.writeLong(fieldId);
-        dest.writeString(supplierName);
-    }
 }
 

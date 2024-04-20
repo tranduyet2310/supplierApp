@@ -25,8 +25,6 @@ class UserInfoFragment : Fragment() {
        binding = FragmentUserInfoBinding.inflate(inflater)
         binding.toolbarLayout.titleToolbar.text = getString(R.string.personal_info)
 
-
-
         return binding.root
     }
 

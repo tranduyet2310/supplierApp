@@ -2,7 +2,7 @@ package com.example.suppileragrimart.utils;
 
 public class Constants {
     // API
-    public static final String LOCALHOST = "http://192.168.55.106:8080/";
+    public static final String LOCALHOST = "http://192.168.55.105:8080/";
     // SharedPreference
     public static final String SHARED_PREF_NAME = "shared_preference";
     public static final String HISTORY_DATA = "history_data";
@@ -22,6 +22,7 @@ public class Constants {
     public static final String WAREHOUSE_KEY = "warehouse";
     public static final String SCREEN_KEY = "screen";
     public static final String FIELD_KEY = "field";
+    public static final String COOPERATION_KEY = "cooperation";
     // pagination
     public static final String DEFAULT_PAGE_NUMBER = "0";
     public static final String DEFAULT_PAGE_SIZE = "20";
