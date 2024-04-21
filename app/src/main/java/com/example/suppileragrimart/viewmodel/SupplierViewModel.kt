@@ -20,7 +20,7 @@ class SupplierViewModel(
     var isValidPublicKey: Boolean = false
 
     fun getSupplierById(supplierId: Long): LiveData<ScreenState<Supplier?>> {
-        return supplierRepository.getSupplierById(supplierId);
+        return supplierRepository.getSupplierById(supplierId)
     }
 
     fun updateGeneralInfo(

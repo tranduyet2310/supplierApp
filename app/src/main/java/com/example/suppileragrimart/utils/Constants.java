@@ -42,4 +42,7 @@ public class Constants {
     public static final String YEN_UNIT = "yến";
     public static final String TA_UNIT = "tạ";
     public static final String TAN_UNIT = "tấn";
+    public static final String SHOP = "shop";
+    public static final String GARDEN = "garden";
+    public static final String BANNER = "https://res.cloudinary.com/dtdctll9c/image/upload/v1710340597/buupvmd6jmb1aofikr9n.png";
 }

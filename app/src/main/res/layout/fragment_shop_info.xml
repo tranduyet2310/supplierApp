@@ -79,7 +79,7 @@
         android:id="@+id/contentLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,7 +112,7 @@
                 android:gravity="top|start"
                 android:maxHeight="300dp"
                 android:minLines="3"
-                android:text="@string/infor_product_text"
+                tools:text="@string/infor_product_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/titleIntro" />
@@ -166,7 +166,7 @@
                 android:gravity="top|start"
                 android:maxHeight="300dp"
                 android:minLines="3"
-                android:text="@string/infor_product_text"
+                tools:text="@string/infor_product_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/titleGarden" />

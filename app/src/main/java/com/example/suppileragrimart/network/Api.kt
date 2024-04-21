@@ -15,6 +15,7 @@ import com.example.suppileragrimart.model.Product
 import com.example.suppileragrimart.model.ProductApiResponse
 import com.example.suppileragrimart.model.RegisterApiResponse
 import com.example.suppileragrimart.model.Supplier
+import com.example.suppileragrimart.model.SupplierIntro
 import com.example.suppileragrimart.model.UserAddress
 import com.example.suppileragrimart.model.Warehouse
 import com.example.suppileragrimart.model.WarehouseApiResponse
@@ -136,6 +137,40 @@ interface Api {
         @Part("warehouseName") warehouseName: String,
         @Part multipartFiles: List<MultipartBody.Part>
     ): Call<Product>
+
+    // Supplier Intro
+    @Multipart
+    @POST("/api/shop/{id}")
+    suspend fun createSupplierIntro(
+        @Header("Authorization") token: String,
+        @Path("id") supplierId: Long,
+        @Part("description") description: String,
+        @Part("type") type: String,
+        @Part multipartFiles: List<MultipartBody.Part>
+    ): Response<SupplierIntro>
+
+    @Multipart
+    @PUT("/api/shop/{id}/{introId}")
+    suspend fun updateSupplierIntro(
+        @Header("Authorization") token: String,
+        @Path("id") supplierId: Long,
+        @Path("introId") introId: Long,
+        @Part("description") description: String,
+        @Part("type") type: String,
+        @Part multipartFiles: List<MultipartBody.Part>
+    ): Response<SupplierIntro>
+
+    @PATCH("/api/shop/{introId}")
+    suspend fun updateDescriptionIntro(
+        @Header("Authorization") token: String,
+        @Path("introId") introId: Long,
+        @Body supplierIntro: SupplierIntro
+    ): Response<SupplierIntro>
+
+    @GET("api/shop/{supplierId}")
+    fun getAllSupplierIntro(
+        @Path("supplierId") supplierId: Long
+    ): Call<ArrayList<SupplierIntro>>
 
     // Garden
     @GET("api/field/{supplierId}")
