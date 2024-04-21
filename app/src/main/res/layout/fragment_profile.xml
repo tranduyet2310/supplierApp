@@ -57,10 +57,9 @@
                     android:id="@+id/imageUser"
                     android:layout_width="43dp"
                     android:layout_height="43dp"
-                    android:src="@color/black"
+                    android:src="@drawable/user"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
 
                 <TextView
                     android:id="@+id/tvUserName"

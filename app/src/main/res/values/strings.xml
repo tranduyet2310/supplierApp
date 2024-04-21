@@ -83,7 +83,7 @@
     <string name="see_more">Xem thêm</string>
     <string name="setting">Cài đặt</string>
     <string name="edit_personal_info">Cập nhật thông tin cá nhân</string>
-    <string name="admin">Admin</string>
+    <string name="admin">Người dùng</string>
     <string name="order">Đơn hàng</string>
     <string name="all_orders">Tất cả đơn hàng</string>
     <string name="wishlist">Sản phẩm yêu thích</string>
@@ -309,5 +309,9 @@
     <string name="bank_owner">Chủ tài khoản:</string>
     <string name="branch_v2">Chi nhánh:</string>
     <string name="update_success">Cập nhật thông tin thành công</string>
+    <string name="update_avatar">Cập nhật ảnh đại diện thành công</string>
+    <string name="current_pass_not_correct">Mật khẩu hiện tại không chính xác</string>
+    <string name="retype_pass_not_correct">Mật khẩu mới không khớp</string>
+    <string name="change_password">Đổi mật khẩu thành công</string>
 
 </resources>

@@ -6,9 +6,11 @@ import com.example.suppileragrimart.model.Cooperation
 import com.example.suppileragrimart.model.CooperationApiResponse
 import com.example.suppileragrimart.model.FieldApiResponse
 import com.example.suppileragrimart.model.FieldDetail
+import com.example.suppileragrimart.model.Image
 import com.example.suppileragrimart.model.LoginApiResponse
 import com.example.suppileragrimart.model.LoginRequest
 import com.example.suppileragrimart.model.MessageResponse
+import com.example.suppileragrimart.model.PasswordRequest
 import com.example.suppileragrimart.model.Product
 import com.example.suppileragrimart.model.ProductApiResponse
 import com.example.suppileragrimart.model.RegisterApiResponse
@@ -238,5 +240,32 @@ interface Api {
         @Header("Authorization") token: String,
         @Path("supplierId") supplierId: Long,
         @Body supplier: Supplier
+    ): Call<Supplier>
+
+    @GET("api/suppliers/{supplierId}/image")
+    fun getSupplierAvatar(
+        @Path("supplierId") supplierId: Long
+    ): Call<Image>
+
+    @Multipart
+    @PATCH("api/suppliers/{supplierId}/avatar")
+    fun updateAvatar(
+        @Header("Authorization") token: String,
+        @Path("supplierId") supplierId: Long,
+        @Part file: MultipartBody.Part
+    ): Call<Supplier>
+
+    @PATCH("api/suppliers/{supplierId}/account")
+    fun updateAccountInfo(
+        @Header("Authorization") token: String,
+        @Path("supplierId") supplierId: Long,
+        @Body supplier: Supplier
+    ): Call<Supplier>
+
+    @PATCH("api/suppliers/{id}/password")
+    fun changePassword(
+        @Header("Authorization") token: String,
+        @Path("id") supplierId: Long,
+        @Body password: PasswordRequest
     ): Call<Supplier>
 }
