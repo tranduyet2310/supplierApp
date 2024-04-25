@@ -45,9 +45,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="DH00000001"
                 android:textColor="@color/blackAgri"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:text="DH00000001" />
 
         </LinearLayout>
 
@@ -77,9 +77,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="VDVNPOST01234"
                 android:textColor="@color/blackAgri"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:text="VDVNPOST01234" />
 
         </LinearLayout>
 
@@ -109,9 +109,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="doanhuutrang@gmail.com"
                 android:textColor="@color/blackAgri"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:text="doanhuutrang@gmail.com" />
 
         </LinearLayout>
 
@@ -141,9 +141,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="@string/ex_name"
                 android:textColor="@color/blackAgri"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:text="@string/ex_name" />
 
         </LinearLayout>
 
@@ -173,9 +173,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="0123456789"
                 android:textColor="@color/blackAgri"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:text="0123456789" />
 
         </LinearLayout>
 
@@ -217,9 +217,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="Phạm Thành Nam"
                 android:textColor="@color/blackAgri"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:text="Phạm Thành Nam" />
 
         </LinearLayout>
 
@@ -249,9 +249,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="0123456789"
                 android:textColor="@color/blackAgri"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:text="0123456789" />
 
         </LinearLayout>
 
@@ -281,9 +281,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="@string/address_location"
                 android:textColor="@color/blackAgri"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:text="@string/address_location" />
 
         </LinearLayout>
 
@@ -325,9 +325,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="Chờ duyệt"
                 android:textColor="@color/blackAgri"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:text="Chờ duyệt" />
 
         </LinearLayout>
 
@@ -347,7 +347,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_regular"
-                android:text="@string/created_date"
+                android:text="@string/date_created"
                 android:textColor="@color/grayAgri"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -357,9 +357,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="01/01/2024"
                 android:textColor="@color/blackAgri"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:text="01/01/2024" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/totalLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen5dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen12dp"
+            app:layout_constraintEnd_toEndOf="@id/guideline1"
+            app:layout_constraintStart_toStartOf="@id/guideline0"
+            app:layout_constraintTop_toBottomOf="@id/orderCreatedDateLayout">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/order_total"
+                android:textColor="@color/grayAgri"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:textColor="@color/blackAgri"
+                android:textSize="14sp"
+                tools:text="01/01/2024" />
 
         </LinearLayout>
 
@@ -373,7 +405,7 @@
             android:padding="@dimen/dimen12dp"
             app:layout_constraintEnd_toEndOf="@id/guideline1"
             app:layout_constraintStart_toStartOf="@id/guideline0"
-            app:layout_constraintTop_toBottomOf="@id/orderCreatedDateLayout">
+            app:layout_constraintTop_toBottomOf="@id/totalLayout">
 
             <TextView
                 android:layout_width="match_parent"
@@ -389,9 +421,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="Giao hàng thu tiền - CoD"
                 android:textColor="@color/blackAgri"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:text="Giao hàng thu tiền - CoD" />
 
         </LinearLayout>
 
@@ -421,9 +453,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="Chưa thanh toán"
                 android:textColor="@color/blackAgri"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:text="Chưa thanh toán" />
 
         </LinearLayout>
 
@@ -442,49 +474,33 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvOrderProducts"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="180dp"
             android:layout_marginTop="5dp"
-            tools:listitem="@layout/order_product_list_item"
             android:background="@color/white"
+            android:maxHeight="180dp"
             app:layout_constraintEnd_toEndOf="@id/guideline1"
             app:layout_constraintStart_toStartOf="@id/guideline0"
-            app:layout_constraintTop_toBottomOf="@id/labelListProduct" />
+            app:layout_constraintTop_toBottomOf="@id/labelListProduct"
+            tools:listitem="@layout/order_product_list_item" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSave"
+            style="@style/h3"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="15dp"
-            android:orientation="horizontal"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_yellow_border"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline1"
             app:layout_constraintStart_toStartOf="@id/guideline0"
-            app:layout_constraintTop_toBottomOf="@id/rcvOrderProducts">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnBack"
-                style="@style/h3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/button_white_border"
-                android:text="@string/back"
-                android:textAllCaps="false"
-                android:textColor="@color/black" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSave"
-                style="@style/h3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/button_yellow_border"
-                android:text="@string/save"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
-
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@id/rcvOrderProducts" />
 
 
         <androidx.constraintlayout.widget.Guideline

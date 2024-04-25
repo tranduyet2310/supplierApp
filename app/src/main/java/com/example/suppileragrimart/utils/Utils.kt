@@ -2,6 +2,10 @@ package com.example.suppileragrimart.utils
 
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 class Utils {
     companion object {
@@ -30,7 +34,26 @@ class Utils {
             } else {
                 yieldText = "${yield} " + Constants.KG_UNIT
             }
-            return yieldText;
+            return yieldText
+        }
+
+        fun getCurrentMonth(): String {
+            val dateFormat = SimpleDateFormat("yyyy-MM", Locale.getDefault())
+            val currentDate = Date()
+            return dateFormat.format(currentDate)
+        }
+
+        fun getMonth(): Int {
+            val calendar = Calendar.getInstance()
+            return calendar.get(Calendar.MONTH)
+        }
+
+        fun updateMonthInString(month: Int): String {
+            val dateFormat = SimpleDateFormat("yyyy-MM", Locale.getDefault())
+            val calendar = Calendar.getInstance()
+            calendar.set(Calendar.MONTH, month)
+            val updatedDate = calendar.time
+            return dateFormat.format(updatedDate)
         }
     }
 }

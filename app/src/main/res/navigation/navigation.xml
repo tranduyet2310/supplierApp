@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_saleFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_saleFragment_to_orderDetailsFragment"
+            app:destination="@id/orderDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/warehouseFragment"
@@ -274,5 +277,19 @@
         <argument
             android:name="supplier"
             app:argType="com.example.suppileragrimart.model.Supplier" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="com.example.suppileragrimart.view.sale.OrderDetailsFragment"
+        android:label="fragment_order_details"
+        tools:layout="@layout/fragment_order_details" >
+        <action
+            android:id="@+id/action_orderDetailsFragment_to_saleFragment"
+            app:destination="@id/saleFragment"
+            app:popUpTo="@id/saleFragment"
+            app:popUpToInclusive="true"/>
+        <argument
+            android:name="orderInfo"
+            app:argType="com.example.suppileragrimart.model.OrderInfo" />
     </fragment>
 </navigation>

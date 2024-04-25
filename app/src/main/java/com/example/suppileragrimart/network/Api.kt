@@ -10,6 +10,8 @@ import com.example.suppileragrimart.model.Image
 import com.example.suppileragrimart.model.LoginApiResponse
 import com.example.suppileragrimart.model.LoginRequest
 import com.example.suppileragrimart.model.MessageResponse
+import com.example.suppileragrimart.model.OrderBasicInfo
+import com.example.suppileragrimart.model.OrderInfoResponse
 import com.example.suppileragrimart.model.PasswordRequest
 import com.example.suppileragrimart.model.Product
 import com.example.suppileragrimart.model.ProductApiResponse
@@ -239,6 +241,7 @@ interface Api {
         @Header("Authorization") token: String,
         @Path("fieldDetailId") fieldId: Long,
     ): Call<MessageResponse>
+
     // Cooperation
     @GET("api/cooperation/{supplierId}/list/{fieldId}")
     suspend fun getCooperationBySupplierId(
@@ -264,12 +267,14 @@ interface Api {
     fun getSupplierById(
         @Path("supplierId") supplierId: Long
     ): Call<Supplier>
+
     @PATCH("api/suppliers/{supplierId}/general")
     fun updateGeneralInfo(
         @Header("Authorization") token: String,
         @Path("supplierId") supplierId: Long,
         @Body supplier: Supplier
     ): Call<Supplier>
+
     @PATCH("api/suppliers/{supplierId}/bank")
     fun updateBankInfo(
         @Header("Authorization") token: String,
@@ -303,4 +308,27 @@ interface Api {
         @Path("id") supplierId: Long,
         @Body password: PasswordRequest
     ): Call<Supplier>
+
+    // Order
+    @GET("api/orders/{supplierId}/list")
+    suspend fun getOrderBySupplierId(
+        @Path("supplierId") supplierId: Long,
+        @Query("date") date: String,
+        @Query("pageNo") pageNo: String,
+        @Query("sortBy") sortBy: String,
+        @Query("sortDir") sortDir: String
+    ): Response<OrderInfoResponse>
+
+    @GET("api/orders/{supplierId}/info")
+    suspend fun getOrderById(@Path("supplierId") supplierId: Long): Response<OrderBasicInfo>
+
+    @PATCH("/api/orders/{orderId}/status")
+    fun updateOrderStatus(
+        @Header("Authorization") token: String,
+        @Path("orderId") orderId: Long,
+        @Query("orderStatus") orderStatus: String
+    ): Call<OrderBasicInfo>
+
+    @GET("api/users/addresses/{id}")
+    suspend fun getAddressById(@Path("id") addressId: Long): Response<UserAddress>
 }

@@ -2,7 +2,7 @@ package com.example.suppileragrimart.utils;
 
 public class Constants {
     // API
-    public static final String LOCALHOST = "http://192.168.55.105:8080/";
+    public static final String LOCALHOST = "http://192.168.1.7:8080/";
     // SharedPreference
     public static final String SHARED_PREF_NAME = "shared_preference";
     public static final String HISTORY_DATA = "history_data";
@@ -23,6 +23,7 @@ public class Constants {
     public static final String SCREEN_KEY = "screen";
     public static final String FIELD_KEY = "field";
     public static final String COOPERATION_KEY = "cooperation";
+    public static final String ORDER_KEY = "orderInfo";
     // pagination
     public static final String DEFAULT_PAGE_NUMBER = "0";
     public static final String DEFAULT_PAGE_SIZE = "20";
@@ -38,6 +39,8 @@ public class Constants {
     public static final String SERVER_ERROR = "Lỗi phía máy chủ";
     public static final String LONG_TERM_PLANT = "Cây lâu năm";
     public static final String SHORT_TERM_PLANT = "Cây ngắn ngày";
+    public static final String PAYMENT_COD = "CoD";
+    public static final String PAYMENT_PAYPAL = "Paypal";
     public static final String KG_UNIT = "kg";
     public static final String YEN_UNIT = "yến";
     public static final String TA_UNIT = "tạ";
@@ -45,4 +48,6 @@ public class Constants {
     public static final String SHOP = "shop";
     public static final String GARDEN = "garden";
     public static final String BANNER = "https://res.cloudinary.com/dtdctll9c/image/upload/v1710340597/buupvmd6jmb1aofikr9n.png";
+    public static final String DATE_CREATED = "Ngày tạo";
+    public static final String STATE = "Trạng thái";
 }

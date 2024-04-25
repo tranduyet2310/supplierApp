@@ -313,5 +313,13 @@
     <string name="current_pass_not_correct">Mật khẩu hiện tại không chính xác</string>
     <string name="retype_pass_not_correct">Mật khẩu mới không khớp</string>
     <string name="change_password">Đổi mật khẩu thành công</string>
+    <string name="dateCreated">Ngày tạo:</string>
+    <string name="CANCELLED">Đã hủy</string>
+    <string name="warehouse_v2">Kho hàng:</string>
+    <string name="cod">Thanh toán khi nhận hàng - CoD</string>
+    <string name="paypal">Thanh toán bằng Paypal</string>
+    <string name="order_total">Giá trị đơn hàng:</string>
+    <string name="accept_order">Xác nhận đơn hàng</string>
+    <string name="terminate_order">Đã hủy đơn hàng</string>
 
 </resources>

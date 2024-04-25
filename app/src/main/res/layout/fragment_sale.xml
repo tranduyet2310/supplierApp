@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lightBlue"
     tools:context=".view.sale.SaleFragment">
 
     <include
@@ -48,6 +49,42 @@
         </FrameLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <ImageView
+        android:id="@+id/icSchedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_schedule_24"
+        app:layout_constraintBottom_toBottomOf="@id/spinnerMonth"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/spinnerMonth" />
+
+    <Spinner
+        android:id="@+id/spinnerMonth"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@id/icSchedule"
+        app:layout_constraintTop_toBottomOf="@id/search_layout" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_subject"
+        app:layout_constraintBottom_toBottomOf="@id/spinnerSortBy"
+        app:layout_constraintEnd_toStartOf="@id/spinnerSortBy"
+        app:layout_constraintTop_toTopOf="@id/spinnerSortBy" />
+
+    <Spinner
+        android:id="@+id/spinnerSortBy"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_layout" />
+
     <LinearLayout
         android:id="@+id/titleForRcv"
         android:layout_width="match_parent"
@@ -56,7 +93,7 @@
         android:padding="@dimen/dimen10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_layout">
+        app:layout_constraintTop_toBottomOf="@id/spinnerSortBy">
 
         <TextView
             android:layout_width="wrap_content"
@@ -71,7 +108,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="5"
+            android:layout_weight="7"
             android:fontFamily="@font/inter_semibold"
             android:text="@string/info_order"
             android:textColor="@color/blackAgri"
@@ -81,9 +118,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="2"
             android:fontFamily="@font/inter_semibold"
-            android:gravity="center"
+            android:gravity="end"
             android:text="@string/status"
             android:textColor="@color/blackAgri"
             android:textSize="@dimen/dimen14sp"
@@ -95,18 +132,19 @@
         android:id="@+id/rcvSale"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        tools:listitem="@layout/sale_list_item"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleForRcv" />
+        app:layout_constraintTop_toBottomOf="@id/titleForRcv"
+        tools:listitem="@layout/sale_list_item" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/empty_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:visibility="visible"
+        android:visibility="gone"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
