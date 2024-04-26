@@ -158,7 +158,16 @@ class OrderDetailsFragment : Fragment() {
     private fun showOrderState(orderBasicInfo: OrderBasicInfo) {
         binding.tvOrderCreatedDate.text = orderBasicInfo.dateCreated
         binding.tvPaymentState.text = orderBasicInfo.paymentStatus
-        val total = orderBasicInfo.total.formatPrice() + " đ"
+
+        var totalValue = 0L
+        for (o in orderProductList){
+            if (o.discountPrice > 0){
+                totalValue += o.discountPrice * o.quantity
+            } else {
+                totalValue += o.standardPrice * o.quantity
+            }
+        }
+        val total = totalValue.formatPrice() + " đ"
         binding.tvTotal.text = total
 
         if (orderBasicInfo.paymentMethod.equals(Constants.PAYMENT_COD)) {

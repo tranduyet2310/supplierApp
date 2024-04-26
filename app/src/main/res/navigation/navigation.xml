@@ -8,9 +8,13 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.suppileragrimart.view.HomeFragment"
+        android:name="com.example.suppileragrimart.view.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_reviewDetailFragment"
+            app:destination="@id/reviewDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productFragment"
         android:name="com.example.suppileragrimart.view.product.ProductFragment"
@@ -291,5 +295,17 @@
         <argument
             android:name="orderInfo"
             app:argType="com.example.suppileragrimart.model.OrderInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewDetailFragment"
+        android:name="com.example.suppileragrimart.view.home.ReviewDetailFragment"
+        android:label="fragment_review_detail"
+        tools:layout="@layout/fragment_review_detail" >
+        <action
+            android:id="@+id/action_reviewDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="review"
+            app:argType="com.example.suppileragrimart.model.ReviewInfo" />
     </fragment>
 </navigation>

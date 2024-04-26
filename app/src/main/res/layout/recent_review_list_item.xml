@@ -1,45 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="60dp"
+    android:layout_margin="5dp"
     android:background="@drawable/custom_border"
     android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvProductName"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="5"
-        android:ellipsize="end"
-        android:fontFamily="@font/inter_medium"
-        android:gravity="center|start"
-        android:maxLines="3"
-        android:text="Tên sản phẩm"
-        android:textSize="14sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
 
-    <TextView
-        android:id="@+id/tvCustomerName"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="4"
-        android:ellipsize="end"
-        android:fontFamily="@font/inter_medium"
-        android:gravity="center|start"
-        android:maxLines="2"
-        android:text="Tên khách hàng"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tvProductName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:ellipsize="end"
+            android:fontFamily="@font/inter_medium"
+            android:gravity="center|start"
+            android:maxLines="2"
+            android:textSize="13sp"
+            tools:text="Tên sản phẩm" />
 
-    <RatingBar
-        android:id="@+id/ratingProduct"
-        style="?android:attr/ratingBarStyleSmall"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/dimen10dp"
-        android:focusable="false"
-        android:numStars="5"
-        android:progressTint="@color/orange"
-        android:rating="2"
-        android:secondaryProgressTint="@android:color/transparent" />
+        <TextView
+            android:id="@+id/tvCustomerName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:ellipsize="end"
+            android:fontFamily="@font/inter_medium"
+            android:gravity="center|start"
+            android:maxLines="2"
+            android:textSize="13sp"
+            tools:text="Tên khách hàng" />
 
-</LinearLayout>
+        <RatingBar
+            android:id="@+id/ratingProduct"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dimen10dp"
+            android:focusable="false"
+            android:numStars="5"
+            android:progressTint="@color/orange"
+            android:rating="2"
+            android:secondaryProgressTint="@android:color/transparent" />
+
+    </LinearLayout>
+
+</RelativeLayout>

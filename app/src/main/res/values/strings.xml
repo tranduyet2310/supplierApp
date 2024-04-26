@@ -60,7 +60,7 @@
     <string name="add_to_favourite">Add to Favourite</string>
     <string name="title_demo">Táo - Chanh - Dứa - Kiwi</string>
     <string name="rating_star">Rating Star</string>
-    <string name="have_sold">Đã bán 0</string>
+    <string name="have_sold">Đã bán</string>
     <string name="favourite_product">Favourite Product</string>
     <string name="hn">Hà Nội</string>
     <string name="htx_demo">HTX Demo</string>
@@ -84,7 +84,7 @@
     <string name="setting">Cài đặt</string>
     <string name="edit_personal_info">Cập nhật thông tin cá nhân</string>
     <string name="admin">Người dùng</string>
-    <string name="order">Đơn hàng</string>
+    <string name="order">Đơn hàng hôm nay</string>
     <string name="all_orders">Tất cả đơn hàng</string>
     <string name="wishlist">Sản phẩm yêu thích</string>
     <string name="notification">Thông báo</string>
@@ -131,7 +131,7 @@
     <string name="account_have_accept">Tài khoản đã được xác minh:</string>
     <string name="doanh_so">Doanh số</string>
     <string name="_02_2024">02/2024</string>
-    <string name="total_product">Tổng số sản phẩm</string>
+    <string name="total_product">Số sản phẩm đã bán</string>
     <string name="havent_orders">Chưa có đơn hàng nào</string>
     <string name="recentOrder">Đơn hàng gần đây</string>
     <string name="havent_recent_order">Chưa có đơn hàng nào gần đây</string>
@@ -303,6 +303,7 @@
     <string name="CONFIRMED">Đã chấp nhận</string>
     <string name="DELIVERING">Đang giao hàng</string>
     <string name="COMPLETED">Giao hàng thành công</string>
+    <string name="completed">Đã nhận hàng</string>
     <string name="accept">Chấp nhận</string>
     <string name="request">Chi tiết yêu cầu</string>
     <string name="no_address">Khách hàng chưa cập nhật địa chỉ</string>
@@ -321,5 +322,7 @@
     <string name="order_total">Giá trị đơn hàng:</string>
     <string name="accept_order">Xác nhận đơn hàng</string>
     <string name="terminate_order">Đã hủy đơn hàng</string>
+    <string name="review_content">Nội dung đánh giá</string>
+    <string name="_5_0">5.0</string>
 
 </resources>

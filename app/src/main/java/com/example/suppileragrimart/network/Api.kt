@@ -12,10 +12,13 @@ import com.example.suppileragrimart.model.LoginRequest
 import com.example.suppileragrimart.model.MessageResponse
 import com.example.suppileragrimart.model.OrderBasicInfo
 import com.example.suppileragrimart.model.OrderInfoResponse
+import com.example.suppileragrimart.model.OrderStatistic
 import com.example.suppileragrimart.model.PasswordRequest
 import com.example.suppileragrimart.model.Product
 import com.example.suppileragrimart.model.ProductApiResponse
 import com.example.suppileragrimart.model.RegisterApiResponse
+import com.example.suppileragrimart.model.ReviewInfo
+import com.example.suppileragrimart.model.ReviewStatisticResponse
 import com.example.suppileragrimart.model.Supplier
 import com.example.suppileragrimart.model.SupplierIntro
 import com.example.suppileragrimart.model.UserAddress
@@ -268,6 +271,11 @@ interface Api {
         @Path("supplierId") supplierId: Long
     ): Call<Supplier>
 
+    @GET("api/suppliers/{supplierId}")
+    suspend fun getSupplierByIdV2(
+        @Path("supplierId") supplierId: Long
+    ): Response<Supplier>
+
     @PATCH("api/suppliers/{supplierId}/general")
     fun updateGeneralInfo(
         @Header("Authorization") token: String,
@@ -286,6 +294,11 @@ interface Api {
     fun getSupplierAvatar(
         @Path("supplierId") supplierId: Long
     ): Call<Image>
+
+    @GET("api/suppliers/{supplierId}/image")
+    suspend fun getSupplierAvatarV2(
+        @Path("supplierId") supplierId: Long
+    ): Response<Image>
 
     @Multipart
     @PATCH("api/suppliers/{supplierId}/avatar")
@@ -331,4 +344,33 @@ interface Api {
 
     @GET("api/users/addresses/{id}")
     suspend fun getAddressById(@Path("id") addressId: Long): Response<UserAddress>
+
+    @GET("/api/orders/{supplierId}/statistic")
+    suspend fun getOrderStatistic(
+        @Path("supplierId") supplierId: Long,
+        @Query("date") date: String
+    ): Response<List<OrderStatistic>>
+
+    @GET("/api/orders/{supplierId}/recent")
+    suspend fun getRecentOrderStatistic(
+        @Path("supplierId") supplierId: Long,
+        @Query("date") date: String
+    ): Response<List<OrderStatistic>>
+
+    @GET("/api/orders/{supplierId}/total")
+    suspend fun getStatistic(
+        @Path("supplierId") supplierId: Long,
+        @Query("date") date: String
+    ): Response<OrderStatistic>
+    // Review
+    @GET("/api/reviews/{supplierId}/info")
+    suspend fun getReviewInfo(
+        @Path("supplierId") supplierId: Long,
+    ): Response<List<ReviewInfo>>
+
+    @GET("api/reviews/{productId}/average")
+    suspend fun averageRating(@Path("productId") productId: Long): Response<ReviewStatisticResponse>
+
+    @GET("/api/products/{productId}")
+    suspend fun getProductById(@Path("productId") productId: Long):Response<Product>
 }

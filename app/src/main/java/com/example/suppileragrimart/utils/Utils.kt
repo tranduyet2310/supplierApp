@@ -37,8 +37,20 @@ class Utils {
             return yieldText
         }
 
+        fun formatCurrentMonth(): String {
+            val dateFormat = SimpleDateFormat("MM/yyyy", Locale.getDefault())
+            val currentDate = Date()
+            return dateFormat.format(currentDate)
+        }
+
         fun getCurrentMonth(): String {
             val dateFormat = SimpleDateFormat("yyyy-MM", Locale.getDefault())
+            val currentDate = Date()
+            return dateFormat.format(currentDate)
+        }
+
+        fun getCurrentDate(): String {
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val currentDate = Date()
             return dateFormat.format(currentDate)
         }
