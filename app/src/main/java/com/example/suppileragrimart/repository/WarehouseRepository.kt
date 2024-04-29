@@ -136,16 +136,18 @@ class WarehouseRepository(context: Context) {
     }
 
     fun getWarehouseBySupplierId(
-        warehouseApiRequest: WarehouseApiRequest,
-        secretKey: String,
-        iv: String): Flow<PagingData<Warehouse>> {
+        warehouseApiRequest: WarehouseApiRequest
+//        secretKey: String,
+//        iv: String
+    ): Flow<PagingData<Warehouse>> {
         return Pager(
             PagingConfig(
                 pageSize = DEFAULT_PAGE_SIZE.toInt(),
                 enablePlaceholders = false
             )
         ) {
-            WarehousePagingSource(apiService, warehouseApiRequest, secretKey, iv)
+//            WarehousePagingSource(apiService, warehouseApiRequest, secretKey, iv)
+            WarehousePagingSource(apiService, warehouseApiRequest)
         }.flow
     }
 }

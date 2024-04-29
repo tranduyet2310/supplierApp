@@ -324,5 +324,7 @@
     <string name="terminate_order">Đã hủy đơn hàng</string>
     <string name="review_content">Nội dung đánh giá</string>
     <string name="_5_0">5.0</string>
+    <string name="product_question">Bạn có chắc chắn muốn xóa sản phẩm này?</string>
+    <string name="delete_product">Xóa sản phẩm thành công</string>
 
 </resources>

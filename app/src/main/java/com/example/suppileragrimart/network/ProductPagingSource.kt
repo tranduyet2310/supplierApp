@@ -11,8 +11,8 @@ import java.io.IOException
 class ProductPagingSource (
     private val apiService: Api,
     private val productApiRequest: ProductApiRequest,
-    private val secretKey: String,
-    private val iv: String
+//    private val secretKey: String,
+//    private val iv: String
 ) : PagingSource<Int, Product>() {
     override val keyReuseSupported: Boolean = true
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Product> {
@@ -30,11 +30,12 @@ class ProductPagingSource (
                 sortDir
             )
 
-            val encryptedData = response.body()?.content
-            val data = decryptData(encryptedData)
+//            val encryptedData = response.body()?.content
+//            val data = decryptData(encryptedData)
+            val data = response.body()?.content
 
             LoadResult.Page(
-                data,
+                data ?: arrayListOf(),
                 prevKey = if (nextPageNumber > 0) nextPageNumber - 1 else null,
                 nextKey = if (nextPageNumber < response.body()!!.totalPage) nextPageNumber + 1 else null
             )
@@ -45,36 +46,36 @@ class ProductPagingSource (
         }
     }
 
-    private fun decryptData(products: ArrayList<Product>?): ArrayList<Product>{
-        val aes = AES.getInstance()
-        aes.initFromString(secretKey, iv)
-        val decryptedData: ArrayList<Product> = arrayListOf()
-
-        if (products != null) {
-            for (product in products){
-                val p = Product()
-                p.productId = product.productId
-                Log.d("TEST", "value "+product.productName)
-                p.productName = aes.decrypt(product.productName)
-                p.description = aes.decrypt(product.description)
-                p.standardPrice = product.standardPrice
-                p.discountPrice = product.discountPrice
-                p.productQuantity = product.productQuantity
-                p.productCategory = aes.decrypt(product.productCategory)
-                p.productSubcategory = aes.decrypt(product.productSubcategory)
-                p.warehouseName = aes.decrypt(product.warehouseName)
-                p.productSupplier = aes.decrypt(product.productSupplier)
-                p.productImage = product.productImage
-                p.isActive = product.isActive
-                p.isAvailable = product.isAvailable
-                p.isNew = product.isNew
-                p.supplierProvince = aes.decrypt(product.supplierProvince)
-                p.supplierId = product.supplierId
-                p.sold = product.sold
-
-                decryptedData.add(p)
-            }
-        }
-        return decryptedData
-    }
+//    private fun decryptData(products: ArrayList<Product>?): ArrayList<Product>{
+//        val aes = AES.getInstance()
+//        aes.initFromString(secretKey, iv)
+//        val decryptedData: ArrayList<Product> = arrayListOf()
+//
+//        if (products != null) {
+//            for (product in products){
+//                val p = Product()
+//                p.productId = product.productId
+//                Log.d("TEST", "value "+product.productName)
+//                p.productName = aes.decrypt(product.productName)
+//                p.description = aes.decrypt(product.description)
+//                p.standardPrice = product.standardPrice
+//                p.discountPrice = product.discountPrice
+//                p.productQuantity = product.productQuantity
+//                p.productCategory = aes.decrypt(product.productCategory)
+//                p.productSubcategory = aes.decrypt(product.productSubcategory)
+//                p.warehouseName = aes.decrypt(product.warehouseName)
+//                p.productSupplier = aes.decrypt(product.productSupplier)
+//                p.productImage = product.productImage
+//                p.isActive = product.isActive
+//                p.isAvailable = product.isAvailable
+//                p.isNew = product.isNew
+//                p.supplierProvince = aes.decrypt(product.supplierProvince)
+//                p.supplierId = product.supplierId
+//                p.sold = product.sold
+//
+//                decryptedData.add(p)
+//            }
+//        }
+//        return decryptedData
+//    }
 }

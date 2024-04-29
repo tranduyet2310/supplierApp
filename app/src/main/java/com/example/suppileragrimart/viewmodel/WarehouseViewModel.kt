@@ -51,9 +51,11 @@ class WarehouseViewModel(application: Application): AndroidViewModel(application
     }
 
     fun getWarehouseBySupplierId(
-        warehouseApiRequest: WarehouseApiRequest,
-        secretKey: String,
-        iv: String): Flow<PagingData<Warehouse>> {
-        return warehouseRepository.getWarehouseBySupplierId(warehouseApiRequest, secretKey, iv).cachedIn(viewModelScope)
+        warehouseApiRequest: WarehouseApiRequest
+//        secretKey: String,
+//        iv: String
+    ): Flow<PagingData<Warehouse>> {
+//        return warehouseRepository.getWarehouseBySupplierId(warehouseApiRequest, secretKey, iv).cachedIn(viewModelScope)
+        return warehouseRepository.getWarehouseBySupplierId(warehouseApiRequest).cachedIn(viewModelScope)
     }
 }

@@ -141,8 +141,8 @@ class NewProductFragment : Fragment(), View.OnClickListener {
 
     suspend fun getWarehouseData() {
         withContext(Dispatchers.IO) {
-            val aes = AES.getInstance()
-            aes.initFromString(secretKey, iv)
+//            val aes = AES.getInstance()
+//            aes.initFromString(secretKey, iv)
             val response = apiService.getAllWarehouseBySupplierId(supplier!!.id)
             if (response.isSuccessful) {
                 val warehouseList = response.body()
@@ -150,8 +150,9 @@ class NewProductFragment : Fragment(), View.OnClickListener {
                 if (warehouseList != null) {
                     for (warehouse in warehouseList) {
                         if (warehouse.isActive) {
-                            val decryptName = aes.decrypt(warehouse.warehouseName)
-                            warehouseValues.add(decryptName)
+//                            val decryptName = aes.decrypt(warehouse.warehouseName)
+//                            warehouseValues.add(decryptName)
+                            warehouseValues.add(warehouse.warehouseName)
                         }
                     }
                 }
@@ -188,24 +189,34 @@ class NewProductFragment : Fragment(), View.OnClickListener {
                         uriList.add(imageUri)
                     }
                 }
-                when (uriList.size) {
-                    1 -> GlideApp.with(requireContext()).load(uriList[0]).into(binding.imagProduct1)
-                    2 -> {
-                        GlideApp.with(requireContext()).load(uriList[0]).into(binding.imagProduct1)
-                        GlideApp.with(requireContext()).load(uriList[1]).into(binding.imagProduct2)
-                    }
+//                when (uriList.size) {
+//                    1 -> GlideApp.with(requireContext()).load(uriList[0]).into(binding.imagProduct1)
+//                    2 -> {
+//                        GlideApp.with(requireContext()).load(uriList[0]).into(binding.imagProduct1)
+//                        GlideApp.with(requireContext()).load(uriList[1]).into(binding.imagProduct2)
+//                    }
+//
+//                    3 -> {
+//                        GlideApp.with(requireContext()).load(uriList[0]).into(binding.imagProduct1)
+//                        GlideApp.with(requireContext()).load(uriList[1]).into(binding.imagProduct2)
+//                        GlideApp.with(requireContext()).load(uriList[2]).into(binding.imagProduct3)
+//                    }
+//
+//                    else -> {
+//                        GlideApp.with(requireContext()).load(uriList[0]).into(binding.imagProduct1)
+//                        GlideApp.with(requireContext()).load(uriList[1]).into(binding.imagProduct2)
+//                        GlideApp.with(requireContext()).load(uriList[2]).into(binding.imagProduct3)
+//                        GlideApp.with(requireContext()).load(uriList[3]).into(binding.imagProduct4)
+//                    }
+//                }
 
-                    3 -> {
-                        GlideApp.with(requireContext()).load(uriList[0]).into(binding.imagProduct1)
-                        GlideApp.with(requireContext()).load(uriList[1]).into(binding.imagProduct2)
-                        GlideApp.with(requireContext()).load(uriList[2]).into(binding.imagProduct3)
-                    }
-
-                    else -> {
-                        GlideApp.with(requireContext()).load(uriList[0]).into(binding.imagProduct1)
-                        GlideApp.with(requireContext()).load(uriList[1]).into(binding.imagProduct2)
-                        GlideApp.with(requireContext()).load(uriList[2]).into(binding.imagProduct3)
-                        GlideApp.with(requireContext()).load(uriList[3]).into(binding.imagProduct4)
+                for (i in 1.. uriList.size){
+                    when(i){
+                        1 -> GlideApp.with(requireContext()).load(uriList[0]).into(binding.imagProduct1)
+                        2 -> GlideApp.with(requireContext()).load(uriList[1]).into(binding.imagProduct2)
+                        3 -> GlideApp.with(requireContext()).load(uriList[2]).into(binding.imagProduct3)
+                        4 -> GlideApp.with(requireContext()).load(uriList[3]).into(binding.imagProduct4)
+                        else -> { }
                     }
                 }
 
@@ -219,6 +230,18 @@ class NewProductFragment : Fragment(), View.OnClickListener {
             navController.navigateUp()
         }
 
+        setupRadioGroupListener()
+        setupCategoryListener()
+        setupSubCategoryListener()
+        setupWarehouseListener()
+
+        binding.tvProductImage.setOnClickListener(this)
+        binding.tvProductAdditionalImage.setOnClickListener(this)
+        binding.btnCancel.setOnClickListener(this)
+        binding.btnSave.setOnClickListener(this)
+    }
+
+    private fun setupRadioGroupListener() {
         binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 binding.rbHaveProduct.id -> {
@@ -232,15 +255,6 @@ class NewProductFragment : Fragment(), View.OnClickListener {
                 }
             }
         }
-
-        setupCategoryListener()
-        setupSubCategoryListener()
-        setupWarehouseListener()
-
-        binding.tvProductImage.setOnClickListener(this)
-        binding.tvProductAdditionalImage.setOnClickListener(this)
-        binding.btnCancel.setOnClickListener(this)
-        binding.btnSave.setOnClickListener(this)
     }
 
     private fun setupWarehouseListener() {
@@ -343,6 +357,14 @@ class NewProductFragment : Fragment(), View.OnClickListener {
             return
         }
 
+        if (categorySelected.equals(getString(R.string.category_placeholder))){
+            showSnackbar("Hãy chọn danh mục cho sản phẩm")
+            return
+        } else if (subcategorySelected.equals(getString(R.string.subcategory_placeholder))){
+            showSnackbar("Hãy chọn danh mục con cho sản phẩm")
+            return
+        }
+
         if (discountPrice.isEmpty()) discountPrice = "0"
         if (isNew) quantity = "0"
 
@@ -359,13 +381,13 @@ class NewProductFragment : Fragment(), View.OnClickListener {
         product.isAvailable = isAvailable
         product.productQuantity = quantity.toInt()
 
-        Log.d("TEST", "name "+product.productName)
-        val encryptedProduct = encryptData(product)
-        Log.d("TEST", "name "+encryptedProduct.productName)
+//        Log.d("TEST", "name "+product.productName)
+//        val encryptedProduct = encryptData(product)
+//        Log.d("TEST", "name "+encryptedProduct.productName)
 
         prepareImageFilePart()
         val token = loginUtils.getSupplierToken()
-        productViewModel.createProduct(token, supplier!!.id, encryptedProduct, images).observe(
+        productViewModel.createProduct(token, supplier!!.id, product, images).observe(
             requireActivity(), { state -> processProductResponse(state) }
         )
     }
@@ -374,7 +396,7 @@ class NewProductFragment : Fragment(), View.OnClickListener {
         navController.navigate(R.id.action_newProductFragment_to_productFragment)
     }
 
-    private fun encryptData(product: Product): Product{
+    private fun encryptData(product: Product): Product {
         val encryptedProduct = Product()
         val aes = AES.getInstance()
         aes.initFromString(secretKey, iv)
@@ -427,7 +449,7 @@ class NewProductFragment : Fragment(), View.OnClickListener {
 
     private fun prepareImageFilePart() {
         val imageFile = uriToFile(requireContext(), imageUri!!, 0)
-        val image = fileToMultipartBodyPart( imageFile)
+        val image = fileToMultipartBodyPart(imageFile)
         images.add(image)
         var i = 1;
         for (uri in uriList) {

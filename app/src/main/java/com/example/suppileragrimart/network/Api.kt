@@ -60,7 +60,7 @@ interface Api {
     suspend fun getSessionKey(@Body aesResponse: AESResponse): Response<AESResponse>
 
     // warehouse
-    @POST("/api/suppliers/{supplierId}/warehousese")
+    @POST("/api/suppliers/{supplierId}/warehouses")
     fun createWarehouse(
         @Header("Authorization") token: String,
         @Path("supplierId") supplierId: Long,
@@ -113,7 +113,15 @@ interface Api {
     ): Call<Warehouse>
 
     // Product
-    @GET("api/products/suppliers/{supplierId}/v2")
+//    @GET("api/products/suppliers/{supplierId}/v2")
+//    suspend fun getProductBySupplierId(
+//        @Path("supplierId") supplierId: Long,
+//        @Query("pageNo") pageNo: String,
+//        @Query("sortBy") sortBy: String,
+//        @Query("sortDir") sortDir: String
+//    ): Response<ProductApiResponse>
+
+    @GET("api/products/suppliers/{supplierId}")
     suspend fun getProductBySupplierId(
         @Path("supplierId") supplierId: Long,
         @Query("pageNo") pageNo: String,
@@ -125,7 +133,7 @@ interface Api {
     suspend fun getAllCategories(): Response<ArrayList<CategoryApiResponse>>
 
     @Multipart
-    @POST("/api/products/{id}/v2")
+    @POST("/api/products/suppliers/{id}")
     fun createProduct(
         @Header("Authorization") token: String,
         @Path("id") supplierId: Long,
@@ -141,6 +149,46 @@ interface Api {
         @Part("subCategoryName") subCategoryName: String,
         @Part("warehouseName") warehouseName: String,
         @Part multipartFiles: List<MultipartBody.Part>
+    ): Call<Product>
+
+    @PATCH("/api/products/{productId}/state")
+    fun updateProductState(
+        @Header("Authorization") token: String,
+        @Path("productId") productId: Long
+    ): Call<Product>
+
+    @DELETE("/api/products/{supplierId}/{productId}")
+    fun deleteProduct(
+        @Header("Authorization") token: String,
+        @Path("supplierId") supplierId: Long,
+        @Path("productId") productId: Long
+    ): Call<MessageResponse>
+    @Multipart
+    @PUT("/api/products/{supplierId}/{productId}")
+    fun updateProductAll(
+        @Header("Authorization") token: String,
+        @Path("supplierId") supplierId: Long,
+        @Path("productId") productId: Long,
+        @Part("productName") productName: String,
+        @Part("description") description: String,
+        @Part("standardPrice") standardPrice: Long,
+        @Part("discountPrice") discountPrice: Long,
+        @Part("quantity") quantity: Int,
+        @Part("isActive") isActive: Boolean,
+        @Part("isNew") isNew: Boolean,
+        @Part("isAvailable") isAvailable: Boolean,
+        @Part("categoryName") categoryName: String,
+        @Part("subCategoryName") subCategoryName: String,
+        @Part("warehouseName") warehouseName: String,
+        @Part multipartFiles: List<MultipartBody.Part>
+    ): Call<Product>
+
+    @PATCH("/api/products/{supplierId}/{productId}/info")
+    fun updateProductInfo(
+        @Header("Authorization") token: String,
+        @Path("supplierId") supplierId: Long,
+        @Path("productId") productId: Long,
+        @Body product: Product
     ): Call<Product>
 
     // Supplier Intro
@@ -362,6 +410,7 @@ interface Api {
         @Path("supplierId") supplierId: Long,
         @Query("date") date: String
     ): Response<OrderStatistic>
+
     // Review
     @GET("/api/reviews/{supplierId}/info")
     suspend fun getReviewInfo(
@@ -372,5 +421,5 @@ interface Api {
     suspend fun averageRating(@Path("productId") productId: Long): Response<ReviewStatisticResponse>
 
     @GET("/api/products/{productId}")
-    suspend fun getProductById(@Path("productId") productId: Long):Response<Product>
+    suspend fun getProductById(@Path("productId") productId: Long): Response<Product>
 }

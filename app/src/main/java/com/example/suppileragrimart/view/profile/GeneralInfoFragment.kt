@@ -12,9 +12,13 @@ import com.example.suppileragrimart.R
 import com.example.suppileragrimart.databinding.FragmentGeneralInfoBinding
 import com.example.suppileragrimart.model.Product
 import com.example.suppileragrimart.model.Supplier
+import com.example.suppileragrimart.utils.AES
 import com.example.suppileragrimart.utils.Constants
+import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
 import com.example.suppileragrimart.utils.ScreenState
+import com.example.suppileragrimart.utils.Utils
+import com.example.suppileragrimart.utils.Utils.Companion.decryptData
 import com.example.suppileragrimart.viewmodel.SupplierViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -28,11 +32,15 @@ class GeneralInfoFragment : Fragment() {
     private val progressDialog: ProgressDialog by lazy {
         ProgressDialog()
     }
+    private val loginUtils: LoginUtils by lazy {
+        LoginUtils(requireContext())
+    }
 
     private var supplier: Supplier? = null
     private lateinit var alertDialog: AlertDialog
     private lateinit var currentSupplier: Supplier
-
+    private lateinit var secretKey: String
+    private lateinit var iv: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,6 +48,8 @@ class GeneralInfoFragment : Fragment() {
         binding = FragmentGeneralInfoBinding.inflate(inflater)
 
         supplier = supplierViewModel.supplier
+        secretKey = loginUtils.getAESKey()
+        iv = loginUtils.getIv()
         if (supplier != null)
             getSupplierInfo()
 
@@ -73,7 +83,8 @@ class GeneralInfoFragment : Fragment() {
             is ScreenState.Success -> {
                 if (state.data != null) {
                     alertDialog.dismiss()
-                    showInfo(state.data)
+                    val data = decryptData(state.data, secretKey, iv)
+                    showInfo(data)
                     currentSupplier = state.data
                 }
             }
@@ -102,4 +113,46 @@ class GeneralInfoFragment : Fragment() {
     private fun showSnackbar(message: String) {
         Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
     }
+
+//    private fun decryptData(supplier: Supplier?, secretKey: String, iv: String): Supplier {
+//        val aes = AES.getInstance()
+//        aes.initFromString(secretKey, iv)
+//        val decryptedData = Supplier()
+//
+//        if (supplier != null) {
+//            decryptedData.id = supplier.id
+//            if (supplier.contactName != null)
+//                decryptedData.contactName = aes.decrypt(supplier.contactName)
+//            if (supplier.shopName != null)
+//                decryptedData.shopName = aes.decrypt(supplier.shopName)
+//            if (supplier.email != null)
+//                decryptedData.email = aes.decrypt(supplier.email)
+//            if (supplier.phone != null)
+//                decryptedData.phone = aes.decrypt(supplier.phone)
+//            if (supplier.cccd != null)
+//                decryptedData.cccd = aes.decrypt(supplier.cccd)
+//            if (supplier.tax_number != null)
+//                decryptedData.tax_number = aes.decrypt(supplier.tax_number)
+//            if (supplier.address != null)
+//                decryptedData.address = aes.decrypt(supplier.address)
+//            if (supplier.province != null)
+//                decryptedData.province = aes.decrypt(supplier.province)
+//            if (supplier.password != null)
+//                decryptedData.password = aes.decrypt(supplier.password)
+//            if (supplier.sellerType != null)
+//                decryptedData.sellerType = aes.decrypt(supplier.sellerType)
+//            if (supplier.bankAccountNumber != null)
+//                decryptedData.bankAccountNumber = aes.decrypt(supplier.bankAccountNumber)
+//            if (supplier.bankAccountOwner != null)
+//                decryptedData.bankAccountOwner = aes.decrypt(supplier.bankAccountOwner)
+//            if (supplier.bankName != null)
+//                decryptedData.bankName = aes.decrypt(supplier.bankName)
+//            if (supplier.bankBranchName != null)
+//                decryptedData.bankBranchName = aes.decrypt(supplier.bankBranchName)
+//            if (supplier.avatar != null)
+//                decryptedData.avatar = supplier.avatar
+//        }
+//        return decryptedData
+//    }
+
 }

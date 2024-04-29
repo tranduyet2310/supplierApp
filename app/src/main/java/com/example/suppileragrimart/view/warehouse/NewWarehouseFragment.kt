@@ -106,10 +106,10 @@ class NewWarehouseFragment : Fragment(), View.OnClickListener {
         warehouse.detail = detail
         warehouse.isActive = isActive
 
-        val encryptedWarehouse = encryptInfo(warehouse)
+//        val encryptedWarehouse = encryptInfo(warehouse)
 
         val token = loginUtils.getSupplierToken()
-        warehouseViewModel.createWarehouse(token, supplier!!.id, encryptedWarehouse).observe(
+        warehouseViewModel.createWarehouse(token, supplier!!.id, warehouse).observe(
             requireActivity(), { state -> processWarehouseResponse(state) }
         )
     }

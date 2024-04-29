@@ -55,6 +55,7 @@ class WarehouseFragment : Fragment(), View.OnClickListener {
     private var supplier: Supplier? = null
     private lateinit var alertDialog: AlertDialog
     private lateinit var warehouseAdapter: WarehouseAdapter
+    private var currentState: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,11 +68,16 @@ class WarehouseFragment : Fragment(), View.OnClickListener {
         supplier = supplierViewModel.supplier
         val isValidPubKey = supplierViewModel.isValidPublicKey
 
-        if (!isValidPubKey) {
-            displayErrorSnackbar("Không tìm thấy public key để giải mã")
-        } else if (supplier == null) {
-            displayErrorSnackbar("supplier is null")
-        } else {
+//        if (!isValidPubKey) {
+//            displayErrorSnackbar("Không tìm thấy public key để giải mã")
+//        } else if (supplier == null) {
+//            displayErrorSnackbar("supplier is null")
+//        } else {
+//            setupRecyclerView()
+//            getWarehouseData()
+//        }
+
+        if (supplier != null){
             setupRecyclerView()
             getWarehouseData()
         }
@@ -79,14 +85,39 @@ class WarehouseFragment : Fragment(), View.OnClickListener {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+
+        binding.tvSearch.setOnClickListener(this)
+        binding.btnAddWareHouse.setOnClickListener(this)
+
+        warehouseAdapter.onSwitchState = {
+            val token = loginUtils.getSupplierToken()
+            val messageResponse = MessageResponse()
+            messageResponse.isSuccessful = !it.isActive
+            currentState = !it.isActive
+            warehouseViewModel.updateState(token, supplier!!.id, it.id, messageResponse).observe(
+                requireActivity(), { state -> processWarehouseResponse(state, it) }
+            )
+        }
+        warehouseAdapter.onEdit = {
+            val b = Bundle().apply {
+                putParcelable(WAREHOUSE_KEY, it)
+            }
+            navController.navigate(R.id.action_warehouseFragment_to_editWarehouseFragment2, b)
+        }
+
+    }
     private fun getWarehouseData() {
         val warehouseApiRequest = WarehouseApiRequest(supplier!!.id)
-        val aesKey = loginUtils.getAESKey()
-        val iv = loginUtils.getIv()
-        Log.d("TEST", "ware aes "+aesKey)
-        Log.d("TEST", "ware iv "+iv)
+//        val aesKey = loginUtils.getAESKey()
+//        val iv = loginUtils.getIv()
+//        Log.d("TEST", "ware aes "+aesKey)
+//        Log.d("TEST", "ware iv "+iv)
         lifecycleScope.launch {
-            warehouseViewModel.getWarehouseBySupplierId(warehouseApiRequest, aesKey, iv)
+//            warehouseViewModel.getWarehouseBySupplierId(warehouseApiRequest, aesKey, iv)
+            warehouseViewModel.getWarehouseBySupplierId(warehouseApiRequest)
                 .collectLatest { pagingData ->
                     warehouseAdapter.addLoadStateListener { loadState ->
                         if (loadState.source.refresh is LoadState.NotLoading &&
@@ -116,29 +147,6 @@ class WarehouseFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
-
-        binding.tvSearch.setOnClickListener(this)
-        binding.btnAddWareHouse.setOnClickListener(this)
-
-        warehouseAdapter.onSwitchState = {
-            val token = loginUtils.getSupplierToken()
-            val messageResponse = MessageResponse()
-            messageResponse.isSuccessful = !it.isActive
-            warehouseViewModel.updateState(token, supplier!!.id, it.id, messageResponse).observe(
-                requireActivity(), { state -> processWarehouseResponse(state) }
-            )
-        }
-        warehouseAdapter.onEdit = {
-            val b = Bundle().apply {
-                putParcelable(WAREHOUSE_KEY, it)
-            }
-            navController.navigate(R.id.action_warehouseFragment_to_editWarehouseFragment2, b)
-        }
-
-    }
 
     override fun onClick(v: View?) {
         when (v?.id) {
@@ -165,7 +173,7 @@ class WarehouseFragment : Fragment(), View.OnClickListener {
         binding.rcvWarehouse.visibility = View.GONE
     }
 
-    private fun processWarehouseResponse(state: ScreenState<Warehouse?>) {
+    private fun processWarehouseResponse(state: ScreenState<Warehouse?>, warehouse: Warehouse) {
         when (state) {
             is ScreenState.Loading -> {
                 alertDialog = progressDialog.createAlertDialog(requireActivity())
@@ -174,6 +182,7 @@ class WarehouseFragment : Fragment(), View.OnClickListener {
             is ScreenState.Success -> {
                 if (state.data != null) {
                     alertDialog.dismiss()
+                    warehouse.isActive = currentState
                     showSnackbar(getString(R.string.updated_warehouse))
                 }
             }

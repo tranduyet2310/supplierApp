@@ -21,6 +21,8 @@ import com.example.suppileragrimart.utils.GlideApp
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
 import com.example.suppileragrimart.utils.ScreenState
+import com.example.suppileragrimart.utils.Utils
+import com.example.suppileragrimart.utils.Utils.Companion.decryptData
 import com.example.suppileragrimart.view.loginRegister.LoginActivity
 import com.example.suppileragrimart.viewmodel.SupplierViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -48,6 +50,8 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     private lateinit var alertDialog: AlertDialog
     private var supplier: Supplier? = null
+    private lateinit var secretKey: String
+    private lateinit var iv: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,6 +59,8 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         binding = FragmentProfileBinding.inflate(inflater)
 
         supplier = supplierViewModel.supplier
+        secretKey = loginUtils.getAESKey()
+        iv = loginUtils.getIv()
         if (supplier != null) {
             if (supplier!!.contactName != null) binding.tvUserName.text = supplier!!.contactName
             else{
@@ -128,8 +134,9 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                 override fun onResponse(call: Call<Supplier>, response: Response<Supplier>) {
                     if (response.isSuccessful) {
                         if (response.body() != null) {
-                            supplier!!.contactName = response.body()!!.contactName
-                            supplier!!.phone = response.body()!!.phone
+                            val data = decryptData(response.body()!!, secretKey, iv)
+                            supplier!!.contactName = data.contactName
+                            supplier!!.phone = data.phone
                             supplierViewModel.supplier = supplier
                             loginUtils.saveSupplierInfo(supplier!!)
                         }

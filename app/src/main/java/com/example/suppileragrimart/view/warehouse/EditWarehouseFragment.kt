@@ -125,10 +125,10 @@ class EditWarehouseFragment : Fragment(), View.OnClickListener {
         warehouse.detail = detail
         warehouse.isActive = isActive
 
-        val encryptedWarehouse = encryptInfo(warehouse)
+//        val encryptedWarehouse = encryptInfo(warehouse)
 
         val token = loginUtils.getSupplierToken()
-        warehouseViewModel.updateWarehouse(token, supplier!!.id, warehouse.id, encryptedWarehouse)
+        warehouseViewModel.updateWarehouse(token, supplier!!.id, warehouse.id, warehouse)
             .observe(
                 requireActivity(), { state -> processWarehouseResponse(state) }
             )

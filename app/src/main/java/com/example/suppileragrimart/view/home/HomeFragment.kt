@@ -26,6 +26,7 @@ import com.example.suppileragrimart.utils.Constants
 import com.example.suppileragrimart.utils.GlideApp
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
+import com.example.suppileragrimart.utils.Utils.Companion.decryptData
 import com.example.suppileragrimart.utils.Utils.Companion.formatCurrentMonth
 import com.example.suppileragrimart.utils.Utils.Companion.formatPrice
 import com.example.suppileragrimart.utils.Utils.Companion.getCurrentDate
@@ -33,6 +34,7 @@ import com.example.suppileragrimart.utils.Utils.Companion.getCurrentMonth
 import com.example.suppileragrimart.viewmodel.SupplierViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -62,6 +64,8 @@ class HomeFragment : Fragment() {
     private val orderTodayList: ArrayList<OrderStatistic> = arrayListOf()
     private val recentOrderList: ArrayList<OrderStatistic> = arrayListOf()
     private val reviewList: ArrayList<ReviewInfo> = arrayListOf()
+    private lateinit var secretKey: String
+    private lateinit var iv: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,19 +85,22 @@ class HomeFragment : Fragment() {
             withContext(Dispatchers.Main){
                 alertDialog = progressDialog.createAlertDialog(requireActivity())
             }
-
             if (supplier.avatar == null){
                 getSupplierAvatar()
-            }
-            if (supplier.contactName == null){
-                getSupplierById()
             }
             getMonthStatistic()
             getOrderToday()
             getRecentOrder()
             getReviewData()
+
+            iv = loginUtils.getIv()
+            secretKey = loginUtils.getAESKey()
             val check = supplierViewModel.isValidPublicKey
             Log.d("TEST", "check "+check)
+
+            if (supplier.contactName == null){
+                getSupplierById()
+            }
 
             withContext(Dispatchers.Main){
                 alertDialog.dismiss()
@@ -224,8 +231,9 @@ class HomeFragment : Fragment() {
             val response = apiService.getSupplierByIdV2(supplier.id)
             if (response.isSuccessful) {
                 if (response.body() != null) {
-                    supplier.contactName = response.body()!!.contactName
-                    supplier.phone = response.body()!!.phone
+                    val data = decryptData(response.body()!!, secretKey, iv)
+                    supplier.contactName = data.contactName
+                    supplier.phone = data.phone
                     supplierViewModel.supplier = supplier
                     loginUtils.saveSupplierInfo(supplier)
                     withContext(Dispatchers.Main){
