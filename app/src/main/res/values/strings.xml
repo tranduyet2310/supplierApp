@@ -326,5 +326,9 @@
     <string name="_5_0">5.0</string>
     <string name="product_question">Bạn có chắc chắn muốn xóa sản phẩm này?</string>
     <string name="delete_product">Xóa sản phẩm thành công</string>
+    <string name="remove_successfully">Xóa thành công</string>
+    <string name="not_found">Không tìm thấy kết quả</string>
+    <string name="search_result">Kết quả tìm kiếm</string>
+    <string name="search_product">Tìm kiếm sản phẩm</string>
 
 </resources>

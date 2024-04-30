@@ -97,7 +97,7 @@ class SaleFragment : Fragment(), View.OnClickListener {
     }
 
     private fun goToSearchFragment() {
-        navController.navigate(R.id.action_saleFragment_to_searchFragment)
+//        navController.navigate(R.id.action_saleFragment_to_searchFragment)
     }
 
     private fun showEmptyBox() {

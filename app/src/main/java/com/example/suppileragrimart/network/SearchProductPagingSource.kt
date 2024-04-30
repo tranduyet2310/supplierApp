@@ -1,18 +1,18 @@
 package com.example.suppileragrimart.network
 
 import androidx.paging.PagingSource
+import com.example.suppileragrimart.model.Product
 import com.example.suppileragrimart.model.SearchApiRequest
-import com.example.suppileragrimart.model.Warehouse
 import retrofit2.HttpException
 import java.io.IOException
 
-class WarehouseSearchPagingSource(
+class SearchProductPagingSource (
     private val apiService: Api,
-    private val searchApiRequest: SearchApiRequest,
-    private val supplierId: Long
-): PagingSource<Int, Warehouse>() {
+    private val supplierId: Long,
+    private val searchApiRequest: SearchApiRequest
+) : PagingSource<Int, Product>(){
     override val keyReuseSupported: Boolean = true
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Warehouse> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Product> {
         return try {
             val nextPageNumber = params.key ?: 0
 
@@ -20,7 +20,7 @@ class WarehouseSearchPagingSource(
             val sortBy = searchApiRequest.sortBy
             val sortDir = searchApiRequest.sortDir
 
-            val response = apiService.searchWarehouse(supplierId, query, nextPageNumber.toString(), sortBy, sortDir)
+            val response = apiService.searchProduct(supplierId, query, nextPageNumber.toString(), sortBy, sortDir)
             val data = response.body()?.content
 
             LoadResult.Page(

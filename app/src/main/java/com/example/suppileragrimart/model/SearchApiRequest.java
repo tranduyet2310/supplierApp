@@ -15,6 +15,10 @@ public class SearchApiRequest {
     public SearchApiRequest() {
     }
 
+    public SearchApiRequest(String query) {
+        this.query = query;
+    }
+
     public String getQuery() {
         return query;
     }

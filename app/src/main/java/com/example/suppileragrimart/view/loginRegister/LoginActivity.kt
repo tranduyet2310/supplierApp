@@ -18,6 +18,7 @@ import com.example.suppileragrimart.utils.Constants.PASSWORD_REQUIRED
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
 import com.example.suppileragrimart.utils.ScreenState
+import com.example.suppileragrimart.utils.Utils
 import com.example.suppileragrimart.view.MainActivity
 import com.example.suppileragrimart.viewmodel.LoginViewModel
 
@@ -37,9 +38,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        checkCertificate()
+
         binding.buttonLogin.setOnClickListener(this)
         binding.textViewSignUp.setOnClickListener(this)
         binding.forgetPassword.setOnClickListener(this)
+    }
+
+    private fun checkCertificate() {
+        Utils.readRawResource(this, R.raw.server)
     }
 
     override fun onClick(v: View?) {

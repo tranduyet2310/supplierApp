@@ -160,7 +160,7 @@ class WarehouseFragment : Fragment(), View.OnClickListener {
     }
 
     private fun goToSearchFragment() {
-        navController.navigate(R.id.action_warehouseFragment_to_searchFragment)
+//        navController.navigate(R.id.action_warehouseFragment_to_searchFragment)
     }
 
     private fun hideEmptyBox() {

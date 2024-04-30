@@ -67,15 +67,6 @@ interface Api {
         @Body warehouse: Warehouse
     ): Call<Warehouse>
 
-    @GET("/api/suppliers/{supplierId}/search")
-    suspend fun searchProduct(
-        @Path("supplierId") supplierId: Long,
-        @Query("query") query: String,
-        @Query("pageNo") pageNo: String,
-        @Query("sortBy") sortBy: String,
-        @Query("sortDir") sortDir: String
-    ): Response<WarehouseApiResponse>
-
     @GET("/api/suppliers/warehouses")
     suspend fun getWarehouseBySupplierId(
         @Query("supplierId") supplierId: Long,
@@ -422,4 +413,23 @@ interface Api {
 
     @GET("/api/products/{productId}")
     suspend fun getProductById(@Path("productId") productId: Long): Response<Product>
+
+    // search
+    @GET("/api/products/suppliers/{supplierId}/search")
+    suspend fun searchProduct(
+        @Path("supplierId") supplierId: Long,
+        @Query("query") query: String,
+        @Query("pageNo") pageNo: String,
+        @Query("sortBy") sortBy: String,
+        @Query("sortDir") sortDir: String
+    ): Response<ProductApiResponse>
+
+    @GET("/api/suppliers/{supplierId}/search")
+    suspend fun searchWarehouse(
+        @Path("supplierId") supplierId: Long,
+        @Query("query") query: String,
+        @Query("pageNo") pageNo: String,
+        @Query("sortBy") sortBy: String,
+        @Query("sortDir") sortDir: String
+    ): Response<WarehouseApiResponse>
 }

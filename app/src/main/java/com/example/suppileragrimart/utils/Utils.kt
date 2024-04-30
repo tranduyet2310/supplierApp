@@ -1,6 +1,8 @@
 package com.example.suppileragrimart.utils
 
+import android.content.Context
 import com.example.suppileragrimart.model.Supplier
+import java.io.InputStream
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.SimpleDateFormat
@@ -10,6 +12,7 @@ import java.util.Locale
 
 class Utils {
     companion object {
+        public lateinit var certsInputStream: InputStream
         fun Long.formatPrice(): String {
             val symbols = DecimalFormatSymbols().apply {
                 groupingSeparator = '.'
@@ -109,5 +112,10 @@ class Utils {
             }
             return decryptedData
         }
+
+        fun readRawResource(context: Context, resId: Int) {
+            certsInputStream = context.resources.openRawResource(resId)
+        }
+
     }
 }
