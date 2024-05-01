@@ -59,6 +59,23 @@ interface Api {
     @POST("/api/auth/key")
     suspend fun getSessionKey(@Body aesResponse: AESResponse): Response<AESResponse>
 
+    @PATCH("/api/suppliers/{supplierId}/rsa")
+    fun updateRSAPubKey(
+        @Header("Authorization") token: String,
+        @Path("supplierId") supplierId: Long,
+        @Body aesResponse: AESResponse
+    ): Call<MessageResponse>
+
+    @PATCH("/api/suppliers/{supplierId}/rsa")
+    suspend fun updateRSAKey(
+        @Header("Authorization") token: String,
+        @Path("supplierId") supplierId: Long,
+        @Body aesResponse: AESResponse
+    ): Response<MessageResponse>
+
+    @GET("/api/suppliers/{supplierId}/rsa")
+    suspend fun getRSAPublicKey(@Path("supplierId") supplierId: Long): Response<AESResponse>
+
     // warehouse
     @POST("/api/suppliers/{supplierId}/warehouses")
     fun createWarehouse(

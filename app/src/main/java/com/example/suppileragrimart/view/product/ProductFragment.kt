@@ -64,7 +64,7 @@ class ProductFragment : Fragment(), View.OnClickListener {
         binding.toolbarLayout.imgBack.visibility = View.GONE
 
         supplier = supplierViewModel.supplier
-        val isValidPubKey = supplierViewModel.isValidPublicKey
+//        val isValidPubKey = supplierViewModel.isValidPublicKey
 
         if (supplier != null) {
             setupRecyclerView()

@@ -95,8 +95,8 @@ class HomeFragment : Fragment() {
 
             iv = loginUtils.getIv()
             secretKey = loginUtils.getAESKey()
-            val check = supplierViewModel.isValidPublicKey
-            Log.d("TEST", "check "+check)
+//            val check = supplierViewModel.isValidPublicKey
+//            Log.d("TEST", "check "+check)
 
             if (supplier.contactName == null){
                 getSupplierById()

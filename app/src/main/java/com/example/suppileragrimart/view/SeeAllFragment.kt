@@ -106,6 +106,44 @@ class SeeAllFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+
+        binding.toolbarLayout.imgBack.setOnClickListener{
+            navController.navigateUp()
+        }
+
+        productAdapter.onSwitchState = {
+            updateProductState(it)
+        }
+
+        productAdapter.onEdit = {
+            val b = Bundle().apply {
+                putParcelable(Constants.PRODUCT_KEY, it)
+            }
+            navController.navigate(R.id.action_seeAllFragment_to_editProductFragment, b)
+        }
+
+        warehouseAdapter.onSwitchState = {
+            updateWarehouseState(it)
+        }
+
+        warehouseAdapter.onEdit = {
+            val b = Bundle().apply {
+                putParcelable(Constants.WAREHOUSE_KEY, it)
+            }
+            navController.navigate(R.id.action_seeAllFragment_to_editWarehouseFragment2, b)
+        }
+
+        orderAdapter.onClick = {
+            val b = Bundle().apply {
+                putParcelable(Constants.ORDER_KEY, it)
+            }
+            navController.navigate(R.id.action_seeAllFragment_to_orderDetailsFragment, b)
+        }
+    }
+
     private fun setupRecyclerViewForOrder() {
         binding.seeAllProductRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -199,44 +237,6 @@ class SeeAllFragment : Fragment() {
                 }
                 productAdapter.submitData(pagingData)
             }
-        }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
-
-        binding.toolbarLayout.imgBack.setOnClickListener{
-            navController.navigateUp()
-        }
-
-        productAdapter.onSwitchState = {
-            updateProductState(it)
-        }
-
-        productAdapter.onEdit = {
-            val b = Bundle().apply {
-                putParcelable(Constants.PRODUCT_KEY, it)
-            }
-            navController.navigate(R.id.action_seeAllFragment_to_editProductFragment, b)
-        }
-
-        warehouseAdapter.onSwitchState = {
-            updateWarehouseState(it)
-        }
-
-        warehouseAdapter.onEdit = {
-            val b = Bundle().apply {
-                putParcelable(Constants.WAREHOUSE_KEY, it)
-            }
-            navController.navigate(R.id.action_seeAllFragment_to_editWarehouseFragment2, b)
-        }
-
-        orderAdapter.onClick = {
-            val b = Bundle().apply {
-                putParcelable(Constants.ORDER_KEY, it)
-            }
-            navController.navigate(R.id.action_seeAllFragment_to_orderDetailsFragment, b)
         }
     }
     // Warehouse

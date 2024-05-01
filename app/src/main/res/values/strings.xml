@@ -13,7 +13,7 @@
     <string name="sign_in">Đăng nhập</string>
     <string name="hint_password">Password</string>
     <string name="hint_email">Email</string>
-    <string name="btn_sign_in">Sign in</string>
+    <string name="btn_sign_in">Đăng nhập</string>
     <string name="new_customer_create_account">Bạn mới biết đến AgriMart? <font color='#008CFF'>Đăng ký</font></string>
     <string name="forgot_pass">Quên mật khẩu</string>
     <string name="agrimart_2024">2024 AgriMart. Tất cả các quyền được bảo lưu</string>

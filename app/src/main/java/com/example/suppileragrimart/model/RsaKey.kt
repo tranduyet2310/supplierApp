@@ -8,6 +8,6 @@ data class RsaKey (
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val email: String,
-    val publicKey: String,
-    val privateKey: String
+    var publicKey: String,
+    var privateKey: String
 )

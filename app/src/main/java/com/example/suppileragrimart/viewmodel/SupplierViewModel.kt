@@ -2,16 +2,14 @@ package com.example.suppileragrimart.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.example.suppileragrimart.model.AESResponse
 import com.example.suppileragrimart.model.Image
-import com.example.suppileragrimart.model.LoginApiResponse
-import com.example.suppileragrimart.model.LoginRequest
+import com.example.suppileragrimart.model.MessageResponse
 import com.example.suppileragrimart.model.PasswordRequest
 import com.example.suppileragrimart.model.Supplier
 import com.example.suppileragrimart.repository.SupplierRepository
 import com.example.suppileragrimart.utils.ScreenState
 import okhttp3.MultipartBody
-import java.security.PrivateKey
-import java.security.PublicKey
 
 class SupplierViewModel(
     private val supplierRepository: SupplierRepository = SupplierRepository()
@@ -28,7 +26,7 @@ class SupplierViewModel(
         supplierId: Long,
         supplier: Supplier
     ): LiveData<ScreenState<Supplier?>> {
-        return supplierRepository.updateGeneralInfo(token, supplierId, supplier);
+        return supplierRepository.updateGeneralInfo(token, supplierId, supplier)
     }
 
     fun updateBankInfo(
@@ -36,13 +34,13 @@ class SupplierViewModel(
         supplierId: Long,
         supplier: Supplier
     ): LiveData<ScreenState<Supplier?>> {
-        return supplierRepository.updateBankInfo(token, supplierId, supplier);
+        return supplierRepository.updateBankInfo(token, supplierId, supplier)
     }
 
     fun getSupplierAvatar(
         supplierId: Long
     ): LiveData<ScreenState<Image?>> {
-        return supplierRepository.getSupplierAvatar(supplierId);
+        return supplierRepository.getSupplierAvatar(supplierId)
     }
 
     fun changeSupplierAvatar(
@@ -58,7 +56,7 @@ class SupplierViewModel(
         supplierId: Long,
         supplier: Supplier
     ): LiveData<ScreenState<Supplier?>> {
-        return supplierRepository.updateAccountInfo(token, supplierId, supplier);
+        return supplierRepository.updateAccountInfo(token, supplierId, supplier)
     }
 
     fun changePassword(
@@ -66,6 +64,14 @@ class SupplierViewModel(
         supplierId: Long,
         passwordRequest: PasswordRequest
     ): LiveData<ScreenState<Supplier?>> {
-        return supplierRepository.changePassword(token, supplierId, passwordRequest);
+        return supplierRepository.changePassword(token, supplierId, passwordRequest)
+    }
+
+    fun updateRSAKey(
+        token: String,
+        supplierId: Long,
+        dto: AESResponse
+    ): LiveData<ScreenState<MessageResponse?>> {
+        return supplierRepository.updateRSAKey(token, supplierId, dto)
     }
 }

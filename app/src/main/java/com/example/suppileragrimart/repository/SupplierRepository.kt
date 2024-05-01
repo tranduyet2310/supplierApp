@@ -2,7 +2,9 @@ package com.example.suppileragrimart.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.suppileragrimart.model.AESResponse
 import com.example.suppileragrimart.model.Image
+import com.example.suppileragrimart.model.MessageResponse
 import com.example.suppileragrimart.model.PasswordRequest
 import com.example.suppileragrimart.model.Supplier
 import com.example.suppileragrimart.network.RetrofitClient
@@ -14,11 +16,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SupplierRepository {
+    private val apiService = RetrofitClient.getInstance().getApi()
+
     fun getSupplierById(supplierId: Long): LiveData<ScreenState<Supplier?>> {
         val mutableLiveData = MutableLiveData<ScreenState<Supplier?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 
-        RetrofitClient.getInstance().getApi().getSupplierById(supplierId)
+        apiService.getSupplierById(supplierId)
             .enqueue(object : Callback<Supplier> {
                 override fun onResponse(
                     call: Call<Supplier>,
@@ -46,7 +50,7 @@ class SupplierRepository {
         val mutableLiveData = MutableLiveData<ScreenState<Supplier?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 
-        RetrofitClient.getInstance().getApi().updateGeneralInfo(token, supplierId, supplier)
+        apiService.updateGeneralInfo(token, supplierId, supplier)
             .enqueue(object : Callback<Supplier> {
                 override fun onResponse(
                     call: Call<Supplier>,
@@ -74,7 +78,7 @@ class SupplierRepository {
         val mutableLiveData = MutableLiveData<ScreenState<Supplier?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 
-        RetrofitClient.getInstance().getApi().updateBankInfo(token, supplierId, supplier)
+        apiService.updateBankInfo(token, supplierId, supplier)
             .enqueue(object : Callback<Supplier> {
                 override fun onResponse(
                     call: Call<Supplier>,
@@ -98,7 +102,7 @@ class SupplierRepository {
         val mutableLiveData = MutableLiveData<ScreenState<Image?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 
-        RetrofitClient.getInstance().getApi().getSupplierAvatar(supplierId)
+        apiService.getSupplierAvatar(supplierId)
             .enqueue(object : Callback<Image> {
                 override fun onResponse(
                     call: Call<Image>,
@@ -126,7 +130,7 @@ class SupplierRepository {
         val mutableLiveData = MutableLiveData<ScreenState<Supplier?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 
-        RetrofitClient.getInstance().getApi().updateAvatar(token, supplierId, file)
+        apiService.updateAvatar(token, supplierId, file)
             .enqueue(object : Callback<Supplier> {
                 override fun onResponse(
                     call: Call<Supplier>,
@@ -156,7 +160,7 @@ class SupplierRepository {
         val mutableLiveData = MutableLiveData<ScreenState<Supplier?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 
-        RetrofitClient.getInstance().getApi().updateAccountInfo(token, supplierId, supplier)
+        apiService.updateAccountInfo(token, supplierId, supplier)
             .enqueue(object : Callback<Supplier> {
                 override fun onResponse(
                     call: Call<Supplier>,
@@ -186,7 +190,7 @@ class SupplierRepository {
         val mutableLiveData = MutableLiveData<ScreenState<Supplier?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 
-        RetrofitClient.getInstance().getApi().changePassword(token, supplierId, password)
+        apiService.changePassword(token, supplierId, password)
             .enqueue(object : Callback<Supplier> {
                 override fun onResponse(
                     call: Call<Supplier>,
@@ -200,6 +204,36 @@ class SupplierRepository {
                 }
 
                 override fun onFailure(call: Call<Supplier>, t: Throwable) {
+                    val message = t.message.toString()
+                    mutableLiveData.postValue(ScreenState.Error(message, null))
+                }
+            })
+
+        return mutableLiveData
+    }
+
+    fun updateRSAKey(
+        token: String,
+        supplierId: Long,
+        dto: AESResponse
+    ): LiveData<ScreenState<MessageResponse?>> {
+        val mutableLiveData = MutableLiveData<ScreenState<MessageResponse?>>()
+        mutableLiveData.postValue(ScreenState.Loading(null))
+
+        apiService.updateRSAPubKey(token, supplierId, dto)
+            .enqueue(object : Callback<MessageResponse> {
+                override fun onResponse(
+                    call: Call<MessageResponse>,
+                    response: Response<MessageResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        mutableLiveData.postValue(ScreenState.Success(response.body()))
+                    } else {
+                        mutableLiveData.postValue(ScreenState.Error(Constants.SERVER_ERROR, null))
+                    }
+                }
+
+                override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
                     val message = t.message.toString()
                     mutableLiveData.postValue(ScreenState.Error(message, null))
                 }

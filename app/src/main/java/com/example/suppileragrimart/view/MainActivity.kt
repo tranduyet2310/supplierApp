@@ -2,6 +2,7 @@ package com.example.suppileragrimart.view
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
@@ -17,6 +18,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.suppileragrimart.R
 import com.example.suppileragrimart.databinding.ActivityMainBinding
 import com.example.suppileragrimart.model.AESResponse
+import com.example.suppileragrimart.model.RsaKey
 import com.example.suppileragrimart.model.Supplier
 import com.example.suppileragrimart.network.Api
 import com.example.suppileragrimart.network.RetrofitClient
@@ -66,11 +68,12 @@ class MainActivity : AppCompatActivity() {
                 alertDialog = progressDialog.createAlertDialog(this@MainActivity)
             }
 
-            isValidPubKey = checkRSAPublicKey()
-            if (isValidPubKey) {
-                supplierViewModel.isValidPublicKey = isValidPubKey
-                getAESKey()
-            }
+            checkRSAPublicKey()
+            getAESKey()
+//            if (isValidPubKey) {
+//                supplierViewModel.isValidPublicKey = isValidPubKey
+//                getAESKey()
+//            }
 
             withContext(Dispatchers.Main){
                 alertDialog.dismiss()
@@ -109,27 +112,87 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    suspend fun checkRSAPublicKey(): Boolean {
+    suspend fun checkRSAPublicKey() {
         val rsaKeyInDb = RsaKeyDatabase.getDatabase(this).rsaKeyDao().getRsaKey(supplier.email)
         if (rsaKeyInDb == null){
             withContext(Dispatchers.Main){
                 showSnackbar(getString(R.string.pub_key_not_found))
             }
-            return false
+            updateNewKey(false)
         } else {
+            val rsaKeyInServer = getRSAPublicKeyInServer()
             val publicKeyInDb = rsaKeyInDb.publicKey
-            if (!publicKeyInDb.equals(loginUtils.getRSAPublicKey())){
-                loginUtils.saveRSAKey(rsaKeyInDb.privateKey, publicKeyInDb)
+            if (rsaKeyInServer.isEmpty()){
                 withContext(Dispatchers.Main){
-                    showSnackbar("Thay thế public key thành công")
+                    showSnackbar("Không tìm thấy public key trên server")
                 }
             } else {
-                withContext(Dispatchers.Main){
-                    showSnackbar("Public Key khớp")
+                if (!rsaKeyInServer.equals(publicKeyInDb)){
+                    updateNewKey(true)
+                }else {
+                    if (!publicKeyInDb.equals(loginUtils.getRSAPublicKey())){
+                        loginUtils.saveRSAKey(rsaKeyInDb.privateKey, publicKeyInDb)
+                        withContext(Dispatchers.Main){
+                            showSnackbar("Thay thế public key thành công")
+                        }
+                    } else {
+                        withContext(Dispatchers.Main){
+                            showSnackbar("Public Key khớp")
+                        }
+                    }
                 }
             }
-            return true
         }
+    }
+
+    suspend fun getRSAPublicKeyInServer(): String{
+        return withContext(Dispatchers.IO){
+            val response = apiService.getRSAPublicKey(supplier.id)
+            if (response.isSuccessful){
+                response.body()?.rsaPublicKey ?: ""
+            } else {
+                ""
+            }
+        }
+    }
+
+    suspend fun updateNewKey(isUpdate: Boolean){
+        generateRSAKey()
+        val token = loginUtils.getSupplierToken()
+        val dto = AESResponse()
+        dto.rsaPublicKey = supplier.rsaPublicKey
+        withContext(Dispatchers.IO){
+            val response = apiService.updateRSAKey(token, supplier.id, dto)
+            if (response.isSuccessful){
+                if (response.body() != null){
+                    if (response.body()!!.isSuccessful){
+                        saveKeyInDb(isUpdate)
+                        Log.d("TEST","Luu khoa vao Room")
+                    }
+                }
+            }
+        }
+    }
+    private fun saveKeyInDb(isUpdate: Boolean){
+        val rsaPrivateKeyInString = loginUtils.getRSAPrivateKey()
+        val rsaPublicKeyInString = loginUtils.getRSAPublicKey()
+        if (isUpdate){
+            val rsaKeyInDb = RsaKeyDatabase.getDatabase(this).rsaKeyDao().getRsaKey(supplier.email)
+            if (rsaKeyInDb != null) {
+                rsaKeyInDb.publicKey = rsaPublicKeyInString
+                rsaKeyInDb.privateKey = rsaPrivateKeyInString
+                RsaKeyDatabase.getDatabase(this).rsaKeyDao().updateRsaKey(rsaKeyInDb)
+            }
+        } else {
+            val rsaKey = RsaKey(0, supplier.email, rsaPublicKeyInString, rsaPrivateKeyInString)
+            RsaKeyDatabase.getDatabase(this).rsaKeyDao().addRsaKey(rsaKey)
+        }
+    }
+    private fun generateRSAKey() {
+        val rsa = RSA()
+        rsa.init()
+        supplier.rsaPublicKey = rsa.publicKey
+        loginUtils.saveRSAKey(rsa.privateKey, rsa.publicKey)
     }
 
     private fun setupNavHost(){
