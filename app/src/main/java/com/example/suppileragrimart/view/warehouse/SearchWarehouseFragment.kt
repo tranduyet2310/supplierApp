@@ -1,4 +1,4 @@
-package com.example.suppileragrimart.view.product
+package com.example.suppileragrimart.view.warehouse
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -14,18 +13,18 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.preference.PreferenceManager
 import com.example.suppileragrimart.R
 import com.example.suppileragrimart.adapter.KeywordAdapter
-import com.example.suppileragrimart.databinding.FragmentSearchBinding
+import com.example.suppileragrimart.databinding.FragmentSearchWarehouseBinding
 import com.example.suppileragrimart.utils.Constants
-import com.example.suppileragrimart.utils.Constants.PRODUCT_HISTORY
 
 @SuppressLint("ClickableViewAccessibility")
-class SearchFragment : Fragment(), AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
-    private lateinit var binding: FragmentSearchBinding
+class SearchWarehouseFragment : Fragment(), AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+    private lateinit var binding: FragmentSearchWarehouseBinding
     private lateinit var navController: NavController
 
     private lateinit var keywordAdapter: KeywordAdapter
@@ -36,8 +35,8 @@ class SearchFragment : Fragment(), AdapterView.OnItemClickListener, AdapterView.
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSearchBinding.inflate(inflater, container, false)
-        binding.toolbarLayout.titleToolbar.text = getString(R.string.search_product)
+        binding = FragmentSearchWarehouseBinding.inflate(inflater)
+        binding.toolbarLayout.titleToolbar.text = getString(R.string.search_warehouse)
 
         setupView()
         sharedPreferences.registerOnSharedPreferenceChangeListener(prefChangeListener)
@@ -97,7 +96,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemClickListener, AdapterView.
                     binding.editQuery.text.clear()
                     true
                 } else if ((event.rawX + binding.editQuery.paddingLeft) <= (binding.editQuery.compoundDrawables[0].bounds.width() + binding.editQuery.left)) {
-                    navController.navigate(R.id.action_searchFragment_to_productFragment)
+                    navController.navigate(R.id.action_searchWarehouseFragment_to_warehouseFragment)
                     true
                 } else false
             } else false
@@ -108,11 +107,11 @@ class SearchFragment : Fragment(), AdapterView.OnItemClickListener, AdapterView.
         word = binding.editQuery.text.toString().trim()
         setKeyword(requireContext(), word, word)
         val b = Bundle().apply {
-            putString(Constants.PRODUCT_KEY, word)
-            putString(Constants.WAREHOUSE_KEY, null)
+            putString(Constants.WAREHOUSE_KEY, word)
+            putString(Constants.PRODUCT_KEY, null)
             putString(Constants.ORDER_KEY, null)
         }
-        navController.navigate(R.id.action_searchFragment_to_seeAllFragment, b)
+        navController.navigate(R.id.action_searchWarehouseFragment_to_seeAllFragment, b)
     }
 
     private fun setupView() {
@@ -130,11 +129,11 @@ class SearchFragment : Fragment(), AdapterView.OnItemClickListener, AdapterView.
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val b = Bundle().apply {
-            putString(Constants.PRODUCT_KEY, list.get(position))
-            putString(Constants.WAREHOUSE_KEY, null)
+            putString(Constants.WAREHOUSE_KEY, list.get(position))
+            putString(Constants.PRODUCT_KEY, null)
             putString(Constants.ORDER_KEY, null)
         }
-        navController.navigate(R.id.action_searchFragment_to_seeAllFragment, b)
+        navController.navigate(R.id.action_searchWarehouseFragment_to_seeAllFragment, b)
     }
 
     override fun onItemLongClick(
@@ -152,26 +151,26 @@ class SearchFragment : Fragment(), AdapterView.OnItemClickListener, AdapterView.
     }
 
     fun getKeywords(context: Context): Map<String, *> {
-        sharedPreferences = context.getSharedPreferences(PRODUCT_HISTORY, Context.MODE_PRIVATE)
+        sharedPreferences = context.getSharedPreferences(Constants.WAREHOUSE_HISTORY, Context.MODE_PRIVATE)
         return sharedPreferences.all
     }
 
     fun setKeyword(context: Context, key: String, word: String) {
-        sharedPreferences = context.getSharedPreferences(PRODUCT_HISTORY, Context.MODE_PRIVATE)
+        sharedPreferences = context.getSharedPreferences(Constants.WAREHOUSE_HISTORY, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString(key, word)
         editor.apply()
     }
 
     fun clearSharedPreferences(context: Context) {
-        val sharedPreferences = context.getSharedPreferences(PRODUCT_HISTORY, Context.MODE_PRIVATE)
+        val sharedPreferences = context.getSharedPreferences(Constants.WAREHOUSE_HISTORY, Context.MODE_PRIVATE)
         sharedPreferences.edit()
             .clear()
             .apply()
     }
 
     fun clearOneItemInSharedPreferences(key: String, context: Context) {
-        context.getSharedPreferences(PRODUCT_HISTORY, Context.MODE_PRIVATE)
+        context.getSharedPreferences(Constants.WAREHOUSE_HISTORY, Context.MODE_PRIVATE)
             .edit()
             .remove(key)
             .apply()

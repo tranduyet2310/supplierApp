@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.product.SearchFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.warehouse.SearchWarehouseFragment">
 
     <include
         android:id="@+id/toolbarLayout"
@@ -36,7 +36,7 @@
             android:drawableEnd="@drawable/ic_search"
             android:drawablePadding="@dimen/dimen10dp"
             android:gravity="start|center"
-            android:hint="@string/what_is_product_look_for"
+            android:hint="@string/enter_warehouse_name"
             android:imeOptions="actionSearch"
             android:importantForAutofill="no"
             android:inputType="text"

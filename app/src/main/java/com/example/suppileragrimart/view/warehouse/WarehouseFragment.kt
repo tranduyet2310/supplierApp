@@ -2,12 +2,11 @@ package com.example.suppileragrimart.view.warehouse
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -22,7 +21,6 @@ import com.example.suppileragrimart.model.MessageResponse
 import com.example.suppileragrimart.model.Supplier
 import com.example.suppileragrimart.model.Warehouse
 import com.example.suppileragrimart.model.WarehouseApiRequest
-import com.example.suppileragrimart.utils.Constants.RETRY
 import com.example.suppileragrimart.utils.Constants.WAREHOUSE_KEY
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
@@ -160,7 +158,7 @@ class WarehouseFragment : Fragment(), View.OnClickListener {
     }
 
     private fun goToSearchFragment() {
-//        navController.navigate(R.id.action_warehouseFragment_to_searchFragment)
+        navController.navigate(R.id.action_warehouseFragment_to_searchWarehouseFragment)
     }
 
     private fun hideEmptyBox() {

@@ -12,7 +12,7 @@ import java.util.Locale
 
 class Utils {
     companion object {
-        public lateinit var certsInputStream: InputStream
+        lateinit var certsInputStream: InputStream
         fun Long.formatPrice(): String {
             val symbols = DecimalFormatSymbols().apply {
                 groupingSeparator = '.'

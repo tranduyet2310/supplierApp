@@ -330,5 +330,9 @@
     <string name="not_found">Không tìm thấy kết quả</string>
     <string name="search_result">Kết quả tìm kiếm</string>
     <string name="search_product">Tìm kiếm sản phẩm</string>
+    <string name="enter_warehouse_name">Nhập tên kho hàng cần tìm</string>
+    <string name="search_warehouse">Tìm kiếm kho hàng</string>
+    <string name="enter_date">Nhập ngày tháng cần tìm</string>
+    <string name="search_order">Tìm kiếm đơn hàng</string>
 
 </resources>

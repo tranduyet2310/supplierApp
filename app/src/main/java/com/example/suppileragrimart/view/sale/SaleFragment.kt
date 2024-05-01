@@ -1,6 +1,5 @@
 package com.example.suppileragrimart.view.sale
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,8 +20,6 @@ import com.example.suppileragrimart.databinding.FragmentSaleBinding
 import com.example.suppileragrimart.model.OrderInfoApiRequest
 import com.example.suppileragrimart.model.Supplier
 import com.example.suppileragrimart.utils.Constants
-import com.example.suppileragrimart.utils.LoginUtils
-import com.example.suppileragrimart.utils.ProgressDialog
 import com.example.suppileragrimart.utils.Utils.Companion.getCurrentMonth
 import com.example.suppileragrimart.utils.Utils.Companion.getMonth
 import com.example.suppileragrimart.utils.Utils.Companion.updateMonthInString
@@ -97,7 +94,7 @@ class SaleFragment : Fragment(), View.OnClickListener {
     }
 
     private fun goToSearchFragment() {
-//        navController.navigate(R.id.action_saleFragment_to_searchFragment)
+        navController.navigate(R.id.action_saleFragment_to_searchOrderFragment)
     }
 
     private fun showEmptyBox() {

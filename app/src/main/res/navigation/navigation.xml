@@ -56,6 +56,9 @@
         <action
             android:id="@+id/action_saleFragment_to_orderDetailsFragment"
             app:destination="@id/orderDetailsFragment" />
+        <action
+            android:id="@+id/action_saleFragment_to_searchOrderFragment"
+            app:destination="@id/searchOrderFragment" />
     </fragment>
     <fragment
         android:id="@+id/warehouseFragment"
@@ -69,6 +72,9 @@
         <action
             android:id="@+id/action_warehouseFragment_to_editWarehouseFragment2"
             app:destination="@id/editWarehouseFragment2" />
+        <action
+            android:id="@+id/action_warehouseFragment_to_searchWarehouseFragment"
+            app:destination="@id/searchWarehouseFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -332,5 +338,43 @@
         <action
             android:id="@+id/action_seeAllFragment_to_editProductFragment"
             app:destination="@id/editProductFragment" />
+        <argument
+            android:name="warehouse"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_seeAllFragment_to_editWarehouseFragment2"
+            app:destination="@id/editWarehouseFragment2" />
+        <argument
+            android:name="orderInfo"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_seeAllFragment_to_orderDetailsFragment"
+            app:destination="@id/orderDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchWarehouseFragment"
+        android:name="com.example.suppileragrimart.view.warehouse.SearchWarehouseFragment"
+        android:label="fragment_search_warehouse"
+        tools:layout="@layout/fragment_search_warehouse" >
+        <action
+            android:id="@+id/action_searchWarehouseFragment_to_warehouseFragment"
+            app:destination="@id/warehouseFragment" />
+        <action
+            android:id="@+id/action_searchWarehouseFragment_to_seeAllFragment"
+            app:destination="@id/seeAllFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchOrderFragment"
+        android:name="com.example.suppileragrimart.view.sale.SearchOrderFragment"
+        android:label="fragment_search_order"
+        tools:layout="@layout/fragment_search_order" >
+        <action
+            android:id="@+id/action_searchOrderFragment_to_saleFragment"
+            app:destination="@id/saleFragment" />
+        <action
+            android:id="@+id/action_searchOrderFragment_to_seeAllFragment"
+            app:destination="@id/seeAllFragment" />
     </fragment>
 </navigation>
