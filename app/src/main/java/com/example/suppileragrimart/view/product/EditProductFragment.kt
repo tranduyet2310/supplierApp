@@ -583,8 +583,9 @@ class EditProductFragment : Fragment() {
     private fun showImage(context: Context, imageUrl: String, imgProduct: ImageView) {
         var requestOptions = RequestOptions()
         requestOptions = requestOptions.transform(FitCenter(), RoundedCorners(16))
+        val modifiedUrl = imageUrl.replace("http://", "https://")
         GlideApp.with(context)
-            .load(imageUrl)
+            .load(modifiedUrl)
             .apply(requestOptions)
             .skipMemoryCache(true)
             .into(imgProduct)

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
-    tools:context=".view.garden.CooperationDetailFragment">
+    tools:context=".view.profile.CooperativeDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -90,7 +90,7 @@
             android:fontFamily="@font/inter_medium"
             android:text="@string/shop_name"
             android:textColor="@color/blackAgri"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:drawableStartCompat="@drawable/dot"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/titleSupplier" />
@@ -118,7 +118,7 @@
             android:fontFamily="@font/inter_medium"
             android:text="@string/supplier_name"
             android:textColor="@color/blackAgri"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:drawableStartCompat="@drawable/dot"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/titleShopName" />
@@ -146,7 +146,7 @@
             android:fontFamily="@font/inter_medium"
             android:text="@string/phone_number_v2"
             android:textColor="@color/blackAgri"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:drawableStartCompat="@drawable/dot"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/titleSupplierName" />
@@ -172,9 +172,9 @@
             android:layout_marginTop="10dp"
             android:drawablePadding="5dp"
             android:fontFamily="@font/inter_medium"
-            android:text="@string/cropsName_v2"
+            android:text="@string/crops_name"
             android:textColor="@color/blackAgri"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:drawableStartCompat="@drawable/dot"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/titleSupplierContact" />
@@ -202,7 +202,7 @@
             android:fontFamily="@font/inter_medium"
             android:text="@string/cooperation_crops_type"
             android:textColor="@color/blackAgri"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:drawableStartCompat="@drawable/dot"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/tvCropsName" />
@@ -230,7 +230,7 @@
             android:fontFamily="@font/inter_medium"
             android:text="@string/cooperation_season"
             android:textColor="@color/blackAgri"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:drawableStartCompat="@drawable/dot"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/titleCropsType" />
@@ -247,6 +247,17 @@
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintStart_toEndOf="@id/titleSeason"
             app:layout_constraintTop_toTopOf="@id/titleSeason" />
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="#97AABD"
+            android:backgroundTint="#97AABD"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/tvSeason" />
 
         <TextView
             android:id="@+id/titleUser"
@@ -272,7 +283,7 @@
             android:fontFamily="@font/inter_medium"
             android:text="@string/fullName_v2"
             android:textColor="@color/blackAgri"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:drawableStartCompat="@drawable/dot"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/titleUser" />
@@ -298,9 +309,9 @@
             android:layout_marginTop="10dp"
             android:drawablePadding="5dp"
             android:fontFamily="@font/inter_medium"
-            android:text="@string/phone_number_v2"
+            android:text="@string/phone_number"
             android:textColor="@color/blackAgri"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:drawableStartCompat="@drawable/dot"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/titleFullName" />
@@ -328,7 +339,7 @@
             android:fontFamily="@font/inter_medium"
             android:text="@string/yield_ordered"
             android:textColor="@color/blackAgri"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:drawableStartCompat="@drawable/dot"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/tvUserContact" />
@@ -356,7 +367,7 @@
             android:fontFamily="@font/inter_medium"
             android:text="@string/price_per_kg"
             android:textColor="@color/blackAgri"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:drawableStartCompat="@drawable/dot"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/titleYield" />
@@ -384,7 +395,7 @@
             android:fontFamily="@font/inter_medium"
             android:text="@string/investment"
             android:textColor="@color/blackAgri"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:drawableStartCompat="@drawable/dot"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/titlePrice" />
@@ -402,35 +413,16 @@
             app:layout_constraintStart_toEndOf="@id/titleInvestment"
             app:layout_constraintTop_toTopOf="@id/titleInvestment" />
 
-        <TextView
-            android:id="@+id/titleDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:drawablePadding="5dp"
-            android:fontFamily="@font/inter_medium"
-            android:text="@string/description"
-            android:textColor="@color/blackAgri"
-            android:textSize="16sp"
-            app:drawableStartCompat="@drawable/dot"
-            app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/titleInvestment" />
-
-        <TextView
-            android:id="@+id/tvDescription"
+        <View
+            android:id="@+id/line2"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/inter_medium"
-            android:maxLines="4"
-            android:textColor="@color/grayAgri"
-            android:textSize="14sp"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="#97AABD"
+            android:backgroundTint="#97AABD"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/titleDescription"
-            tools:text="@string/infor_product_text" />
+            app:layout_constraintTop_toBottomOf="@id/tvInvestment" />
 
         <TextView
             android:id="@+id/titleDetail"
@@ -445,7 +437,7 @@
             app:drawableLeftCompat="@drawable/ic_billing"
             app:drawableTint="@color/darkGreen"
             app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+            app:layout_constraintTop_toBottomOf="@id/tvInvestment" />
 
         <TextView
             android:id="@+id/titlePayment"
@@ -457,7 +449,7 @@
             android:fontFamily="@font/inter_medium"
             android:text="@string/payment_status"
             android:textColor="@color/blackAgri"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:drawableStartCompat="@drawable/dot"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/titleDetail" />
@@ -470,11 +462,40 @@
             android:fontFamily="@font/inter_medium"
             android:textColor="@color/grayAgri"
             android:textSize="14sp"
-            android:text="@string/no_payment"
+            tools:text="@string/no_payment"
             app:layout_constraintBottom_toBottomOf="@id/titlePayment"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintStart_toEndOf="@id/titlePayment"
             app:layout_constraintTop_toTopOf="@id/titlePayment" />
+
+        <TextView
+            android:id="@+id/titlePaymentMethod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/payment_method_v2"
+            android:textColor="@color/blackAgri"
+            android:textSize="15sp"
+            app:drawableStartCompat="@drawable/dot"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/titlePayment" />
+
+        <TextView
+            android:id="@+id/tvPaymentMethod"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/inter_medium"
+            android:textColor="@color/grayAgri"
+            android:textSize="14sp"
+            tools:text="@string/no_payment"
+            app:layout_constraintBottom_toBottomOf="@id/titlePaymentMethod"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toEndOf="@id/titlePaymentMethod"
+            app:layout_constraintTop_toTopOf="@id/titlePaymentMethod" />
 
         <TextView
             android:id="@+id/titleAddress"
@@ -484,52 +505,105 @@
             android:layout_marginTop="10dp"
             android:drawablePadding="5dp"
             android:fontFamily="@font/inter_medium"
-            android:text="@string/delivery"
+            android:text="@string/remain_amount"
             android:textColor="@color/blackAgri"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:drawableStartCompat="@drawable/dot"
             app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/titlePayment" />
+            app:layout_constraintTop_toBottomOf="@id/tvPaymentMethod" />
 
         <TextView
-            android:id="@+id/tvAddress"
+            android:id="@+id/tvRemainAmount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:ellipsize="end"
             android:fontFamily="@font/inter_medium"
-            android:maxLines="3"
+            android:maxLines="1"
             android:textColor="@color/grayAgri"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintStart_toStartOf="@id/titleAddress"
-            app:layout_constraintTop_toBottomOf="@id/titleAddress"
-            tools:text="@tools:sample/lorem/random" />
+            app:layout_constraintStart_toEndOf="@id/titleAddress"
+            app:layout_constraintTop_toTopOf="@id/titleAddress"
+            app:layout_constraintBottom_toBottomOf="@id/titleAddress"
+            tools:text="1.000.000.000 đ" />
 
-        <Button
-            android:id="@+id/btnAgree"
+        <TextView
+            android:id="@+id/titleDateCreated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/payment_date"
+            android:textColor="@color/blackAgri"
+            android:textSize="15sp"
+            app:drawableStartCompat="@drawable/dot"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/titleAddress" />
+
+        <TextView
+            android:id="@+id/tvDateCreated"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/inter_medium"
+            android:maxLines="1"
+            android:textColor="@color/grayAgri"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toEndOf="@id/titleDateCreated"
+            app:layout_constraintTop_toTopOf="@id/titleDateCreated"
+            app:layout_constraintBottom_toBottomOf="@id/titleDateCreated"
+            tools:text="01/01/2024" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/accept"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/tvAddress" />
-
-        <Button
-            android:layout_width="0dp"
-            android:id="@+id/btnCancel"
-            android:visibility="invisible"
-            android:backgroundTint="@color/orange"
-            android:layout_height="wrap_content"
-            android:text="@string/cancel"
-            android:textColor="@color/white"
+            android:layout_marginBottom="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="15dp"
+            android:background="@drawable/total_box_background"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/btnAgree" />
+            app:layout_constraintTop_toBottomOf="@id/tvDateCreated">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15sp"
+                android:layout_marginBottom="15sp"
+                android:layout_weight="1"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/payment_amount"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvPaymentAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginTop="16sp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="16sp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/_5_000_000"
+                android:textColor="@color/orange"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

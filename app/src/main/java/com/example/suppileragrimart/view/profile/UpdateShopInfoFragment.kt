@@ -368,35 +368,14 @@ class UpdateShopInfoFragment : Fragment() {
                         uriGardenList.add(imageUri)
                     }
                 }
-                when (uriGardenList.size) {
-                    1 -> GlideApp.with(requireContext()).load(uriGardenList[0])
-                        .into(binding.imageGarden1)
 
-                    2 -> {
-                        GlideApp.with(requireContext()).load(uriGardenList[0])
-                            .into(binding.imageGarden1)
-                        GlideApp.with(requireContext()).load(uriGardenList[1])
-                            .into(binding.imageGarden2)
-                    }
-
-                    3 -> {
-                        GlideApp.with(requireContext()).load(uriGardenList[0])
-                            .into(binding.imageGarden1)
-                        GlideApp.with(requireContext()).load(uriGardenList[1])
-                            .into(binding.imageGarden2)
-                        GlideApp.with(requireContext()).load(uriGardenList[2])
-                            .into(binding.imageGarden3)
-                    }
-
-                    else -> {
-                        GlideApp.with(requireContext()).load(uriGardenList[0])
-                            .into(binding.imageGarden1)
-                        GlideApp.with(requireContext()).load(uriGardenList[1])
-                            .into(binding.imageGarden2)
-                        GlideApp.with(requireContext()).load(uriGardenList[2])
-                            .into(binding.imageGarden3)
-                        GlideApp.with(requireContext()).load(uriGardenList[3])
-                            .into(binding.imageGarden4)
+                for (i in 1.. uriGardenList.size){
+                    when(i){
+                        1 -> GlideApp.with(requireContext()).load(uriGardenList[0]).into(binding.imageGarden1)
+                        2 -> GlideApp.with(requireContext()).load(uriGardenList[1]).into(binding.imageGarden2)
+                        3 -> GlideApp.with(requireContext()).load(uriGardenList[2]).into(binding.imageGarden3)
+                        4 -> GlideApp.with(requireContext()).load(uriGardenList[3]).into(binding.imageGarden4)
+                        else -> {}
                     }
                 }
             }
@@ -417,43 +396,23 @@ class UpdateShopInfoFragment : Fragment() {
                         uriShopList.add(imageUri)
                     }
                 }
-                when (uriShopList.size) {
-                    1 -> GlideApp.with(requireContext()).load(uriShopList[0])
-                        .into(binding.imageShop1)
 
-                    2 -> {
-                        GlideApp.with(requireContext()).load(uriShopList[0])
-                            .into(binding.imageShop1)
-                        GlideApp.with(requireContext()).load(uriShopList[1])
-                            .into(binding.imageShop2)
-                    }
-
-                    3 -> {
-                        GlideApp.with(requireContext()).load(uriShopList[0])
-                            .into(binding.imageShop1)
-                        GlideApp.with(requireContext()).load(uriShopList[1])
-                            .into(binding.imageShop2)
-                        GlideApp.with(requireContext()).load(uriShopList[2])
-                            .into(binding.imageShop3)
-                    }
-
-                    else -> {
-                        GlideApp.with(requireContext()).load(uriShopList[0])
-                            .into(binding.imageShop1)
-                        GlideApp.with(requireContext()).load(uriShopList[1])
-                            .into(binding.imageShop2)
-                        GlideApp.with(requireContext()).load(uriShopList[2])
-                            .into(binding.imageShop3)
-                        GlideApp.with(requireContext()).load(uriShopList[3])
-                            .into(binding.imageShop4)
+                for (i in 1.. uriShopList.size) {
+                    when(i){
+                        1 -> GlideApp.with(requireContext()).load(uriShopList[0]).into(binding.imageShop1)
+                        2 -> GlideApp.with(requireContext()).load(uriShopList[1]).into(binding.imageShop2)
+                        3 -> GlideApp.with(requireContext()).load(uriShopList[2]).into(binding.imageShop3)
+                        4 -> GlideApp.with(requireContext()).load(uriShopList[3]).into(binding.imageShop4)
+                        else -> {}
                     }
                 }
             }
     }
 
     private fun glideApp(imageUrl: String, view: ImageView) {
+        val modifiedUrl = imageUrl.replace("http://", "https://")
         GlideApp.with(requireContext())
-            .load(imageUrl)
+            .load(modifiedUrl)
             .into(view)
     }
 

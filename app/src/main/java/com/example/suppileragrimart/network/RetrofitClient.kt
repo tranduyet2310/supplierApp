@@ -67,13 +67,8 @@ class RetrofitClient {
         }
     }
 
-    @Throws(
-        KeyStoreException::class,
-        CertificateException::class,
-        IOException::class,
-        NoSuchAlgorithmException::class,
-        KeyManagementException::class
-    )
+    @Throws(KeyStoreException::class, CertificateException::class, IOException::class,
+        NoSuchAlgorithmException::class, KeyManagementException::class)
     fun addCustomTrustManager(builder: OkHttpClient.Builder) {
 //        val caFileInputStream: InputStream = context.resources.openRawResource(R.raw.server)
         val caFileInputStream: InputStream = Utils.certsInputStream

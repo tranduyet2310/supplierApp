@@ -2,11 +2,9 @@ package com.example.suppileragrimart.view.product
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -17,12 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.suppileragrimart.R
 import com.example.suppileragrimart.adapter.ItemLoadingAdapter
 import com.example.suppileragrimart.adapter.ProductAdapter
-import com.example.suppileragrimart.adapter.WarehouseAdapter
 import com.example.suppileragrimart.databinding.FragmentProductBinding
 import com.example.suppileragrimart.model.Product
 import com.example.suppileragrimart.model.ProductApiRequest
 import com.example.suppileragrimart.model.Supplier
-import com.example.suppileragrimart.model.WarehouseApiRequest
 import com.example.suppileragrimart.utils.Constants
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog

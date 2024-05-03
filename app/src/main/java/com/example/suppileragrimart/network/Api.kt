@@ -4,6 +4,8 @@ import com.example.suppileragrimart.model.AESResponse
 import com.example.suppileragrimart.model.CategoryApiResponse
 import com.example.suppileragrimart.model.Cooperation
 import com.example.suppileragrimart.model.CooperationApiResponse
+import com.example.suppileragrimart.model.CooperativeOrderResponse
+import com.example.suppileragrimart.model.CooperativePayment
 import com.example.suppileragrimart.model.FieldApiResponse
 import com.example.suppileragrimart.model.FieldDetail
 import com.example.suppileragrimart.model.Image
@@ -266,6 +268,11 @@ interface Api {
         @Path("fieldId") fieldId: Long
     ): Call<FieldApiResponse>
 
+    @GET("api/field/{fieldId}/detail")
+    suspend fun getFieldById(
+        @Path("fieldId") fieldId: Long
+    ): Response<FieldApiResponse>
+
     // Field Detail
     @POST("api/field_detail/{fieldId}")
     fun createFieldDetail(
@@ -317,6 +324,9 @@ interface Api {
         @Path("cooperationId") cooperationId: Long,
         @Body cooperationResponse: Cooperation
     ): Call<Cooperation>
+
+    @GET("api/cooperation/{cooperationId}/general")
+    suspend fun getCooperationByIdV2(@Path("cooperationId") cooperationId: Long): Response<Cooperation>
 
     @GET("/api/users/addresses/{id}")
     suspend fun getAddressByIdV2(@Path("id") addressId: Long): Response<UserAddress>
@@ -377,6 +387,18 @@ interface Api {
         @Path("id") supplierId: Long,
         @Body password: PasswordRequest
     ): Call<Supplier>
+
+    // CooperativeOrder
+    @GET("/api/cooperative/{supplierId}/list")
+    suspend fun getCooperativeOrderBySupplierId(
+        @Path("supplierId") userId: Long,
+        @Query("pageNo") pageNo: String,
+        @Query("sortBy") sortBy: String,
+        @Query("sortDir") sortDir: String
+    ): Response<CooperativeOrderResponse>
+
+    @GET("/api/cooperative/{id}/info")
+    suspend fun getCooperativeOrderById(@Path("id") id: Long): Response<CooperativePayment>
 
     // Order
     @GET("api/orders/{supplierId}/list")

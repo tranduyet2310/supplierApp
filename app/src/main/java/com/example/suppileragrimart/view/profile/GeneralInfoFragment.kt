@@ -85,7 +85,7 @@ class GeneralInfoFragment : Fragment() {
                     alertDialog.dismiss()
                     val data = decryptData(state.data, secretKey, iv)
                     showInfo(data)
-                    currentSupplier = state.data
+                    currentSupplier = data
                 }
             }
 

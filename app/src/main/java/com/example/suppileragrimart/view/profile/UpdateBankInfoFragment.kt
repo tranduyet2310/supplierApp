@@ -18,6 +18,7 @@ import com.example.suppileragrimart.utils.Constants
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
 import com.example.suppileragrimart.utils.ScreenState
+import com.example.suppileragrimart.utils.Utils
 import com.example.suppileragrimart.viewmodel.SupplierViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -84,7 +85,10 @@ class UpdateBankInfoFragment : Fragment() {
                 bankBranchName = newBankBranch
             }
 
-            updateSupplier(supplier)
+            val secretKey = loginUtils.getAESKey()
+            val iv = loginUtils.getIv()
+            val encryptedSupplier = Utils.encryptInfo(supplier, secretKey, iv)
+            updateSupplier(encryptedSupplier)
         }
     }
 

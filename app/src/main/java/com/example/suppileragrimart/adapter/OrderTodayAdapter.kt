@@ -55,8 +55,9 @@ class OrderTodayAdapter (
             var requestOptions = RequestOptions()
             requestOptions = requestOptions.transform(FitCenter(), RoundedCorners(16))
             val imageUrl = orderStatistic.productImage
+            val modifiedUrl = imageUrl.replace("http://", "https://")
             GlideApp.with(context)
-                .load(imageUrl)
+                .load(modifiedUrl)
                 .apply(requestOptions)
                 .skipMemoryCache(true)
                 .into(imgProduct)

@@ -92,7 +92,12 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             R.id.constraintProfile -> updateInfoAccount()
             R.id.linearShopInfo -> shopInfo()
             R.id.linearGardenInfo -> gardenInfo()
+            R.id.linearOrderHistory -> cooperativeOrder()
         }
+    }
+
+    private fun cooperativeOrder() {
+        navController.navigate(R.id.action_profileFragment_to_cooperativeOrderFragment)
     }
 
     private fun gardenInfo() {
@@ -184,8 +189,9 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     }
 
     private fun showUserAvatar(imageUrl: String) {
+        val modifiedUrl = imageUrl.replace("http://", "https://")
         GlideApp.with(requireContext())
-            .load(imageUrl)
+            .load(modifiedUrl)
             .into(binding.imageUser)
     }
 

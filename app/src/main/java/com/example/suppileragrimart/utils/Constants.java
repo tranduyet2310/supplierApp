@@ -27,6 +27,7 @@ public class Constants {
     public static final String REVIEW_KEY = "review";
     public static final String ORDER_KEY = "orderInfo";
     public static final String PRODUCT_KEY = "product";
+    public static final String COOPERATIIVE_KEY = "cooperative";
     // pagination
     public static final String DEFAULT_PAGE_NUMBER = "0";
     public static final String DEFAULT_PAGE_SIZE = "20";

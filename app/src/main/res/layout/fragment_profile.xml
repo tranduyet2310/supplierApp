@@ -188,7 +188,7 @@
                     android:layout_marginEnd="@dimen/dimen10dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter_regular"
-                    android:text="@string/history_order"
+                    android:text="@string/cooperative_order"
                     android:textColor="#666666"
                     android:textSize="15sp"
                     android:textStyle="bold"

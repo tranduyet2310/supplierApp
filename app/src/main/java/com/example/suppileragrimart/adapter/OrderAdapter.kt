@@ -52,8 +52,9 @@ class OrderAdapter(private val context: Context) :
             var requestOptions = RequestOptions()
             requestOptions = requestOptions.transform(FitCenter(), RoundedCorners(16))
             val imageUrl = orderInfo.productList.get(0).productImage
+            val modifiedUrl = imageUrl.replace("http://", "https://")
             GlideApp.with(context)
-                .load(imageUrl)
+                .load(modifiedUrl)
                 .apply(requestOptions)
                 .skipMemoryCache(true)
                 .into(imgProductAvatar)

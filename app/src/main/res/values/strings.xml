@@ -334,5 +334,21 @@
     <string name="search_warehouse">Tìm kiếm kho hàng</string>
     <string name="enter_date">Nhập ngày tháng cần tìm</string>
     <string name="search_order">Tìm kiếm đơn hàng</string>
+    <string name="cropsName_v2">Tên cây trồng:</string>
+    <string name="cooperation_crops_type">Loại cây trồng:</string>
+    <string name="cooperation_season">Vụ mùa:</string>
+    <string name="fullName_v2">Họ và tên:</string>
+    <string name="price_per_kg">Giá thành/1 kg:</string>
+    <string name="yield_ordered">Sản lượng đã đặt:</string>
+    <string name="cooperative_order">Đơn hàng hợp tác</string>
+    <string name="supplier_v2">Nhà cung cấp:</string>
+    <string name="required_quantity">Số lượng đặt:</string>
+    <string name="payment_amount">Số tiền thanh toán:</string>
+    <string name="payment_date">Ngày thực hiện thanh toán:</string>
+    <string name="remain_amount">Số tiền cần thanh toán còn lại:</string>
+    <string name="payment_method_v2">Phương thức thanh toán:</string>
+    <string name="payment_100">Thanh toán toàn bộ</string>
+    <string name="zero_dong">0 đ</string>
+    <string name="gardenName">Vườn:</string>
 
 </resources>

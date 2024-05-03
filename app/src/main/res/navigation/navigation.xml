@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_profileFragment_to_cropsInfoFragment"
             app:destination="@id/cropsInfoFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_cooperativeOrderFragment"
+            app:destination="@id/cooperativeOrderFragment" />
     </fragment>
     <fragment
         android:id="@+id/saleFragment"
@@ -376,5 +379,23 @@
         <action
             android:id="@+id/action_searchOrderFragment_to_seeAllFragment"
             app:destination="@id/seeAllFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cooperativeOrderFragment"
+        android:name="com.example.suppileragrimart.view.profile.CooperativeOrderFragment"
+        android:label="fragment_cooperative_order"
+        tools:layout="@layout/fragment_cooperative_order" >
+        <action
+            android:id="@+id/action_cooperativeOrderFragment_to_cooperativeDetailFragment"
+            app:destination="@id/cooperativeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cooperativeDetailFragment"
+        android:name="com.example.suppileragrimart.view.profile.CooperativeDetailFragment"
+        android:label="fragment_cooperative_detail"
+        tools:layout="@layout/fragment_cooperative_detail" >
+        <argument
+            android:name="cooperative"
+            app:argType="long" />
     </fragment>
 </navigation>

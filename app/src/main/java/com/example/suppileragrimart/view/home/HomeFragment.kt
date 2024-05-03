@@ -2,11 +2,10 @@ package com.example.suppileragrimart.view.home
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -34,7 +33,6 @@ import com.example.suppileragrimart.utils.Utils.Companion.getCurrentMonth
 import com.example.suppileragrimart.viewmodel.SupplierViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -260,8 +258,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun showUserAvatar(imageUrl: String) {
+        val modifiedUrl = imageUrl.replace("http://", "https://")
         GlideApp.with(requireContext())
-            .load(imageUrl)
+            .load(modifiedUrl)
             .into(binding.imgUserAccount)
     }
 

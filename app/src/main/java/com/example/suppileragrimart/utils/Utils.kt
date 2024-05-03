@@ -2,6 +2,7 @@ package com.example.suppileragrimart.utils
 
 import android.content.Context
 import com.example.suppileragrimart.model.Supplier
+import com.example.suppileragrimart.model.Warehouse
 import java.io.InputStream
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -70,6 +71,49 @@ class Utils {
             calendar.set(Calendar.MONTH, month)
             val updatedDate = calendar.time
             return dateFormat.format(updatedDate)
+        }
+
+         fun encryptInfo(supplier: Supplier?, secretKey: String, iv: String): Supplier {
+            val encryptedSupplier = Supplier()
+
+            val aes = AES.getInstance()
+            aes.initFromString(secretKey, iv)
+
+            if (supplier != null){
+                encryptedSupplier.id = supplier.id
+                if (supplier.contactName != null)
+                    encryptedSupplier.contactName = aes.encrypt(supplier.contactName)
+                if (supplier.shopName != null)
+                    encryptedSupplier.shopName = aes.encrypt(supplier.shopName)
+                if (supplier.email != null)
+                    encryptedSupplier.email = aes.encrypt(supplier.email)
+                if (supplier.phone != null)
+                    encryptedSupplier.phone = aes.encrypt(supplier.phone)
+                if (supplier.cccd != null)
+                    encryptedSupplier.cccd = aes.encrypt(supplier.cccd)
+                if (supplier.tax_number != null)
+                    encryptedSupplier.tax_number = aes.encrypt(supplier.tax_number)
+                if (supplier.address != null)
+                    encryptedSupplier.address = aes.encrypt(supplier.address)
+                if (supplier.province != null)
+                    encryptedSupplier.province = aes.encrypt(supplier.province)
+                if (supplier.password != null)
+                    encryptedSupplier.password = aes.encrypt(supplier.password)
+                if (supplier.sellerType != null)
+                    encryptedSupplier.sellerType = aes.encrypt(supplier.sellerType)
+                if (supplier.bankAccountNumber != null)
+                    encryptedSupplier.bankAccountNumber = aes.encrypt(supplier.bankAccountNumber)
+                if (supplier.bankAccountOwner != null)
+                    encryptedSupplier.bankAccountOwner = aes.encrypt(supplier.bankAccountOwner)
+                if (supplier.bankName != null)
+                    encryptedSupplier.bankName = aes.encrypt(supplier.bankName)
+                if (supplier.bankBranchName != null)
+                    encryptedSupplier.bankBranchName = aes.encrypt(supplier.bankBranchName)
+                if (supplier.avatar != null)
+                    encryptedSupplier.avatar = supplier.avatar
+            }
+
+            return encryptedSupplier
         }
 
         fun decryptData(supplier: Supplier?, secretKey: String, iv: String): Supplier {

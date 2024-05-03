@@ -141,7 +141,8 @@ class UserAccountFragment : Fragment(), View.OnClickListener {
     }
 
     private fun showSupplierAvatar(imageUrl: String) {
-        GlideApp.with(requireContext()).load(imageUrl).into(binding.imageUser)
+        val modifiedUrl = imageUrl.replace("http://", "https://")
+        GlideApp.with(requireContext()).load(modifiedUrl).into(binding.imageUser)
     }
 
     private fun uploadImage() {

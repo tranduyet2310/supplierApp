@@ -15,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.suppileragrimart.R
 import com.example.suppileragrimart.databinding.FragmentCooperationDetailBinding
 import com.example.suppileragrimart.model.Cooperation
+import com.example.suppileragrimart.model.FieldApiResponse
 import com.example.suppileragrimart.network.Api
 import com.example.suppileragrimart.network.RetrofitClient
 import com.example.suppileragrimart.utils.LoginUtils
@@ -50,6 +51,7 @@ class CooperationDetailFragment : Fragment() {
     val args: CooperationDetailFragmentArgs by navArgs()
     private lateinit var alertDialog: AlertDialog
     private lateinit var cooperationResponse: Cooperation
+    private lateinit var currentField: FieldApiResponse
     private var status: OrderStatus = OrderStatus.PROCESSING
     private lateinit var currentAddress: String
     override fun onCreateView(
@@ -60,8 +62,18 @@ class CooperationDetailFragment : Fragment() {
         binding.toolbarLayout.titleToolbar.text = getString(R.string.request)
 
         cooperationResponse = args.cooperation
-        showData()
-        setupStepView()
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.Main){
+                alertDialog = progressDialog.createAlertDialog(requireActivity())
+            }
+            getCurrentField()
+            withContext(Dispatchers.Main){
+                alertDialog.dismiss()
+            }
+            showData()
+            setupStepView()
+        }
 
         return binding.root
     }
@@ -86,16 +98,32 @@ class CooperationDetailFragment : Fragment() {
         }
     }
 
+    suspend fun getCurrentField(){
+        withContext(Dispatchers.IO){
+            val response = apiService.getFieldById(cooperationResponse.fieldId)
+            if (response.isSuccessful){
+                if (response.body() != null){
+                    currentField = response.body()!!
+                }
+            }
+        }
+    }
+
     private fun showData() {
+        val totalPrice = "${cooperationResponse.investment.toLong().formatPrice()} đ"
+        val pricePerKg = "${currentField.estimatePrice.formatPrice()} đ"
         binding.apply {
             tvShopName.text = cooperationResponse.shopName
             tvSupplierName.text = cooperationResponse.supplierName
             tvSupplierContact.text = cooperationResponse.supplierPhone
             tvCropsName.text = cooperationResponse.cropsName
+            tvCropsType.text = currentField.cropsType
+            tvSeason.text = currentField.season
 
             tvFullName.text = cooperationResponse.fullName
             tvUserContact.text = cooperationResponse.contact
-            tvInvestment.text = cooperationResponse.investment.toLong().formatPrice()
+            tvInvestment.text = totalPrice
+            tvPrice.text = pricePerKg
             tvYield.text = formatYield(cooperationResponse.requireYield)
             tvDescription.text = cooperationResponse.description
         }
@@ -110,6 +138,10 @@ class CooperationDetailFragment : Fragment() {
             }
         } else {
             binding.tvAddress.text = getString(R.string.no_address)
+        }
+
+        if (cooperationResponse.paymentStatus != null){
+            binding.tvPayment.text = cooperationResponse.paymentStatus
         }
     }
 
@@ -136,8 +168,10 @@ class CooperationDetailFragment : Fragment() {
         if (status == OrderStatus.COMPLETED) {
             binding.stepView.done(true)
             binding.btnAgree.text = getString(R.string.received)
+            binding.btnAgree.isEnabled = false
         } else if (status == OrderStatus.CANCELLED) {
             binding.btnAgree.text = getString(R.string.terminated)
+            binding.btnAgree.isEnabled = false
         } else if (status == OrderStatus.CONFIRMED) {
             binding.btnAgree.text = getString(R.string.delivery_order)
         }
@@ -171,6 +205,7 @@ class CooperationDetailFragment : Fragment() {
                 if (state.data != null) {
                     alertDialog.dismiss()
                     showSnackbar(getString(R.string.updated_status))
+                    navController.navigate(R.id.action_cooperationDetailFragment_to_gardenInfoFragment2)
                 }
             }
 
