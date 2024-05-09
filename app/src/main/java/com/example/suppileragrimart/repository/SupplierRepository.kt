@@ -18,11 +18,11 @@ import retrofit2.Response
 class SupplierRepository {
     private val apiService = RetrofitClient.getInstance().getApi()
 
-    fun getSupplierById(supplierId: Long): LiveData<ScreenState<Supplier?>> {
+    fun getSupplierById(token: String, supplierId: Long): LiveData<ScreenState<Supplier?>> {
         val mutableLiveData = MutableLiveData<ScreenState<Supplier?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 
-        apiService.getSupplierById(supplierId)
+        apiService.getSupplierById(token, supplierId)
             .enqueue(object : Callback<Supplier> {
                 override fun onResponse(
                     call: Call<Supplier>,

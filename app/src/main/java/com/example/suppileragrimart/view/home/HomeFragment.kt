@@ -225,8 +225,9 @@ class HomeFragment : Fragment() {
         }
     }
     suspend fun getSupplierById(){
+        val token = loginUtils.getSupplierToken()
         withContext(Dispatchers.IO) {
-            val response = apiService.getSupplierByIdV2(supplier.id)
+            val response = apiService.getSupplierByIdV2(token, supplier.id)
             if (response.isSuccessful) {
                 if (response.body() != null) {
                     val data = decryptData(response.body()!!, secretKey, iv)

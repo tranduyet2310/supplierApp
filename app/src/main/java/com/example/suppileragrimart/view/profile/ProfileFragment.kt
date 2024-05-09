@@ -133,8 +133,9 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     }
 
     suspend fun getSupplierById(){
+        val token = loginUtils.getSupplierToken()
         withContext(Dispatchers.IO) {
-            val response = RetrofitClient.getInstance().getApi().getSupplierById(supplier!!.id)
+            val response = RetrofitClient.getInstance().getApi().getSupplierById(token, supplier!!.id)
             response.enqueue(object : retrofit2.Callback<Supplier> {
                 override fun onResponse(call: Call<Supplier>, response: Response<Supplier>) {
                     if (response.isSuccessful) {

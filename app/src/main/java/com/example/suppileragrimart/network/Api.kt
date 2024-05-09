@@ -334,11 +334,13 @@ interface Api {
     // Supplier
     @GET("api/suppliers/{supplierId}")
     fun getSupplierById(
+        @Header("Authorization") token: String,
         @Path("supplierId") supplierId: Long
     ): Call<Supplier>
 
     @GET("api/suppliers/{supplierId}")
     suspend fun getSupplierByIdV2(
+        @Header("Authorization") token: String,
         @Path("supplierId") supplierId: Long
     ): Response<Supplier>
 

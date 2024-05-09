@@ -66,7 +66,8 @@ class BankInfoFragment : Fragment() {
     }
 
     private fun getSupplierInfo() {
-        supplierViewModel.getSupplierById(supplier!!.id).observe(
+        val token = loginUtils.getSupplierToken()
+        supplierViewModel.getSupplierById(token, supplier!!.id).observe(
             requireActivity(), { state -> processSupplierResponse(state) }
         )
     }

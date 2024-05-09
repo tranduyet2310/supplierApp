@@ -106,7 +106,8 @@ class ReviewDetailFragment : Fragment() {
         }
         val imageList = ArrayList<SlideModel>()
         for (image in data.productImage) {
-            imageList.add(SlideModel(image.imageUrl))
+            val modifiedUrl = image.imageUrl.replace("http://", "https://")
+            imageList.add(SlideModel(modifiedUrl))
         }
         binding.imageOfProduct.setImageList(imageList, ScaleTypes.FIT)
     }

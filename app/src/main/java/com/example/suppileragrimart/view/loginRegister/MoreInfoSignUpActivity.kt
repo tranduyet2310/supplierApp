@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.suppileragrimart.R
 import com.example.suppileragrimart.databinding.ActivityMoreInfoSignUpBinding
 import com.example.suppileragrimart.model.AESResponse
-import com.example.suppileragrimart.model.RsaKey
+import com.example.suppileragrimart.storage.RsaKey
 import com.example.suppileragrimart.model.Supplier
 import com.example.suppileragrimart.network.Api
 import com.example.suppileragrimart.network.RetrofitClient
@@ -21,7 +21,7 @@ import com.example.suppileragrimart.utils.Constants.SUPPLIER
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
 import com.example.suppileragrimart.utils.RSA
-import com.example.suppileragrimart.utils.RsaKeyDatabase
+import com.example.suppileragrimart.storage.RsaKeyDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

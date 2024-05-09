@@ -1,4 +1,4 @@
-package com.example.suppileragrimart.model
+package com.example.suppileragrimart.storage
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

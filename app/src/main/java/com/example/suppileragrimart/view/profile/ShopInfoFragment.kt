@@ -89,7 +89,9 @@ class ShopInfoFragment : Fragment() {
     private fun setupShopImages(images: MutableList<Image>) {
         val imageList = ArrayList<SlideModel>()
         for (image in images) {
-            imageList.add(SlideModel(image.imageUrl))
+//            imageList.add(SlideModel(image.imageUrl))
+            val modifiedUrl = image.imageUrl.replace("http://", "https://")
+            imageList.add(SlideModel(modifiedUrl))
         }
         imageList.add(SlideModel(Constants.BANNER))
 
@@ -99,7 +101,9 @@ class ShopInfoFragment : Fragment() {
     private fun setupGardenImages(images: MutableList<Image>) {
         val imageList = ArrayList<SlideModel>()
         for (image in images) {
-            imageList.add(SlideModel(image.imageUrl))
+//            imageList.add(SlideModel(image.imageUrl))
+            val modifiedUrl = image.imageUrl.replace("http://", "https://")
+            imageList.add(SlideModel(modifiedUrl))
         }
         imageList.add(SlideModel(Constants.BANNER))
 

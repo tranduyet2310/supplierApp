@@ -97,10 +97,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             is ScreenState.Success -> {
                 if (state.data != null) {
                     alertDialog.dismiss()
-                    loginUtils.saveSupplierInfo(state.data, supplier)
-                    displayErrorSnackbar(LOGIN_SUCCESS)
-                    val intent = Intent(applicationContext, MainActivity::class.java)
-                    startActivity(intent)
+                    if (state.data.isActive){
+                        loginUtils.saveSupplierInfo(state.data, supplier)
+                        displayErrorSnackbar(LOGIN_SUCCESS)
+                        val intent = Intent(applicationContext, MainActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        displayErrorSnackbar("Tài khoản chưa được kích hoạt")
+                    }
+
                 }
             }
 
