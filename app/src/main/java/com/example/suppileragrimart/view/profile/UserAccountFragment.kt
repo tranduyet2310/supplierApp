@@ -15,6 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.bumptech.glide.request.RequestOptions
 import com.example.suppileragrimart.R
 import com.example.suppileragrimart.databinding.FragmentUserAccountBinding
 import com.example.suppileragrimart.model.Supplier
@@ -142,7 +143,8 @@ class UserAccountFragment : Fragment(), View.OnClickListener {
 
     private fun showSupplierAvatar(imageUrl: String) {
         val modifiedUrl = imageUrl.replace("http://", "https://")
-        GlideApp.with(requireContext()).load(modifiedUrl).into(binding.imageUser)
+        val requestOptions = RequestOptions().placeholder(R.drawable.user).error(R.drawable.user)
+        GlideApp.with(requireContext()).load(modifiedUrl).apply(requestOptions).into(binding.imageUser)
     }
 
     private fun uploadImage() {

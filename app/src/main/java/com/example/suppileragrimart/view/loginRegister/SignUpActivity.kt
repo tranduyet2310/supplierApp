@@ -14,7 +14,6 @@ import com.example.suppileragrimart.utils.RSA
 import com.example.suppileragrimart.utils.Validation
 
 class SignUpActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivitySignUpBinding
 
     private var supplier: Supplier? = null

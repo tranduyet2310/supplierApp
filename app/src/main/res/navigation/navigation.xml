@@ -50,6 +50,9 @@
         <action
             android:id="@+id/action_profileFragment_to_cooperativeOrderFragment"
             app:destination="@id/cooperativeOrderFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_messageFragment"
+            app:destination="@id/messageFragment" />
     </fragment>
     <fragment
         android:id="@+id/saleFragment"
@@ -397,5 +400,35 @@
         <argument
             android:name="cooperative"
             app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/messageFragment"
+        android:name="com.example.suppileragrimart.view.profile.MessageFragment"
+        android:label="fragment_message"
+        tools:layout="@layout/fragment_message" >
+        <action
+            android:id="@+id/action_messageFragment_to_chatDetailFragment"
+            app:destination="@id/chatDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatDetailFragment"
+        android:name="com.example.suppileragrimart.view.profile.ChatDetailFragment"
+        android:label="fragment_chat_detail"
+        tools:layout="@layout/fragment_chat_detail" >
+        <argument
+            android:name="userUid"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_chatDetailFragment_to_viewFullImageFragment"
+            app:destination="@id/viewFullImageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewFullImageFragment"
+        android:name="com.example.suppileragrimart.view.profile.ViewFullImageFragment"
+        android:label="fragment_view_full_image"
+        tools:layout="@layout/fragment_view_full_image" >
+        <argument
+            android:name="image"
+            app:argType="string" />
     </fragment>
 </navigation>

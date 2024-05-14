@@ -12,6 +12,7 @@ import com.example.suppileragrimart.model.Image
 import com.example.suppileragrimart.model.LoginApiResponse
 import com.example.suppileragrimart.model.LoginRequest
 import com.example.suppileragrimart.model.MessageResponse
+import com.example.suppileragrimart.model.NotificationMessage
 import com.example.suppileragrimart.model.OrderBasicInfo
 import com.example.suppileragrimart.model.OrderInfoResponse
 import com.example.suppileragrimart.model.OrderStatistic
@@ -331,6 +332,12 @@ interface Api {
     @GET("/api/users/addresses/{id}")
     suspend fun getAddressByIdV2(@Path("id") addressId: Long): Response<UserAddress>
 
+    @GET("api/cooperation/{fieldId}/calculate/{supplierId}")
+    suspend fun calculateCurrentTotal(
+        @Path("fieldId") fieldId: Long,
+        @Path("supplierId") supplierId: Long
+    ): Response<MessageResponse>
+
     // Supplier
     @GET("api/suppliers/{supplierId}")
     fun getSupplierById(
@@ -473,4 +480,16 @@ interface Api {
         @Query("sortBy") sortBy: String,
         @Query("sortDir") sortDir: String
     ): Response<WarehouseApiResponse>
+    // notification
+    @POST("api/notification")
+    suspend fun sendNotification(
+        @Body notificationMessage: NotificationMessage
+    ): Response<MessageResponse>
+    //
+    @PATCH("api/suppliers/{id}/fcm")
+    suspend fun updateFcmToken(
+        @Header("Authorization") token: String,
+        @Path("id") supplierId: Long,
+        @Query("token") fcmToken: String
+    ): Response<Supplier>
 }

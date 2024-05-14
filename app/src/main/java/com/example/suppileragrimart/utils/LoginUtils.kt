@@ -7,6 +7,7 @@ import com.example.suppileragrimart.model.Supplier
 import com.example.suppileragrimart.utils.Constants.AES_KEY
 import com.example.suppileragrimart.utils.Constants.AVATAR
 import com.example.suppileragrimart.utils.Constants.EMAIL
+import com.example.suppileragrimart.utils.Constants.FCM
 import com.example.suppileragrimart.utils.Constants.ID
 import com.example.suppileragrimart.utils.Constants.IV
 import com.example.suppileragrimart.utils.Constants.NAME
@@ -107,6 +108,18 @@ class LoginUtils(private val mCtx: Context) {
     fun clearAll() {
         val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        editor.clear().apply()
+        editor.clear().commit()
+    }
+
+    fun saveFcmToken(token: String) {
+        val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString(FCM, token)
+        editor.apply()
+    }
+
+    fun getFcmToken(): String? {
+        val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        return sharedPreferences.getString(FCM, null)
     }
 }

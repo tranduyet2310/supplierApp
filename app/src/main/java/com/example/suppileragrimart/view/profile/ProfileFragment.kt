@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.bumptech.glide.request.RequestOptions
 import com.example.suppileragrimart.R
 import com.example.suppileragrimart.databinding.FragmentProfileBinding
 import com.example.suppileragrimart.model.Image
@@ -21,11 +22,12 @@ import com.example.suppileragrimart.utils.GlideApp
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
 import com.example.suppileragrimart.utils.ScreenState
-import com.example.suppileragrimart.utils.Utils
 import com.example.suppileragrimart.utils.Utils.Companion.decryptData
 import com.example.suppileragrimart.view.loginRegister.LoginActivity
 import com.example.suppileragrimart.viewmodel.SupplierViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -42,7 +44,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         ViewModelProvider(requireActivity()).get(SupplierViewModel::class.java)
     }
     private val loginUtils: LoginUtils by lazy {
-        LoginUtils(requireContext())
+        LoginUtils(requireContext().applicationContext)
     }
     private val progressDialog: ProgressDialog by lazy {
         ProgressDialog()
@@ -83,6 +85,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         binding.linearUserInfo.setOnClickListener(this)
         binding.linearGardenInfo.setOnClickListener(this)
         binding.constraintProfile.setOnClickListener(this)
+        binding.linearNotifications.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -93,7 +96,12 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             R.id.linearShopInfo -> shopInfo()
             R.id.linearGardenInfo -> gardenInfo()
             R.id.linearOrderHistory -> cooperativeOrder()
+            R.id.linearNotifications -> messenger()
         }
+    }
+
+    private fun messenger() {
+        navController.navigate(R.id.action_profileFragment_to_messageFragment)
     }
 
     private fun cooperativeOrder() {
@@ -118,8 +126,10 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     private fun logOut() {
         loginUtils.clearAll()
-        val intent = Intent(activity, LoginActivity::class.java)
+        Firebase.auth.signOut()
+        val intent = Intent(requireActivity(), LoginActivity::class.java)
         startActivity(intent)
+        requireActivity().finish()
     }
 
     private fun getSupplierInfo() {
@@ -191,8 +201,10 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     private fun showUserAvatar(imageUrl: String) {
         val modifiedUrl = imageUrl.replace("http://", "https://")
+        val requestOptions = RequestOptions().placeholder(R.drawable.user).error(R.drawable.user)
         GlideApp.with(requireContext())
             .load(modifiedUrl)
+            .apply(requestOptions)
             .into(binding.imageUser)
     }
 

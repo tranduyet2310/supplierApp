@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="295dp"
+    android:layout_height="wrap_content"
+    android:padding="9dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/user" />
+
+    <TextView
+        android:id="@+id/tvMessageContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:textColor="@color/blackAgri"
+        android:layout_toEndOf="@id/profileImage"
+        android:background="@drawable/receiver_message_background"
+        android:padding="8dp"
+        android:textSize="18sp"
+        tools:text="Message content" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="6dp"
+        android:layout_toEndOf="@id/profileImage"
+        android:importantForAccessibility="no"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvHadSeen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvMessageContent"
+        android:layout_alignStart="@id/tvMessageContent"
+        android:text="@string/had_seen"
+        android:visibility="gone"
+        android:textColor="@color/grayAgri"
+        android:textSize="14sp" />
+
+</RelativeLayout>

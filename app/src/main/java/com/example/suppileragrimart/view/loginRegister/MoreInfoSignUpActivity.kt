@@ -13,6 +13,7 @@ import com.example.suppileragrimart.databinding.ActivityMoreInfoSignUpBinding
 import com.example.suppileragrimart.model.AESResponse
 import com.example.suppileragrimart.storage.RsaKey
 import com.example.suppileragrimart.model.Supplier
+import com.example.suppileragrimart.model.UserFirebase
 import com.example.suppileragrimart.network.Api
 import com.example.suppileragrimart.network.RetrofitClient
 import com.example.suppileragrimart.utils.AES
@@ -22,13 +23,19 @@ import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
 import com.example.suppileragrimart.utils.RSA
 import com.example.suppileragrimart.storage.RsaKeyDatabase
+import com.example.suppileragrimart.utils.Constants
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 
 class MoreInfoSignUpActivity : AppCompatActivity(), View.OnClickListener {
-
     private lateinit var binding: ActivityMoreInfoSignUpBinding
 
     private val loginUtils: LoginUtils by lazy {
@@ -36,6 +43,12 @@ class MoreInfoSignUpActivity : AppCompatActivity(), View.OnClickListener {
     }
     private val apiService: Api by lazy {
         RetrofitClient.getInstance().getApi()
+    }
+    private val auth: FirebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
+    private val firebaseDatabase: FirebaseDatabase by lazy {
+        FirebaseDatabase.getInstance()
     }
 
     private var supplier: Supplier? = null
@@ -93,7 +106,7 @@ class MoreInfoSignUpActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun goToSignUpActivity() {
-        val intent = Intent(applicationContext, SignUpActivity::class.java);
+        val intent = Intent(applicationContext, SignUpActivity::class.java)
         intent.putExtra(SUPPLIER, supplier)
         startActivity(intent)
     }
@@ -127,8 +140,10 @@ class MoreInfoSignUpActivity : AppCompatActivity(), View.OnClickListener {
 
                     loginUtils.saveResponseKeys(decryptAESResponse)
 
-                    val rsaKey = RsaKey(0, supplier!!.email, rsaPublicKeyInString, rsaPrivateKeyInString)
-                    RsaKeyDatabase.getDatabase(this@MoreInfoSignUpActivity).rsaKeyDao().addRsaKey(rsaKey)
+                    val rsaKey =
+                        RsaKey(0, supplier!!.email, rsaPublicKeyInString, rsaPrivateKeyInString)
+                    RsaKeyDatabase.getDatabase(this@MoreInfoSignUpActivity).rsaKeyDao()
+                        .addRsaKey(rsaKey)
                 }
             }
         }
@@ -167,22 +182,72 @@ class MoreInfoSignUpActivity : AppCompatActivity(), View.OnClickListener {
         return encryptSupplier
     }
 
-    suspend fun createSupplierAccount(supplier: Supplier) {
+    suspend fun createSupplierAccount(mSupplier: Supplier) {
         withContext(Dispatchers.IO) {
-            val response = apiService.createSupplier(supplier)
+            val response = apiService.createSupplier(mSupplier)
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
-                    Log.d("TEST", "register successfully")
+                    try {
+                        createChatAccount(supplier!!.email, supplier!!.password, body.id)
+                        Log.d("TEST", "register successfully")
+                        withContext(Dispatchers.Main) {
+                            alertDialog.dismiss()
+                            displayErrorSnackbar(getString(R.string.supplier_request))
+                            val intent = Intent(applicationContext, LoginActivity::class.java)
+                            startActivity(intent)
+                        }
+                    } catch (e: Exception){
+                        withContext(Dispatchers.Main) {
+                            alertDialog.dismiss()
+                            displayErrorSnackbar(e.message.toString())
+                        }
+                    }
                 }
             }
         }
-        withContext(Dispatchers.Main) {
-            alertDialog.dismiss()
-            displayErrorSnackbar(getString(R.string.supplier_request))
-            val intent = Intent(applicationContext, LoginActivity::class.java);
-            startActivity(intent)
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    suspend fun createChatAccount(email: String, password: String, id: Long) {
+        Log.d("TEST", "email: $email password: $password shopName: ${supplier!!.shopName}")
+
+        val authResult = suspendCancellableCoroutine { continuation ->
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        continuation.resume(task.result?.user)
+                    } else {
+                        continuation.resumeWithException(task.exception ?: Exception("Unknown error occurred"))
+                    }
+                }
         }
+
+        val user = UserFirebase().apply {
+            uid = auth.uid
+            phoneNumber = auth.currentUser!!.phoneNumber
+            name = supplier!!.shopName
+            search = supplier!!.shopName.lowercase()
+            profileImage = "https://firebasestorage.googleapis.com/v0/b/agrimart-7a779.appspot.com/o/user.png?alt=media&token=fdaec1a7-ec3a-4949-8ab9-a10bc32781d8"
+            status = "offline"
+            idInServer = id
+        }
+
+        Log.w("TEST", "phoneNumber: ${user.phoneNumber} uid: ${user.uid} idInServer: ${user.idInServer}")
+
+        val databaseResult = suspendCancellableCoroutine { continuation ->
+            firebaseDatabase.reference.child(Constants.SUPPLIER).child(auth.uid!!)
+                .setValue(user)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        continuation.resume(Unit)
+                    } else {
+                        continuation.resumeWithException(task.exception ?: Exception("Unknown error occurred"))
+                    }
+                }
+        }
+
+        Log.d("TEST", "createUserWithEmail:success")
     }
 
     private fun displayErrorSnackbar(errorMessage: String) {

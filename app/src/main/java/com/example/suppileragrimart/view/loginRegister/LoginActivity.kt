@@ -3,6 +3,7 @@ package com.example.suppileragrimart.view.loginRegister
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,7 @@ import com.example.suppileragrimart.utils.ScreenState
 import com.example.suppileragrimart.utils.Utils
 import com.example.suppileragrimart.view.MainActivity
 import com.example.suppileragrimart.viewmodel.LoginViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -31,6 +33,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private val loginUtils: LoginUtils by lazy {
         LoginUtils(applicationContext)
     }
+    private val auth: FirebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
+
     private lateinit var supplier: Supplier
     private lateinit var alertDialog: AlertDialog
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +88,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         supplier = Supplier()
         supplier.email = email
         supplier.password = password
+
+        signIn()
+
         val loginRequest = LoginRequest(email, password)
         loginViewModel.getLoginResponseLiveData(loginRequest)
             .observe(this, { state -> processLoginResponse(state) })
@@ -116,6 +125,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
+    }
+
+    private fun signIn(){
+        auth.signInWithEmailAndPassword(supplier.email, supplier.password)
+            .addOnCompleteListener(this){ task ->
+                if (task.isSuccessful){
+                    Log.d("TEST", "signInWithEmail:success")
+                } else {
+                    Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
     private fun displayErrorSnackbar(errorMessage: String) {

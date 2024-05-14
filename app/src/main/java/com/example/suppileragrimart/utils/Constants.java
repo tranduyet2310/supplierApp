@@ -17,6 +17,8 @@ public class Constants {
     public static final String AVATAR = "avatar";
     public static final String AES_KEY = "aes";
     public static final String IV = "iv";
+    public static final String FCM = "fcm";
+    // nav Args
     public static final String RSA_PUBLIC_KEY = "public";
     public static final String RSA_PRIVATE_KEY = "private";
     public static final String RSA_PUBLIC_SERVER_KEY = "server";
@@ -28,6 +30,8 @@ public class Constants {
     public static final String ORDER_KEY = "orderInfo";
     public static final String PRODUCT_KEY = "product";
     public static final String COOPERATIIVE_KEY = "cooperative";
+    public static final String USER_UID_KEY = "userUid";
+    public static final String IMAGE_KEY = "image";
     // pagination
     public static final String DEFAULT_PAGE_NUMBER = "0";
     public static final String DEFAULT_PAGE_SIZE = "20";
@@ -41,6 +45,7 @@ public class Constants {
     public static final String LOGIN_SUCCESS = "Đăng nhập thành công";
     public static final String FIELD_REQUIRED = "Yêu cầu nhập đủ thông tin";
     public static final String SERVER_ERROR = "Lỗi phía máy chủ";
+    // const
     public static final String LONG_TERM_PLANT = "Cây lâu năm";
     public static final String SHORT_TERM_PLANT = "Cây ngắn ngày";
     public static final String PAYMENT_COD = "CoD";
@@ -54,4 +59,10 @@ public class Constants {
     public static final String BANNER = "https://res.cloudinary.com/dtdctll9c/image/upload/v1710340597/buupvmd6jmb1aofikr9n.png";
     public static final String DATE_CREATED = "Ngày tạo";
     public static final String STATE = "Trạng thái";
+    // firebase
+    public static final String USER = "user";
+    public static final String CHAT = "chats";
+    public static final String CHAT_LIST = "chatList";
+    public static final String CHAT_IMAGES = "Chat Images";
+    public static final String CHAT_TOKEN = "tokens";
 }

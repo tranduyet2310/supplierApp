@@ -20,13 +20,20 @@ import com.example.suppileragrimart.databinding.ActivityMainBinding
 import com.example.suppileragrimart.model.AESResponse
 import com.example.suppileragrimart.storage.RsaKey
 import com.example.suppileragrimart.model.Supplier
+import com.example.suppileragrimart.model.Token
 import com.example.suppileragrimart.network.Api
 import com.example.suppileragrimart.network.RetrofitClient
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
 import com.example.suppileragrimart.utils.RSA
 import com.example.suppileragrimart.storage.RsaKeyDatabase
+import com.example.suppileragrimart.utils.Constants
 import com.example.suppileragrimart.viewmodel.SupplierViewModel
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -48,10 +55,12 @@ class MainActivity : AppCompatActivity() {
     private val supplierViewModel: SupplierViewModel by lazy {
         ViewModelProvider(this).get(SupplierViewModel::class.java)
     }
+    private val auth: FirebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
 
     private lateinit var supplier: Supplier
     private lateinit var alertDialog: AlertDialog
-    private  var isValidPubKey: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,9 +68,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupNavHost()
-
         supplier = loginUtils.getSupplierInfo()
         supplierViewModel.supplier = supplier
+
+        // firebase
+//        signIn()
+        sendRegistrationToServer()
 
         lifecycleScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main){
@@ -70,10 +82,6 @@ class MainActivity : AppCompatActivity() {
 
             checkRSAPublicKey()
             getAESKey()
-//            if (isValidPubKey) {
-//                supplierViewModel.isValidPublicKey = isValidPubKey
-//                getAESKey()
-//            }
 
             withContext(Dispatchers.Main){
                 alertDialog.dismiss()
@@ -82,7 +90,64 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+    private fun signIn(){
+        auth.signInWithEmailAndPassword(supplier.email, supplier.password)
+            .addOnCompleteListener(this){ task ->
+                if (task.isSuccessful){
+                    Log.d("TEST", "signInWithEmail:success")
+                } else {
+                    Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
 
+    private fun sendRegistrationToServer() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful){
+                Log.w("TEST", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+
+            val token = task.result
+
+            // check fcm token
+            val savedFcmToken = loginUtils.getFcmToken()
+            if (savedFcmToken == null || !savedFcmToken.equals(token)){
+                loginUtils.saveFcmToken(token)
+                // Update token to server
+                lifecycleScope.launch {
+                    val supplierToken = loginUtils.getSupplierToken()
+                    val response = apiService.updateFcmToken(supplierToken, supplier.id, token)
+                    if (response.isSuccessful){
+                        if (response.body() != null){
+                            Log.d("TEST", "update fcm token successfully")
+                        } else {
+                            Log.d("TEST", "failed to update fcm token")
+                        }
+                    }
+                }
+            }
+            Log.d("TEST", "token fcm: ${token}")
+            updateToken(token)
+        })
+    }
+
+    private fun updateToken(fcmToken: String){
+        val firebaseUser = auth.currentUser
+        val ref = FirebaseDatabase.getInstance().reference.child(Constants.CHAT_TOKEN)
+        val token = Token(fcmToken)
+        ref.child(firebaseUser!!.uid).setValue(token)
+    }
+
+    private fun updateStatus(status: String){
+        Log.w("TEST", "updateStatus")
+        val firebaseUser = auth.currentUser
+        val ref = FirebaseDatabase.getInstance().reference.child(Constants.SUPPLIER)
+            .child(firebaseUser!!.uid)
+        val hashMap = HashMap<String, Any>()
+        hashMap["status"] = status
+        ref.updateChildren(hashMap)
+    }
     suspend fun getAESKey() {
         withContext(Dispatchers.IO) {
             val aesResponse = AESResponse()
@@ -238,5 +303,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun showSnackbar(message: String){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        updateStatus("online")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        updateStatus("offline")
     }
 }

@@ -4,11 +4,12 @@ plugins {
     id("androidx.navigation.safeargs")
     id("kotlinx-serialization")
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
     namespace = "com.example.suppileragrimart"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.suppileragrimart"
@@ -106,5 +107,10 @@ dependencies {
     implementation ("androidx.room:room-runtime:2.2.5")
     kapt ("androidx.room:room-compiler:2.2.5")
     implementation ("androidx.room:room-ktx:2.2.5")
-
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+    implementation("com.google.firebase:firebase-messaging")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-storage")
 }

@@ -301,6 +301,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintBottom_toBottomOf="@id/linearNotifications"
                 app:layout_constraintTop_toBottomOf="@id/tvNotifications">
 
                 <ImageView
@@ -320,18 +321,13 @@
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter_regular"
-                    android:text="@string/notification"
+                    android:text="@string/message"
                     android:textColor="#666666"
+                    android:layout_marginEnd="10dp"
                     android:textSize="15sp"
+                    app:drawableEndCompat="@drawable/ic_arrow"
+                    app:drawableTint="#97AABD"
                     android:textStyle="bold" />
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switchNotification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:buttonTint="#4cd964"
-                    android:checked="true" />
 
             </LinearLayout>
 

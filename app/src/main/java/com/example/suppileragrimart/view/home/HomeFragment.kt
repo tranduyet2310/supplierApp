@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.request.RequestOptions
 import com.example.suppileragrimart.R
 import com.example.suppileragrimart.adapter.OrderTodayAdapter
 import com.example.suppileragrimart.adapter.RecentOrderAdapter
@@ -250,8 +251,10 @@ class HomeFragment : Fragment() {
                     supplier.avatar = response.body()!!.imageUrl
                     loginUtils.saveSupplierInfo(supplier)
                     supplierViewModel.supplier = supplier
-                    withContext(Dispatchers.Main){
-                        showUserAvatar(supplier.avatar)
+                    if (supplier.avatar != null){
+                        withContext(Dispatchers.Main){
+                            showUserAvatar(supplier.avatar)
+                        }
                     }
                 }
             }
@@ -260,8 +263,10 @@ class HomeFragment : Fragment() {
 
     private fun showUserAvatar(imageUrl: String) {
         val modifiedUrl = imageUrl.replace("http://", "https://")
+        val requestOptions = RequestOptions().placeholder(R.drawable.user).error(R.drawable.user)
         GlideApp.with(requireContext())
             .load(modifiedUrl)
+            .apply(requestOptions)
             .into(binding.imgUserAccount)
     }
 

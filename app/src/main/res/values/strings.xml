@@ -350,5 +350,14 @@
     <string name="payment_100">Thanh toán toàn bộ</string>
     <string name="zero_dong">0 đ</string>
     <string name="gardenName">Vườn:</string>
+    <string name="current">Đã đặt:</string>
+    <string name="accept_price">Giá tiếp nhận (Đơn vị: VNĐ/1 kg)</string>
+    <string name="yield_info">Thông tin sản lượng</string>
+    <string name="no_detail">Hiện chưa có thông tin chi tiết nào</string>
+    <string name="message">Tin nhắn</string>
+    <string name="had_seen">Đã xem</string>
+    <string name="search_for_user">Tìm kiếm người dùng</string>
+    <string name="content">Nội dung tin nhắn</string>
+    <string name="enter_text_message">Nhập nội dung tin nhắn</string>
 
 </resources>
