@@ -37,7 +37,9 @@ import com.example.suppileragrimart.viewmodel.FieldViewModel
 import com.example.suppileragrimart.viewmodel.SupplierViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 
 
@@ -71,6 +73,8 @@ class UpdateGardenInfoFragment : Fragment() {
     val args: UpdateGardenInfoFragmentArgs by navArgs()
     private lateinit var screen: String
     private var index: Int = 0
+    private var totalYieldBefore: Double = 0.0
+    private var isShowDialog = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -91,6 +95,8 @@ class UpdateGardenInfoFragment : Fragment() {
             index = currentField!!.fieldDetails.indexOf(fieldDetail)
             binding.btnBack.text = getString(R.string.delete)
             Log.d("TEST", "select "+coefficient)
+
+            totalYieldBefore = currentField!!.estimateYield
         }
 
         return binding.root
@@ -141,20 +147,63 @@ class UpdateGardenInfoFragment : Fragment() {
                     }
 
                     withContext(Dispatchers.IO) {
-                        updateYieldInfo(yield, price)
-                        if (screen.equals("detail")) {
-                            updateFieldDetailV2(fieldDetail)
-                        } else
-                            createFieldDetailV2(fieldDetail)
+                        if (yield.toDouble()*coefficient < totalYieldBefore){
+                            withContext(Dispatchers.Main){
+                                alertDialog.dismiss()
+                            }
+                            isShowDialog = true
+
+                            val userConfirmed = showConfirmationDialog()
+                            if (userConfirmed){
+                                updateYieldInfo(yield, price)
+                                if (screen.equals("detail")) {
+                                    updateFieldDetailV2(fieldDetail)
+                                } else
+                                    createFieldDetailV2(fieldDetail)
+                            }
+                        } else {
+                            updateYieldInfo(yield, price)
+                            if (screen.equals("detail")) {
+                                updateFieldDetailV2(fieldDetail)
+                            } else
+                                createFieldDetailV2(fieldDetail)
+                        }
+
                     }
 
                     withContext(Dispatchers.Main) {
-                        alertDialog.dismiss()
-                        navController.navigate(R.id.action_updateGardenInfoFragment_to_gardenInfoFragment)
+                        if (!isShowDialog){
+                            alertDialog.dismiss()
+                            navController.navigate(R.id.action_updateGardenInfoFragment_to_gardenInfoFragment)
+                        } else {
+                            navController.navigate(R.id.action_updateGardenInfoFragment_to_gardenInfoFragment)
+                        }
                     }
                 }
             }
 
+        }
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private suspend fun showConfirmationDialog(): Boolean {
+        return withContext(Dispatchers.Main) {
+            suspendCancellableCoroutine { continuation ->
+                val dialog = AlertDialog.Builder(requireActivity())
+                    .setTitle("Xác nhận")
+                    .setMessage("Số lượng nhập vào thấp hơn so với ban đầu? Hệ thống sẽ hủy đơn (nếu có) để đảm bảo khả năng cung cấp")
+                    .setPositiveButton("Đồng ý") { _, _ ->
+                        continuation.resume(true) {}
+                    }
+                    .setNegativeButton("Hủy") { _, _ ->
+                        continuation.resume(false) {}
+                    }
+                    .setOnCancelListener {
+                        continuation.resume(false) {}
+                    }
+                    .create()
+                dialog.show()
+            }
         }
     }
 

@@ -127,9 +127,12 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private fun logOut() {
         loginUtils.clearAll()
         Firebase.auth.signOut()
-        val intent = Intent(requireActivity(), LoginActivity::class.java)
-        startActivity(intent)
-        requireActivity().finish()
+        val currentUser = Firebase.auth.currentUser
+        if (currentUser == null){
+            val intent = Intent(requireActivity(), LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().finishAffinity()
+        }
     }
 
     private fun getSupplierInfo() {

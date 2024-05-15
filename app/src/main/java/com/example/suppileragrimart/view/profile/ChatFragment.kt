@@ -1,6 +1,7 @@
 package com.example.suppileragrimart.view.profile
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -43,7 +44,9 @@ class ChatFragment : Fragment() {
 
         setupRecyclerView()
         firebaseUser = auth.currentUser
-        getCurrentChatList()
+        if (firebaseUser != null)
+            getCurrentChatList()
+        else binding.imageEmptyBox.visibility = View.VISIBLE
 
         return binding.root
     }
@@ -51,12 +54,15 @@ class ChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        chatAdapter.onClick = {
-            val b = Bundle().apply {
-                putString(Constants.USER_UID_KEY, it.uid)
+        if (firebaseUser != null){
+            chatAdapter.onClick = {
+                val b = Bundle().apply {
+                    putString(Constants.USER_UID_KEY, it.uid)
+                }
+                this@ChatFragment.findNavController().navigate(R.id.action_messageFragment_to_chatDetailFragment, b)
             }
-            this@ChatFragment.findNavController().navigate(R.id.action_messageFragment_to_chatDetailFragment, b)
         }
+
     }
     private fun getCurrentChatList(){
         val ref = firebaseDatabase.reference.child(Constants.CHAT_LIST).child(firebaseUser!!.uid)
@@ -90,6 +96,7 @@ class ChatFragment : Fragment() {
                 (userList as ArrayList).clear()
                 for (s in snapshot.children){
                     val user = s.getValue(UserFirebase::class.java)
+                    Log.w("TEST", "Check uid: ${user!!.uid}")
                     for (eachChatList in userChatList){
                         if (user!!.uid.equals(eachChatList.id)){
                             (userList as ArrayList).add(user)

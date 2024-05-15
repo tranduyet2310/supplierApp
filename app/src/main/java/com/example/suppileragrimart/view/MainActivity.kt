@@ -134,9 +134,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateToken(fcmToken: String){
         val firebaseUser = auth.currentUser
-        val ref = FirebaseDatabase.getInstance().reference.child(Constants.CHAT_TOKEN)
-        val token = Token(fcmToken)
-        ref.child(firebaseUser!!.uid).setValue(token)
+        if (firebaseUser != null){
+            val ref = FirebaseDatabase.getInstance().reference.child(Constants.CHAT_TOKEN)
+            val token = Token(fcmToken)
+            ref.child(firebaseUser.uid).setValue(token)
+        }
     }
 
     private fun updateStatus(status: String){
@@ -307,12 +309,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
-        updateStatus("online")
+        if (auth.currentUser != null){
+            updateStatus("online")
+        }
     }
 
     override fun onPause() {
         super.onPause()
-        updateStatus("offline")
+        if(auth.currentUser != null){
+            updateStatus("offline")
+        }
     }
 }

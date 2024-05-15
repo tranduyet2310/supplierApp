@@ -260,6 +260,9 @@
             app:destination="@id/gardenInfoFragment"
             app:popUpTo="@id/cropsInfoFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_cooperationDetailFragment_to_chatDetailFragment"
+            app:destination="@id/chatDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/updateGeneralInfoFragment"

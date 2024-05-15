@@ -128,6 +128,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun signIn(){
+        auth.signOut()
         auth.signInWithEmailAndPassword(supplier.email, supplier.password)
             .addOnCompleteListener(this){ task ->
                 if (task.isSuccessful){

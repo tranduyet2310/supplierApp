@@ -3,6 +3,7 @@ package com.example.suppileragrimart.view.garden
 import android.app.AlertDialog
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,8 +17,10 @@ import com.example.suppileragrimart.R
 import com.example.suppileragrimart.databinding.FragmentCooperationDetailBinding
 import com.example.suppileragrimart.model.Cooperation
 import com.example.suppileragrimart.model.FieldApiResponse
+import com.example.suppileragrimart.model.UserFirebase
 import com.example.suppileragrimart.network.Api
 import com.example.suppileragrimart.network.RetrofitClient
+import com.example.suppileragrimart.utils.Constants
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.OrderStatus
 import com.example.suppileragrimart.utils.ProgressDialog
@@ -26,6 +29,10 @@ import com.example.suppileragrimart.utils.Utils.Companion.formatPrice
 import com.example.suppileragrimart.utils.Utils.Companion.formatYield
 import com.example.suppileragrimart.viewmodel.CooperationViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -64,11 +71,11 @@ class CooperationDetailFragment : Fragment() {
         cooperationResponse = args.cooperation
 
         lifecycleScope.launch {
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 alertDialog = progressDialog.createAlertDialog(requireActivity())
             }
             getCurrentField()
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 alertDialog.dismiss()
             }
             showData()
@@ -86,23 +93,39 @@ class CooperationDetailFragment : Fragment() {
         }
 
         binding.btnCancel.setOnClickListener {
-            updateCooperationStatus(OrderStatus.CANCELLED)
+            if (status == OrderStatus.CANCELLED) {
+                findUserUid(cooperationResponse.userId) { userSnapshot ->
+                    if (userSnapshot != null) {
+                        val userFirebase = userSnapshot.getValue(UserFirebase::class.java)
+                        if (userFirebase != null) {
+                            val b = Bundle().apply {
+                                putString(Constants.USER_UID_KEY, userFirebase.uid)
+                            }
+                            navController.navigate(R.id.action_cooperationDetailFragment_to_chatDetailFragment, b)
+                        } else {
+                            Log.d("TEST", "cooperation - uid not fount")
+                        }
+                    }
+                }
+            } else {
+                updateCooperationStatus(OrderStatus.CANCELLED)
+            }
         }
 
         binding.btnAgree.setOnClickListener {
-            if (status == OrderStatus.PROCESSING){
+            if (status == OrderStatus.PROCESSING) {
                 updateCooperationStatus(OrderStatus.CONFIRMED)
-            } else if (status == OrderStatus.CONFIRMED){
+            } else if (status == OrderStatus.CONFIRMED) {
                 updateCooperationStatus(OrderStatus.DELIVERING)
             }
         }
     }
 
-    suspend fun getCurrentField(){
-        withContext(Dispatchers.IO){
+    suspend fun getCurrentField() {
+        withContext(Dispatchers.IO) {
             val response = apiService.getFieldById(cooperationResponse.fieldId)
-            if (response.isSuccessful){
-                if (response.body() != null){
+            if (response.isSuccessful) {
+                if (response.body() != null) {
                     currentField = response.body()!!
                 }
             }
@@ -129,7 +152,7 @@ class CooperationDetailFragment : Fragment() {
         }
         status = cooperationResponse.cooperationStatus
 
-        if (cooperationResponse.addressId != null){
+        if (cooperationResponse.addressId != null) {
             lifecycleScope.launch {
                 getAddressById(cooperationResponse.addressId)
                 withContext(Dispatchers.Main) {
@@ -140,7 +163,7 @@ class CooperationDetailFragment : Fragment() {
             binding.tvAddress.text = getString(R.string.no_address)
         }
 
-        if (cooperationResponse.paymentStatus != null){
+        if (cooperationResponse.paymentStatus != null) {
             binding.tvPayment.text = cooperationResponse.paymentStatus
         }
     }
@@ -151,11 +174,13 @@ class CooperationDetailFragment : Fragment() {
             if (response.isSuccessful) {
                 val userAddress = response.body()
                 if (userAddress != null) {
-                    currentAddress = "${userAddress.details} - ${userAddress.commune} - ${userAddress.district} - ${userAddress.province}"
+                    currentAddress =
+                        "${userAddress.details} - ${userAddress.commune} - ${userAddress.district} - ${userAddress.province}"
                 }
             }
         }
     }
+
     private fun setupStepView() {
         val statusList: ArrayList<String> = arrayListOf()
         statusList.add(getString(R.string.PROCESSING))
@@ -165,36 +190,54 @@ class CooperationDetailFragment : Fragment() {
 
         binding.stepView.setSteps(statusList)
         binding.stepView.go(status.value, false)
-        if (status == OrderStatus.COMPLETED) {
-            binding.stepView.done(true)
-            binding.btnAgree.text = getString(R.string.received)
-            binding.btnAgree.isEnabled = false
-        } else if (status == OrderStatus.CANCELLED) {
-            binding.btnAgree.text = getString(R.string.terminated)
-            binding.btnAgree.isEnabled = false
-        } else if (status == OrderStatus.CONFIRMED) {
-            binding.btnAgree.text = getString(R.string.delivery_order)
+
+        when(status){
+            OrderStatus.PROCESSING -> {
+                binding.btnCancel.visibility = View.VISIBLE
+            }
+            OrderStatus.CONFIRMED -> {
+                binding.btnCancel.visibility = View.VISIBLE
+                binding.btnAgree.text = getString(R.string.delivery_order)
+            }
+            OrderStatus.DELIVERING -> {
+                binding.btnCancel.visibility = View.INVISIBLE
+                binding.btnCancel.isEnabled = false
+
+                binding.btnAgree.isEnabled = false
+                binding.btnAgree.setBackgroundColor(Color.parseColor("#E9EAEC"))
+            }
+            OrderStatus.COMPLETED -> {
+                binding.btnCancel.visibility = View.INVISIBLE
+                binding.btnCancel.isEnabled = false
+
+                binding.stepView.done(true)
+
+                binding.btnAgree.text = getString(R.string.received)
+                binding.btnAgree.isEnabled = false
+                binding.btnAgree.setBackgroundColor(Color.parseColor("#E9EAEC"))
+            }
+            OrderStatus.CANCELLED -> {
+                binding.btnAgree.text = getString(R.string.terminated)
+                binding.btnAgree.isEnabled = false
+
+                binding.btnCancel.visibility = View.VISIBLE
+                binding.btnCancel.text = "Liên hệ"
+            }
         }
 
-        if (status == OrderStatus.DELIVERING || status == OrderStatus.COMPLETED) {
-            binding.btnAgree.isEnabled = false
-            binding.btnAgree.setBackgroundColor(Color.parseColor("#E9EAEC"))
-        }
-
-        if (status == OrderStatus.PROCESSING || status == OrderStatus.CONFIRMED){
-            binding.btnCancel.visibility = View.VISIBLE
-        } else {
-            binding.btnCancel.visibility = View.INVISIBLE
-            binding.btnCancel.isEnabled = false
-        }
     }
 
     private fun updateCooperationStatus(status: OrderStatus) {
         val token = loginUtils.getSupplierToken()
         cooperationResponse.cooperationStatus = status
-        cooperationViewModel.updateCooperationStatus(token, cooperationResponse.id, cooperationResponse)
+        cooperationViewModel.updateCooperationStatus(
+            token,
+            cooperationResponse.id,
+            cooperationResponse
+        )
             .observe(requireActivity(), { state -> processCooperationResponse(state) })
     }
+
     private fun processCooperationResponse(state: ScreenState<Cooperation?>) {
         when (state) {
             is ScreenState.Loading -> {
@@ -217,7 +260,30 @@ class CooperationDetailFragment : Fragment() {
             }
         }
     }
+
     private fun showSnackbar(text: String) {
         Snackbar.make(requireView(), text, Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun findUserUid(userId: Long, onResult: (DataSnapshot?) -> Unit) {
+        val ref = FirebaseDatabase.getInstance().reference.child(Constants.USER)
+        val query = ref.orderByChild("idInServer").equalTo(userId.toDouble())
+
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (userSnapshot in snapshot.children) {
+                        onResult(userSnapshot)
+                        return
+                    }
+                } else {
+                    onResult(null)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                onResult(null)
+            }
+        })
     }
 }
