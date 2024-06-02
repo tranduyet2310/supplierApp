@@ -63,12 +63,6 @@ class ShopInfoFragment : Fragment() {
         return binding.root
     }
 
-    private fun getSupplierIntroInfo() {
-        supplierIntroViewModel.getAllSupplierIntro(supplier!!.id).observe(
-            requireActivity(), { state -> processSupplierIntro(state) }
-        )
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
@@ -86,10 +80,15 @@ class ShopInfoFragment : Fragment() {
         }
     }
 
+    private fun getSupplierIntroInfo() {
+        supplierIntroViewModel.getAllSupplierIntro(supplier!!.id).observe(
+            requireActivity(), { state -> processSupplierIntro(state) }
+        )
+    }
+
     private fun setupShopImages(images: MutableList<Image>) {
         val imageList = ArrayList<SlideModel>()
         for (image in images) {
-//            imageList.add(SlideModel(image.imageUrl))
             val modifiedUrl = image.imageUrl.replace("http://", "https://")
             imageList.add(SlideModel(modifiedUrl))
         }
@@ -101,7 +100,6 @@ class ShopInfoFragment : Fragment() {
     private fun setupGardenImages(images: MutableList<Image>) {
         val imageList = ArrayList<SlideModel>()
         for (image in images) {
-//            imageList.add(SlideModel(image.imageUrl))
             val modifiedUrl = image.imageUrl.replace("http://", "https://")
             imageList.add(SlideModel(modifiedUrl))
         }

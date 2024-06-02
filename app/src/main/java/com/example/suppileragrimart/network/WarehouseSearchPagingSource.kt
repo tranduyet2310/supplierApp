@@ -20,7 +20,8 @@ class WarehouseSearchPagingSource(
             val sortBy = searchApiRequest.sortBy
             val sortDir = searchApiRequest.sortDir
 
-            val response = apiService.searchWarehouse(supplierId, query, nextPageNumber.toString(), sortBy, sortDir)
+            val response =
+                apiService.searchWarehouse(supplierId, query, nextPageNumber.toString(), sortBy, sortDir)
             val data = response.body()?.content
 
             LoadResult.Page(

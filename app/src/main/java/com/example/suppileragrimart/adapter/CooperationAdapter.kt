@@ -11,7 +11,7 @@ import com.example.suppileragrimart.model.Cooperation
 import com.example.suppileragrimart.utils.CooperationDiffUtil
 import com.example.suppileragrimart.utils.OrderStatus
 
-class CooperationAdapter() :
+class CooperationAdapter :
     PagingDataAdapter<Cooperation, CooperationAdapter.ViewHolderClass>(CooperationDiffUtil()) {
     var onClick: ((Cooperation) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
@@ -32,23 +32,27 @@ class CooperationAdapter() :
 
     class ViewHolderClass(binding: InfoDialogItemBinding, val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
-        val fullName = binding.tvFullName
-        val crops = binding.tvCropsType
-        val state = binding.tvState
+        private val fullName = binding.tvFullName
+        private val crops = binding.tvCropsType
+        private val state = binding.tvState
 
         fun bind(cooperation: Cooperation) {
             fullName.text = cooperation.fullName
             crops.text = cooperation.cropsName
 
-            if (cooperation.cooperationStatus == OrderStatus.PROCESSING) {
-                state.text = cooperation.cooperationStatus.name
-                state.setTextColor(context.getColor(R.color.orange))
-            } else if (cooperation.cooperationStatus == OrderStatus.CANCELLED) {
-                state.text = cooperation.cooperationStatus.name
-                state.setTextColor(context.getColor(R.color.redAgri))
-            } else {
-                state.text = cooperation.cooperationStatus.name
-                state.setTextColor(context.getColor(R.color.greenAgri))
+            when (cooperation.cooperationStatus) {
+                OrderStatus.PROCESSING -> {
+                    state.text = cooperation.cooperationStatus.name
+                    state.setTextColor(context.getColor(R.color.orange))
+                }
+                OrderStatus.CANCELLED -> {
+                    state.text = cooperation.cooperationStatus.name
+                    state.setTextColor(context.getColor(R.color.redAgri))
+                }
+                else -> {
+                    state.text = cooperation.cooperationStatus.name
+                    state.setTextColor(context.getColor(R.color.greenAgri))
+                }
             }
         }
     }

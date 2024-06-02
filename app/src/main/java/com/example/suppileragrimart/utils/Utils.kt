@@ -2,7 +2,6 @@ package com.example.suppileragrimart.utils
 
 import android.content.Context
 import com.example.suppileragrimart.model.Supplier
-import com.example.suppileragrimart.model.Warehouse
 import java.io.InputStream
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -29,15 +28,15 @@ class Utils {
 
             if (yield >= 1000) {
                 convertValue = yield / 1000
-                yieldText = "${convertValue} " + Constants.TAN_UNIT
+                yieldText = "$convertValue " + Constants.TAN_UNIT
             } else if (yield >= 100) {
                 convertValue = yield / 100
-                yieldText = "${convertValue} " + Constants.TA_UNIT
+                yieldText = "$convertValue " + Constants.TA_UNIT
             } else if (yield >= 10) {
                 convertValue = yield / 10
-                yieldText = "${convertValue} " + Constants.YEN_UNIT
+                yieldText = "$convertValue " + Constants.YEN_UNIT
             } else {
-                yieldText = "${yield} " + Constants.KG_UNIT
+                yieldText = "$yield " + Constants.KG_UNIT
             }
             return yieldText
         }

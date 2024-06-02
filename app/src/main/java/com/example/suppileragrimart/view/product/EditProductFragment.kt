@@ -182,13 +182,16 @@ class EditProductFragment : Fragment() {
             showSnackbar(Constants.FIELD_REQUIRED)
             return
         } else if (isAvailable && quantity.isEmpty()) {
-            showSnackbar("Yêu cầu nhập số lượng sản phẩm")
+            showSnackbar(getString(R.string.quantity_required))
             return
         } else if (categorySelected.equals(getString(R.string.category_placeholder))){
-            showSnackbar("Hãy chọn danh mục cho sản phẩm")
+            showSnackbar(getString(R.string.category_required))
             return
         } else if (subcategorySelected.equals(getString(R.string.subcategory_placeholder))){
-            showSnackbar("Hãy chọn danh mục con cho sản phẩm")
+            showSnackbar(getString(R.string.subcategory_required))
+            return
+        } else if (warehouseSelected.equals(getString(R.string.warehouse_placeholder))){
+            showSnackbar(getString(R.string.warehouse_required))
             return
         }
 
@@ -227,16 +230,19 @@ class EditProductFragment : Fragment() {
             showSnackbar(Constants.FIELD_REQUIRED)
             return
         } else if (categorySelected.equals(getString(R.string.category_placeholder))){
-            showSnackbar("Hãy chọn danh mục cho sản phẩm")
+            showSnackbar(getString(R.string.category_required))
             return
         } else if (subcategorySelected.equals(getString(R.string.subcategory_placeholder))){
-            showSnackbar("Hãy chọn danh mục con cho sản phẩm")
+            showSnackbar(getString(R.string.subcategory_required))
+            return
+        } else if (warehouseSelected.equals(getString(R.string.warehouse_placeholder))){
+            showSnackbar(getString(R.string.warehouse_required))
             return
         } else if (isAvailable && quantity.isEmpty()) {
-            showSnackbar("Yêu cầu nhập số lượng sản phẩm")
+            showSnackbar(getString(R.string.quantity_required))
             return
         } else if (imageUri == null || uriList.size == 0) {
-            showSnackbar("Yêu cầu thêm ảnh cho sản phẩm")
+            showSnackbar(getString(R.string.images_required))
             return
         }
 
@@ -263,24 +269,22 @@ class EditProductFragment : Fragment() {
             requireActivity(), { state -> processProductResponse(state) })
     }
     private fun showInfo() {
-        binding.inputProductName.text =
-            Editable.Factory.getInstance().newEditable(currentProduct.productName)
-        binding.inputProductDescription.text =
-            Editable.Factory.getInstance().newEditable(currentProduct.description)
+        binding.inputProductName.text = Editable.Factory.getInstance().newEditable(currentProduct.productName)
+        binding.inputProductDescription.text = Editable.Factory.getInstance().newEditable(currentProduct.description)
+
         val categoryPos = categoryValues.indexOf(currentProduct.productCategory)
         binding.spProductCategory.setSelection(categoryPos)
         currentSubcategory = currentProduct.productSubcategory
         binding.checkboxActiveProduct.isChecked = currentProduct.isActive
-        binding.inputProductPrice.text =
-            Editable.Factory.getInstance().newEditable(currentProduct.standardPrice.toString())
-        binding.inputProductDiscountPrice.text =
-            Editable.Factory.getInstance().newEditable(currentProduct.discountPrice.toString())
+        binding.inputProductPrice.text = Editable.Factory.getInstance().newEditable(currentProduct.standardPrice.toString())
+        binding.inputProductDiscountPrice.text = Editable.Factory.getInstance().newEditable(currentProduct.discountPrice.toString())
+
         val warehousePos = warehouseValues.indexOf(currentProduct.warehouseName)
         binding.spWarehouseName.setSelection(warehousePos)
         binding.rbHaveProduct.isChecked = currentProduct.isAvailable
         binding.rbCommingSoon.isChecked = currentProduct.isNew
-        binding.inputDetail.text =
-            Editable.Factory.getInstance().newEditable(currentProduct.productQuantity.toString())
+        binding.inputDetail.text = Editable.Factory.getInstance().newEditable(currentProduct.productQuantity.toString())
+
         val imageList = currentProduct.productImage
         for (i in 1..imageList.size) {
             when (i) {

@@ -11,19 +11,18 @@ import androidx.lifecycle.lifecycleScope
 import com.example.suppileragrimart.R
 import com.example.suppileragrimart.databinding.ActivityMoreInfoSignUpBinding
 import com.example.suppileragrimart.model.AESResponse
-import com.example.suppileragrimart.storage.RsaKey
 import com.example.suppileragrimart.model.Supplier
 import com.example.suppileragrimart.model.UserFirebase
 import com.example.suppileragrimart.network.Api
 import com.example.suppileragrimart.network.RetrofitClient
+import com.example.suppileragrimart.storage.RsaKey
+import com.example.suppileragrimart.storage.RsaKeyDatabase
 import com.example.suppileragrimart.utils.AES
 import com.example.suppileragrimart.utils.Constants.FIELD_REQUIRED
 import com.example.suppileragrimart.utils.Constants.SUPPLIER
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
 import com.example.suppileragrimart.utils.RSA
-import com.example.suppileragrimart.storage.RsaKeyDatabase
-import com.example.suppileragrimart.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.Dispatchers
@@ -204,6 +203,11 @@ class MoreInfoSignUpActivity : AppCompatActivity(), View.OnClickListener {
                         }
                     }
                 }
+            } else {
+                withContext(Dispatchers.Main) {
+                    alertDialog.dismiss()
+                    displayErrorSnackbar("Email đã tồn tại")
+                }
             }
         }
     }
@@ -236,7 +240,7 @@ class MoreInfoSignUpActivity : AppCompatActivity(), View.OnClickListener {
         Log.w("TEST", "phoneNumber: ${user.phoneNumber} uid: ${user.uid} idInServer: ${user.idInServer}")
 
         val databaseResult = suspendCancellableCoroutine { continuation ->
-            firebaseDatabase.reference.child(Constants.SUPPLIER).child(auth.uid!!)
+            firebaseDatabase.reference.child(SUPPLIER).child(auth.uid!!)
                 .setValue(user)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {

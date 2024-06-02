@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun checkCertificate() {
-        Utils.readRawResource(this, R.raw.server)
+        Utils.readRawResource(this, R.raw.mycert)
     }
 
     override fun onClick(v: View?) {
@@ -112,7 +112,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         val intent = Intent(applicationContext, MainActivity::class.java)
                         startActivity(intent)
                     } else {
-                        displayErrorSnackbar("Tài khoản chưa được kích hoạt")
+                        displayErrorSnackbar(getString(R.string.account_is_inactive))
                     }
 
                 }

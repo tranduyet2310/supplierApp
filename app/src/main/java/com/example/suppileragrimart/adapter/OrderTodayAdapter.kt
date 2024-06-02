@@ -34,11 +34,11 @@ class OrderTodayAdapter (
     class ViewHolderClass(binding: OrderTodayListItemBinding, private val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
         val tvProductName = binding.tvProductName
-        val tvProductQuantity = binding.tvProductQuantity
-        val tvProductPrice = binding.tvProductPrice
-        val tvFullname = binding.tvFullname
-        val tvOrderId = binding.tvOrderId
-        val imgProduct = binding.imgProduct
+        private val tvProductQuantity = binding.tvProductQuantity
+        private val tvProductPrice = binding.tvProductPrice
+        private val tvFullname = binding.tvFullname
+        private val tvOrderId = binding.tvOrderId
+        private val imgProduct = binding.imgProduct
         fun bind(orderStatistic: OrderStatistic) {
             tvProductName.text = orderStatistic.productName
             tvProductQuantity.text = orderStatistic.quantity.toString()

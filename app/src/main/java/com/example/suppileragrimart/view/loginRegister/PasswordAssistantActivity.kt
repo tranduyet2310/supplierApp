@@ -1,10 +1,9 @@
 package com.example.suppileragrimart.view.loginRegister
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.suppileragrimart.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.suppileragrimart.databinding.ActivityPasswordAssistantBinding
 
 class PasswordAssistantActivity : AppCompatActivity(), View.OnClickListener {

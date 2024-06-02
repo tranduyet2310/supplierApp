@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -64,17 +63,6 @@ class WarehouseFragment : Fragment(), View.OnClickListener {
         binding.toolbarLayout.imgBack.visibility = View.GONE
 
         supplier = supplierViewModel.supplier
-        val isValidPubKey = supplierViewModel.isValidPublicKey
-
-//        if (!isValidPubKey) {
-//            displayErrorSnackbar("Không tìm thấy public key để giải mã")
-//        } else if (supplier == null) {
-//            displayErrorSnackbar("supplier is null")
-//        } else {
-//            setupRecyclerView()
-//            getWarehouseData()
-//        }
-
         if (supplier != null){
             setupRecyclerView()
             getWarehouseData()
@@ -109,12 +97,7 @@ class WarehouseFragment : Fragment(), View.OnClickListener {
     }
     private fun getWarehouseData() {
         val warehouseApiRequest = WarehouseApiRequest(supplier!!.id)
-//        val aesKey = loginUtils.getAESKey()
-//        val iv = loginUtils.getIv()
-//        Log.d("TEST", "ware aes "+aesKey)
-//        Log.d("TEST", "ware iv "+iv)
         lifecycleScope.launch {
-//            warehouseViewModel.getWarehouseBySupplierId(warehouseApiRequest, aesKey, iv)
             warehouseViewModel.getWarehouseBySupplierId(warehouseApiRequest)
                 .collectLatest { pagingData ->
                     warehouseAdapter.addLoadStateListener { loadState ->
@@ -144,7 +127,6 @@ class WarehouseFragment : Fragment(), View.OnClickListener {
             )
         }
     }
-
 
     override fun onClick(v: View?) {
         when (v?.id) {
@@ -198,7 +180,4 @@ class WarehouseFragment : Fragment(), View.OnClickListener {
         Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
     }
 
-    private fun displayErrorSnackbar(errorMessage: String) {
-        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
-    }
 }

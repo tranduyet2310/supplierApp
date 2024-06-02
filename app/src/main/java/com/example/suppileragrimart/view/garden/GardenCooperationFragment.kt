@@ -1,6 +1,6 @@
 package com.example.suppileragrimart.view.garden
 
-import android.R
+import android.R.layout.simple_spinner_dropdown_item
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,7 +20,6 @@ import com.example.suppileragrimart.databinding.FragmentCooperationBinding
 import com.example.suppileragrimart.model.CooperationApiRequest
 import com.example.suppileragrimart.model.FieldApiResponse
 import com.example.suppileragrimart.model.Supplier
-import com.example.suppileragrimart.utils.Constants
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
 import com.example.suppileragrimart.viewmodel.CooperationViewModel
@@ -73,6 +71,22 @@ class GardenCooperationFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+//        setupSpinnerListener()
+
+        cooperationAdapter.onClick = {
+//            val b = Bundle().apply {
+//                putParcelable(Constants.COOPERATION_KEY, it)
+//            }
+            val action =
+                GardenGeneralFragmentDirections.actionGardenInfoFragmentToCooperationDetailFragment2(
+                    it
+                )
+            this@GardenCooperationFragment.findNavController().navigate(action)
+        }
+    }
+
     private fun getCooperations() {
         val cooperationApiRequest = CooperationApiRequest()
         cooperationApiRequest.id = currentField!!.id
@@ -107,23 +121,10 @@ class GardenCooperationFragment : Fragment() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-//        setupSpinnerListener()
-
-        cooperationAdapter.onClick = {
-//            val b = Bundle().apply {
-//                putParcelable(Constants.COOPERATION_KEY, it)
-//            }
-            val action = GardenGeneralFragmentDirections.actionGardenInfoFragmentToCooperationDetailFragment2(it)
-            this@GardenCooperationFragment.findNavController().navigate(action)
-        }
-    }
-
     private fun setupSpinner(fieldNames: ArrayList<String>) {
         sortByValues.addAll(fieldNames)
         val spinnerAdapter = ArrayAdapter(
-            requireContext(), R.layout.simple_spinner_dropdown_item,
+            requireContext(), simple_spinner_dropdown_item,
             sortByValues
         )
         binding.spinnerSortBy.adapter = spinnerAdapter

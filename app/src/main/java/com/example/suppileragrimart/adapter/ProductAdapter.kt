@@ -24,10 +24,10 @@ class ProductAdapter(private val context: Context) :
         binding: ProductListItemBinding,
         private val context: Context
     ) : RecyclerView.ViewHolder(binding.root) {
-        val imgProduct = binding.imgProduct
+        private val imgProduct = binding.imgProduct
+        private val tvProductPrice = binding.tvProductPrice
+        private val tvProductWarehouse = binding.tvProductWarehouse
         val tvProductName = binding.tvProductName
-        val tvProductPrice = binding.tvProductPrice
-        val tvProductWarehouse = binding.tvProductWarehouse
         val switchState = binding.switchState
         val imgEdit = binding.imgEdit
 

@@ -4,11 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.suppileragrimart.model.FieldApiResponse
 import com.example.suppileragrimart.model.FieldDetail
-import com.example.suppileragrimart.model.LoginApiResponse
-import com.example.suppileragrimart.model.LoginRequest
 import com.example.suppileragrimart.model.MessageResponse
 import com.example.suppileragrimart.network.RetrofitClient
-import com.example.suppileragrimart.utils.Constants
 import com.example.suppileragrimart.utils.ScreenState
 import retrofit2.Call
 import retrofit2.Callback
@@ -39,10 +36,7 @@ class FieldRepository {
         return mutableLiveData
     }
 
-    fun createField(
-        token: String,
-        supplierId: Long,
-        fieldApiResponse: FieldApiResponse
+    fun createField(token: String, supplierId: Long, fieldApiResponse: FieldApiResponse
     ): LiveData<ScreenState<FieldApiResponse?>> {
         val mutableLiveData = MutableLiveData<ScreenState<FieldApiResponse?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
@@ -56,12 +50,7 @@ class FieldRepository {
                     if (response.isSuccessful) {
                         mutableLiveData.postValue(ScreenState.Success(response.body()))
                     } else {
-                        mutableLiveData.postValue(
-                            ScreenState.Error(
-                                "Supplier does not exists",
-                                null
-                            )
-                        )
+                        mutableLiveData.postValue(ScreenState.Error("Supplier does not exists", null))
                     }
                 }
 
@@ -74,10 +63,7 @@ class FieldRepository {
         return mutableLiveData
     }
 
-    fun updateField(
-        token: String,
-        fieldId: Long,
-        fieldApiResponse: FieldApiResponse
+    fun updateField(token: String, fieldId: Long, fieldApiResponse: FieldApiResponse
     ): LiveData<ScreenState<FieldApiResponse?>> {
         val mutableLiveData = MutableLiveData<ScreenState<FieldApiResponse?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
@@ -91,12 +77,7 @@ class FieldRepository {
                     if (response.isSuccessful) {
                         mutableLiveData.postValue(ScreenState.Success(response.body()))
                     } else {
-                        mutableLiveData.postValue(
-                            ScreenState.Error(
-                                "Field does not exists",
-                                null
-                            )
-                        )
+                        mutableLiveData.postValue(ScreenState.Error("Field does not exists", null))
                     }
                 }
 
@@ -109,10 +90,7 @@ class FieldRepository {
         return mutableLiveData
     }
 
-    fun completeField(
-        token: String,
-        fieldId: Long
-    ): LiveData<ScreenState<FieldApiResponse?>> {
+    fun completeField(token: String, fieldId: Long): LiveData<ScreenState<FieldApiResponse?>> {
         val mutableLiveData = MutableLiveData<ScreenState<FieldApiResponse?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 
@@ -125,12 +103,7 @@ class FieldRepository {
                     if (response.isSuccessful) {
                         mutableLiveData.postValue(ScreenState.Success(response.body()))
                     } else {
-                        mutableLiveData.postValue(
-                            ScreenState.Error(
-                                "Field does not exists",
-                                null
-                            )
-                        )
+                        mutableLiveData.postValue(ScreenState.Error("Field does not exists", null))
                     }
                 }
 
@@ -143,10 +116,7 @@ class FieldRepository {
         return mutableLiveData
     }
 
-    fun createFieldDetail(
-        token: String,
-        fieldId: Long,
-        fieldDetail: FieldDetail
+    fun createFieldDetail(token: String, fieldId: Long, fieldDetail: FieldDetail
     ): LiveData<ScreenState<FieldDetail?>> {
         val mutableLiveData = MutableLiveData<ScreenState<FieldDetail?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
@@ -173,10 +143,7 @@ class FieldRepository {
         return mutableLiveData
     }
 
-    fun updateFieldDetail(
-        token: String,
-        fieldId: Long,
-        fieldDetail: FieldDetail
+    fun updateFieldDetail(token: String, fieldId: Long, fieldDetail: FieldDetail
     ): LiveData<ScreenState<FieldDetail?>> {
         val mutableLiveData = MutableLiveData<ScreenState<FieldDetail?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
@@ -203,10 +170,7 @@ class FieldRepository {
         return mutableLiveData
     }
 
-    fun deleteFieldDetail(
-        token: String,
-        fieldIDetailId: Long,
-    ): LiveData<ScreenState<MessageResponse?>> {
+    fun deleteFieldDetail(token: String, fieldIDetailId: Long, ): LiveData<ScreenState<MessageResponse?>> {
         val mutableLiveData = MutableLiveData<ScreenState<MessageResponse?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 

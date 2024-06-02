@@ -20,7 +20,8 @@ class SearchProductPagingSource (
             val sortBy = searchApiRequest.sortBy
             val sortDir = searchApiRequest.sortDir
 
-            val response = apiService.searchProduct(supplierId, query, nextPageNumber.toString(), sortBy, sortDir)
+            val response =
+                apiService.searchProduct(supplierId, query, nextPageNumber.toString(), sortBy, sortDir)
             val data = response.body()?.content
 
             LoadResult.Page(

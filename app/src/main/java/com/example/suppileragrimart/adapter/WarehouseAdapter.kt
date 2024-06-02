@@ -1,6 +1,5 @@
 package com.example.suppileragrimart.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -18,20 +17,21 @@ class WarehouseAdapter :
     class ViewHolderClass(
         binding: WarehouseListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        val tvWarehouseId = binding.tvWarehouseId
-        val tvWarehouseName = binding.tvWarehouseName
-        val tvWarehouseAddress = binding.tvWarehouseAddress
-        val tvWarehouseContactName = binding.tvWarehouseContactName
-        val tvWarehousePhone = binding.tvWarehousePhone
+        private val tvWarehouseId = binding.tvWarehouseId
+        private val tvWarehouseName = binding.tvWarehouseName
+        private val tvWarehouseAddress = binding.tvWarehouseAddress
+        private val tvWarehouseContactName = binding.tvWarehouseContactName
+        private val tvWarehousePhone = binding.tvWarehousePhone
         val switchState = binding.switchState
         val imgEdit = binding.imgEdit
 
         fun bind(warehouse: Warehouse) {
             tvWarehouseId.text = warehouse.id.toString()
             tvWarehouseName.text = warehouse.warehouseName
-            val address = "${warehouse.detail} - ${warehouse.commune} - ${warehouse.district} - ${warehouse.province}"
+            val address =
+                "${warehouse.detail} - ${warehouse.commune} - ${warehouse.district} - ${warehouse.province}"
             tvWarehouseAddress.text = address
-            tvWarehouseContactName.text = warehouse.supplierContactName
+            tvWarehouseContactName.text = warehouse.contact
             tvWarehousePhone.text = warehouse.phone
             switchState.isChecked = warehouse.isActive
         }

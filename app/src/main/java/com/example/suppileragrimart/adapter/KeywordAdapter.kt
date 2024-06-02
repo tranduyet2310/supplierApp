@@ -8,15 +8,13 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.suppileragrimart.R
 
-class KeywordAdapter (
-    context: Context,
-    keyword: ArrayList<String>
+class KeywordAdapter (context: Context, keyword: ArrayList<String>
 ) : ArrayAdapter<String>(context, 0, keyword) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val listItemView: View
 
         if(convertView == null){
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.word_list_item, parent, false)
+            listItemView = LayoutInflater.from(context).inflate(R.layout.word_list_item, parent, false)
         } else {
             listItemView = convertView
         }

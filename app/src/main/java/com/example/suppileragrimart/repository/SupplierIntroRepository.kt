@@ -2,7 +2,6 @@ package com.example.suppileragrimart.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.suppileragrimart.model.Supplier
 import com.example.suppileragrimart.model.SupplierIntro
 import com.example.suppileragrimart.network.RetrofitClient
 import com.example.suppileragrimart.utils.ScreenState

@@ -25,7 +25,7 @@ class ViewFullImageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentViewFullImageBinding.inflate(inflater)
-        binding.toolbarLayout.titleToolbar.text = "Chi tiết ảnh"
+        binding.toolbarLayout.titleToolbar.text = getString(R.string.image_detail)
 
         imageUrl = navArgs.image
         showImage()

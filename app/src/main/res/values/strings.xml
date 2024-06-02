@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SuppilerApp</string>
+    <string name="app_name">AgriMart Bán hàng</string>
     <string name="slogan">An toàn - Uy tín - Chất lượng</string>
     <string name="fullNameApp">Hệ thống phân phối nông sản</string>
     <string name="fullNameAppV2">Bán hàng với AgriMart</string>
@@ -359,5 +359,28 @@
     <string name="search_for_user">Tìm kiếm người dùng</string>
     <string name="content">Nội dung tin nhắn</string>
     <string name="enter_text_message">Nhập nội dung tin nhắn</string>
+    <string name="estimated_yields">Sản lượng dự kiến</string>
+    <string name="update_garden_successfully">Cập nhật Vườn thành công!</string>
+    <string name="create_garden_successfully">Tạo mới Vườn thành công!</string>
+    <string name="this_state_already_exists">Giai đoạn này đã có trước đó</string>
+    <string name="add_successfully">Thêm mới thành công!</string>
+    <string name="account_is_inactive">Tài khoản chưa được kích hoạt</string>
+    <string name="terminate_cooperation">Số lượng nhập vào thấp hơn so với ban đầu? Hệ thống sẽ hủy đơn (nếu có) để đảm bảo khả năng cung cấp</string>
+    <string name="password_invalid">Mật khẩu không hợp lệ</string>
+    <string name="province_invalid">Tỉnh không hợp lệ</string>
+    <string name="taxNumber_invalid">Mã số thuế không hợp lệ</string>
+    <string name="cccd_invalid">CCCD không hợp lệ</string>
+    <string name="phone_invalid">Số điện thoại không hợp lệ</string>
+    <string name="format_invalid">Email không đúng định dạng</string>
+    <string name="name_minimun_8_characters_">Tên phải tối thiểu 8 ký tự</string>
+    <string name="name_mininum_3_characters">Tên phải tối thiểu 3 ký tự</string>
+    <string name="quantity_required">Yêu cầu nhập số lượng sản phẩm</string>
+    <string name="category_required">Hãy chọn danh mục cho sản phẩm</string>
+    <string name="subcategory_required">Hãy chọn danh mục con cho sản phẩm</string>
+    <string name="warehouse_required">Hãy chọn kho lấy hàng!</string>
+    <string name="images_required">Yêu cầu thêm ảnh cho sản phẩm!</string>
+    <string name="need_images_for_intro">Yêu cầu thêm ảnh cho phần giới thiệu!</string>
+    <string name="need_detail_for_intro">Yêu cầu nhập đủ thông tin giới thiệu!</string>
+    <string name="image_detail">Chi tiết ảnh</string>
 
 </resources>

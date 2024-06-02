@@ -12,53 +12,36 @@ class FieldViewModel(
     private val fieldRepository: FieldRepository = FieldRepository()
 ) : ViewModel() {
 
-    public var fieldData: FieldApiResponse? = null
+    var fieldData: FieldApiResponse? = null
     fun getFieldBySupplierId(supplierId: Long): LiveData<ScreenState<ArrayList<FieldApiResponse>?>> {
         return fieldRepository.getFieldBySupplierId(supplierId)
     }
 
-    fun createField(
-        token: String,
-        supplierId: Long,
-        fieldApiResponse: FieldApiResponse
+    fun createField(token: String, supplierId: Long, fieldApiResponse: FieldApiResponse
     ): LiveData<ScreenState<FieldApiResponse?>> {
         return fieldRepository.createField(token, supplierId, fieldApiResponse)
     }
 
-    fun updateField(
-        token: String,
-        fieldId: Long,
-        fieldApiResponse: FieldApiResponse
+    fun updateField(token: String, fieldId: Long, fieldApiResponse: FieldApiResponse
     ): LiveData<ScreenState<FieldApiResponse?>> {
         return fieldRepository.updateField(token, fieldId, fieldApiResponse)
     }
 
-    fun completeField(
-        token: String,
-        fieldId: Long
-    ): LiveData<ScreenState<FieldApiResponse?>> {
+    fun completeField(token: String, fieldId: Long): LiveData<ScreenState<FieldApiResponse?>> {
         return fieldRepository.completeField(token, fieldId)
     }
 
-    fun createFieldDetail(
-        token: String,
-        fieldId: Long,
-        fieldDetail: FieldDetail
+    fun createFieldDetail(token: String, fieldId: Long, fieldDetail: FieldDetail
     ): LiveData<ScreenState<FieldDetail?>> {
         return fieldRepository.createFieldDetail(token, fieldId, fieldDetail)
     }
 
-    fun updateFieldDetail(
-        token: String,
-        fieldId: Long,
-        fieldDetail: FieldDetail
+    fun updateFieldDetail(token: String, fieldId: Long, fieldDetail: FieldDetail
     ): LiveData<ScreenState<FieldDetail?>> {
         return fieldRepository.updateFieldDetail(token, fieldId, fieldDetail)
     }
 
-    fun deleteFieldDetail(
-        token: String,
-        fieldDetailId: Long,
+    fun deleteFieldDetail(token: String, fieldDetailId: Long,
     ): LiveData<ScreenState<MessageResponse?>> {
         return fieldRepository.deleteFieldDetail(token, fieldDetailId)
     }

@@ -1,4 +1,4 @@
-package com.example.suppileragrimart.view.profile
+package com.example.suppileragrimart.view.chat
 
 import android.os.Bundle
 import android.util.Log
@@ -98,7 +98,7 @@ class ChatFragment : Fragment() {
                     val user = s.getValue(UserFirebase::class.java)
                     Log.w("TEST", "Check uid: ${user!!.uid}")
                     for (eachChatList in userChatList){
-                        if (user!!.uid.equals(eachChatList.id)){
+                        if (user.uid.equals(eachChatList.id)){
                             (userList as ArrayList).add(user)
                         }
                     }

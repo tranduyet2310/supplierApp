@@ -15,7 +15,8 @@ class CooperativeOrderPagingSource (
         return try {
             val nextPageNumber = params.key ?: 0
 
-            val response = apiService.getCooperativeOrderBySupplierId(supplierId, nextPageNumber.toString(), "dateCreated", "desc")
+            val response = apiService
+                .getCooperativeOrderBySupplierId(supplierId, nextPageNumber.toString(), "dateCreated", "desc")
             val data = response.body()?.content
 
             LoadResult.Page(

@@ -18,10 +18,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class ChatAdapter(
-    context: Context,
-    userList: List<UserFirebase>,
-    isChatCheck: Boolean
+class ChatAdapter(context: Context, userList: List<UserFirebase>, isChatCheck: Boolean
 ) : RecyclerView.Adapter<ChatAdapter.ViewHolder?>() {
 
     private val context: Context
@@ -40,8 +37,8 @@ class ChatAdapter(
         binding: SupplierSearchListItemBinding,
         private val context: Context
     ) : RecyclerView.ViewHolder(binding.root) {
-        val tvUserName = binding.tvUserName
-        val profileImage = binding.profileImage
+        private val tvUserName = binding.tvUserName
+        private val profileImage = binding.profileImage
         val imgOnline = binding.imgOnline
         val imgOffline = binding.imgOffline
         val lastMessage = binding.tvLastMessage

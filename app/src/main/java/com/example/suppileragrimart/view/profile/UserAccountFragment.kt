@@ -27,6 +27,8 @@ import com.example.suppileragrimart.utils.ProgressDialog
 import com.example.suppileragrimart.utils.ScreenState
 import com.example.suppileragrimart.viewmodel.SupplierViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -46,6 +48,12 @@ class UserAccountFragment : Fragment(), View.OnClickListener {
     }
     private val supplierViewModel: SupplierViewModel by lazy {
         ViewModelProvider(requireActivity()).get(SupplierViewModel::class.java)
+    }
+    private val auth: FirebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
+    private val firebaseDatabase: FirebaseDatabase by lazy {
+        FirebaseDatabase.getInstance()
     }
 
     private lateinit var alertDialog: AlertDialog
@@ -187,6 +195,7 @@ class UserAccountFragment : Fragment(), View.OnClickListener {
                     supplier!!.avatar = state.data.avatar
                     loginUtils.saveSupplierInfo(supplier!!)
                     supplierViewModel.supplier = supplier
+                    updateProfileImageInFirebase(supplier!!.avatar)
                     Snackbar.make(
                         requireView(),
                         getString(R.string.update_avatar),
@@ -217,6 +226,7 @@ class UserAccountFragment : Fragment(), View.OnClickListener {
                     supplier!!.phone = state.data.phone
                     loginUtils.saveSupplierInfo(supplier!!)
                     supplierViewModel.supplier = supplier
+                    updateNameInFirebase(supplier!!.contactName)
                     Snackbar.make(
                         requireView(),
                         getString(R.string.update_success),
@@ -232,6 +242,20 @@ class UserAccountFragment : Fragment(), View.OnClickListener {
                 }
             }
         }
+    }
+
+    private fun updateNameInFirebase(fullName: String){
+        val obj = HashMap<String, Any>()
+        obj["name"] = fullName
+        firebaseDatabase.reference.child(Constants.SUPPLIER).child(auth.uid!!)
+            .updateChildren(obj).addOnSuccessListener { }
+    }
+
+    private fun updateProfileImageInFirebase(imageUrl: String){
+        val obj = HashMap<String, Any>()
+        obj["profileImage"] = imageUrl
+        firebaseDatabase.reference.child(Constants.SUPPLIER).child(auth.uid!!)
+            .updateChildren(obj).addOnSuccessListener { }
     }
 
     private fun displayErrorSnackbar(errorMessage: String) {

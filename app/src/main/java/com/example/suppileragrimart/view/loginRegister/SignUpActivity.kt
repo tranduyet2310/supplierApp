@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.suppileragrimart.R
 import com.example.suppileragrimart.databinding.ActivitySignUpBinding
 import com.example.suppileragrimart.model.Supplier
 import com.example.suppileragrimart.utils.Constants.FIELD_REQUIRED
@@ -48,16 +49,14 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun showInfo() {
-        binding.edtUserName.text =
-            Editable.Factory.getInstance().newEditable(supplier!!.contactName)
+        binding.edtUserName.text = Editable.Factory.getInstance().newEditable(supplier!!.contactName)
         binding.edtShopName.text = Editable.Factory.getInstance().newEditable(supplier!!.shopName)
         binding.edtUserEmail.text = Editable.Factory.getInstance().newEditable(supplier!!.email)
         binding.edtPhoneNumber.text = Editable.Factory.getInstance().newEditable(supplier!!.phone)
         binding.edtCMND.text = Editable.Factory.getInstance().newEditable(supplier!!.cccd)
         binding.edtTax.text = Editable.Factory.getInstance().newEditable(supplier!!.tax_number)
         binding.edtProvince.text = Editable.Factory.getInstance().newEditable(supplier!!.province)
-        binding.edtUserPassword.text =
-            Editable.Factory.getInstance().newEditable(supplier!!.password)
+        binding.edtUserPassword.text = Editable.Factory.getInstance().newEditable(supplier!!.password)
     }
 
     private fun validateField(): Boolean {
@@ -79,49 +78,49 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         if (!Validation.isValidName(contactName)) {
-            binding.edtUserName.setError("Tên phải tối thiểu 3 ký tự")
+            binding.edtUserName.setError(getString(R.string.name_mininum_3_characters))
             binding.edtUserName.requestFocus()
             return false
         }
 
         if (!Validation.isValidShopName(shopName)) {
-            binding.edtShopName.setError("Tên phải tối thiểu 8 ký tự")
+            binding.edtShopName.setError(getString(R.string.name_minimun_8_characters_))
             binding.edtShopName.requestFocus()
             return false
         }
 
         if (!Validation.isValidEmail(email)) {
-            binding.edtUserEmail.setError("Email không đúng định dạng")
+            binding.edtUserEmail.setError(getString(R.string.format_invalid))
             binding.edtUserEmail.requestFocus()
             return false
         }
 
         if (!Validation.isValidPhone(phone)) {
-            binding.edtPhoneNumber.setError("Số điện thoại không hợp lệ")
+            binding.edtPhoneNumber.setError(getString(R.string.phone_invalid))
             binding.edtPhoneNumber.requestFocus()
             return false
         }
 
         if (!Validation.isValidCCCD(cccd)) {
-            binding.edtCMND.setError("CCCD không hợp lệ")
+            binding.edtCMND.setError(getString(R.string.cccd_invalid))
             binding.edtCMND.requestFocus()
             return false
         }
 
         if (!Validation.isValidTaxNumber(taxNumber)) {
-            binding.edtTax.setError("Mã số thuế không hợp lệ")
+            binding.edtTax.setError(getString(R.string.taxNumber_invalid))
             binding.edtTax.requestFocus()
             return false
         }
 
         if (!Validation.isValidProvince(province)) {
-            binding.edtProvince.setError("Tỉnh không hợp lệ")
+            binding.edtProvince.setError(getString(R.string.province_invalid))
             binding.edtProvince.requestFocus()
             return false
         }
 
         if (!Validation.isValidPassword(password)) {
-            binding.edtUserPassword.setError("Mật khẩu không hợp lệ")
+            binding.edtUserPassword.setError(getString(R.string.password_invalid))
             binding.edtUserPassword.requestFocus()
             return false
         }

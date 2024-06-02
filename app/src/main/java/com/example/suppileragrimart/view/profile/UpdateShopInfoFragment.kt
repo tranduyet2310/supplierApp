@@ -91,7 +91,6 @@ class UpdateShopInfoFragment : Fragment() {
         if (currentGardenInfo != null) {
             showGardenInfo()
         }
-
         if (currentGardenInfo != null && currentShopInfo != null) {
             isUpdate = true
         }
@@ -119,7 +118,7 @@ class UpdateShopInfoFragment : Fragment() {
             val gardenDesciption = binding.edtGardenIntro.text.toString().trim()
 
             if (shopDesciption.isEmpty() || gardenDesciption.isEmpty()) {
-                showSnackbar("Yêu cầu nhập đủ thông tin giới thiệu")
+                showSnackbar(getString(R.string.need_detail_for_intro))
                 return@setOnClickListener
             }
 
@@ -127,7 +126,7 @@ class UpdateShopInfoFragment : Fragment() {
                 updateDescriptionIntro(shopDesciption, gardenDesciption)
             } else {
                 if (uriGardenList.size == 0 || uriShopList.size == 0) {
-                    showSnackbar("Yêu cầu thêm ảnh cho phần giới thiệu")
+                    showSnackbar(getString(R.string.need_images_for_intro))
                     return@setOnClickListener
                 }
 
@@ -339,11 +338,8 @@ class UpdateShopInfoFragment : Fragment() {
         return MultipartBody.Part.createFormData("file", file.name, requestFile)
     }
 
-    private fun prepareImageFilePart(
-        images: ArrayList<MultipartBody.Part>,
-        uriList: ArrayList<Uri>,
-        start: Int
-    ) {
+    private fun prepareImageFilePart(images: ArrayList<MultipartBody.Part>, uriList: ArrayList<Uri>,
+        start: Int) {
         var i = start
         for (uri in uriList) {
             val file = uriToFile(requireContext(), uri, i)
@@ -417,8 +413,7 @@ class UpdateShopInfoFragment : Fragment() {
     }
 
     private fun showGardenInfo() {
-        binding.edtGardenIntro.text =
-            Editable.Factory.getInstance().newEditable(currentGardenInfo!!.description)
+        binding.edtGardenIntro.text = Editable.Factory.getInstance().newEditable(currentGardenInfo!!.description)
         val dataList = currentGardenInfo!!.images
         if (!dataList.isEmpty()) {
             var size = 1
@@ -450,8 +445,7 @@ class UpdateShopInfoFragment : Fragment() {
     }
 
     private fun showShopInfo() {
-        binding.edtShopIntro.text =
-            Editable.Factory.getInstance().newEditable(currentShopInfo!!.description)
+        binding.edtShopIntro.text = Editable.Factory.getInstance().newEditable(currentShopInfo!!.description)
         val dataList = currentShopInfo!!.images
         if (!dataList.isEmpty()) {
             var size = 1

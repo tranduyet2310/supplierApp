@@ -128,8 +128,8 @@ class MessageAdapter(
     }
 
     private fun deleteSentMessage(position: Int, holder: ViewHodler){
-        val ref = FirebaseDatabase.getInstance().reference.child(Constants.CHAT)
-            .child(chatList.get(position).messageId)
+        FirebaseDatabase.getInstance().reference.child(Constants.CHAT)
+            .child(chatList[position].messageId)
             .removeValue()
     }
 
@@ -149,13 +149,13 @@ class MessageAdapter(
         )
         val builder: AlertDialog.Builder = AlertDialog.Builder(context)
         builder.setTitle("Thao tác muốn thực hiện?")
-        builder.setItems(options, { dialog, which ->
-            if (which == 0){
+        builder.setItems(options) { dialog, which ->
+            if (which == 0) {
                 onViewFullImage?.invoke(currentItem)
-            } else if (which == 1){
+            } else if (which == 1) {
                 deleteSentMessage(position, holder)
             }
-        })
+        }
         builder.show()
     }
 
@@ -166,11 +166,11 @@ class MessageAdapter(
         )
         val builder: AlertDialog.Builder = AlertDialog.Builder(context)
         builder.setTitle("Thao tác muốn thực hiện?")
-        builder.setItems(options, { dialog, which ->
-            if (which == 0){
+        builder.setItems(options) { dialog, which ->
+            if (which == 0) {
                 onViewFullImage?.invoke(currentItem)
             }
-        })
+        }
         builder.show()
     }
 
@@ -181,11 +181,11 @@ class MessageAdapter(
         )
         val builder: AlertDialog.Builder = AlertDialog.Builder(context)
         builder.setTitle("Thao tác muốn thực hiện?")
-        builder.setItems(options, { dialog, which ->
-            if (which == 0){
+        builder.setItems(options) { dialog, which ->
+            if (which == 0) {
                 deleteSentMessage(position, holder)
             }
-        })
+        }
         builder.show()
     }
 }

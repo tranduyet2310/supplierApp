@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.suppileragrimart.R
 import com.example.suppileragrimart.databinding.FragmentGardenUpdateBinding
 import com.example.suppileragrimart.model.FieldApiResponse
 import com.example.suppileragrimart.model.Supplier
@@ -94,10 +95,8 @@ class GardenUpdateFragment : Fragment() {
     }
 
     private fun showInfo() {
-        binding.edtCurrentCrop.text =
-            Editable.Factory.getInstance().newEditable(currentField!!.season)
-        binding.edtCurrentCrops.text =
-            Editable.Factory.getInstance().newEditable(currentField!!.cropsName)
+        binding.edtCurrentCrop.text = Editable.Factory.getInstance().newEditable(currentField!!.season)
+        binding.edtCurrentCrops.text = Editable.Factory.getInstance().newEditable(currentField!!.cropsName)
         binding.edtLandArea.text = Editable.Factory.getInstance().newEditable(currentField!!.area)
         if (currentField!!.cropsType.equals(Constants.LONG_TERM_PLANT))
             binding.spCropsType.setSelection(0)
@@ -147,7 +146,7 @@ class GardenUpdateFragment : Fragment() {
             is ScreenState.Success -> {
                 if (state.data != null) {
                     alertDialog.dismiss()
-                    showSnackbar("Cập nhật Vườn thành công!")
+                    showSnackbar(getString(R.string.update_garden_successfully))
                     fieldViewModel.fieldData = state.data
                 }
             }

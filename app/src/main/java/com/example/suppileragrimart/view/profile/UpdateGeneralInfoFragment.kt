@@ -3,11 +3,10 @@ package com.example.suppileragrimart.view.profile
 import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -109,37 +108,37 @@ class UpdateGeneralInfoFragment : Fragment() {
 
     private fun validateField(supplier: Supplier): Boolean {
         if (!Validation.isValidName(supplier.contactName)) {
-            binding.edtUserName.setError("Tên phải tối thiểu 3 ký tự")
+            binding.edtUserName.setError(getString(R.string.name_mininum_3_characters))
             binding.edtUserName.requestFocus()
             return false
         }
 
         if (!Validation.isValidShopName(supplier.shopName)) {
-            binding.edtShopName.setError("Tên phải tối thiểu 8 ký tự")
+            binding.edtShopName.setError(getString(R.string.name_minimun_8_characters_))
             binding.edtShopName.requestFocus()
             return false
         }
 
         if (!Validation.isValidEmail(supplier.email)) {
-            binding.edtUserEmail.setError("Email không đúng định dạng")
+            binding.edtUserEmail.setError(getString(R.string.format_invalid))
             binding.edtUserEmail.requestFocus()
             return false
         }
 
         if (!Validation.isValidPhone(supplier.phone)) {
-            binding.edtPhoneNumber.setError("Số điện thoại không hợp lệ")
+            binding.edtPhoneNumber.setError(getString(R.string.phone_invalid))
             binding.edtPhoneNumber.requestFocus()
             return false
         }
 
         if (!Validation.isValidCCCD(supplier.cccd)) {
-            binding.edtCMND.setError("CCCD không hợp lệ")
+            binding.edtCMND.setError(getString(R.string.cccd_invalid))
             binding.edtCMND.requestFocus()
             return false
         }
 
         if (!Validation.isValidTaxNumber(supplier.tax_number)) {
-            binding.edtTax.setError("Mã số thuế không hợp lệ")
+            binding.edtTax.setError(getString(R.string.taxNumber_invalid))
             binding.edtTax.requestFocus()
             return false
         }

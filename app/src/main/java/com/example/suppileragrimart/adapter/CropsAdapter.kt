@@ -27,10 +27,10 @@ class CropsAdapter(
     }
 
     class ViewHolderClass(binding: CropsListItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        val tvSeason = binding.tvSeason
-        val tvCropsType = binding.tvCropsType
-        val tvCropsName = binding.tvCropsName
-        val tvArea = binding.tvArea
+        private val tvSeason = binding.tvSeason
+        private val tvCropsType = binding.tvCropsType
+        private val tvCropsName = binding.tvCropsName
+        private val tvArea = binding.tvArea
         fun bind(field: FieldApiResponse) {
             val area = "Diện tích: ${field.area}"
             tvSeason.text = field.season

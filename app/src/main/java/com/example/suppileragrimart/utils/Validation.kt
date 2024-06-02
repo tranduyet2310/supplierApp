@@ -31,11 +31,11 @@ class Validation {
         }
 
         fun isValidPhone(phone: String): Boolean {
-            return phone.length >= PHONE_NUMBER_MIN_LENGHT && phone.length <= PHONE_NUMBER_MAX_LENGHT
+            return phone.length in PHONE_NUMBER_MIN_LENGHT..PHONE_NUMBER_MAX_LENGHT
         }
 
         fun isValidTaxNumber(tax: String): Boolean {
-            return tax.length >= TAX_MIN_LENGTH && tax.length <= TAX_MAX_LENGTH
+            return tax.length in TAX_MIN_LENGTH..TAX_MAX_LENGTH
         }
 
         fun isValidCCCD(cccd: String): Boolean {

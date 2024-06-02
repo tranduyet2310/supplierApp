@@ -70,7 +70,7 @@ class GardenGeneralFragment : Fragment() {
             when (position) {
                 0 -> tab.text = getString(R.string.crops_detail)
                 1 -> tab.text = getString(R.string.list_request)
-                2 -> tab.text = "Sản lượng dự kiến"
+                2 -> tab.text = getString(R.string.estimated_yields)
                 3 -> tab.text = getString(R.string.garden)
             }
         }.attach()

@@ -84,8 +84,7 @@ class EditWarehouseFragment : Fragment(), View.OnClickListener {
     }
 
     private fun showData() {
-        binding.inputName.text =
-            Editable.Factory.getInstance().newEditable(warehouse.warehouseName)
+        binding.inputName.text = Editable.Factory.getInstance().newEditable(warehouse.warehouseName)
         binding.inputPerson.text = Editable.Factory.getInstance().newEditable(warehouse.contact)
         binding.inputPhone.text = Editable.Factory.getInstance().newEditable(warehouse.phone)
         binding.inputEmail.text = Editable.Factory.getInstance().newEditable(warehouse.email)

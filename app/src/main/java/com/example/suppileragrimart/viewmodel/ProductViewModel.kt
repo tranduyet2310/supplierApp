@@ -21,22 +21,13 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
         return productRepository.getProductBySupplierId(productApiRequest).cachedIn(viewModelScope)
     }
 
-    fun createProduct(
-        token: String,
-        supplierId: Long,
-        product: Product,
-        file: List<MultipartBody.Part>
+    fun createProduct(token: String, supplierId: Long, product: Product, file: List<MultipartBody.Part>
     ): LiveData<ScreenState<Product?>> {
         return productRepository.createProduct(token, supplierId, product, file)
     }
 
-    fun updateProductAll(
-        token: String,
-        supplierId: Long,
-        productId: Long,
-        product: Product,
-        file: List<MultipartBody.Part>
-    ): LiveData<ScreenState<Product?>> {
+    fun updateProductAll(token: String, supplierId: Long, productId: Long, product: Product,
+        file: List<MultipartBody.Part>): LiveData<ScreenState<Product?>> {
         return productRepository.updateProductAll(token, supplierId, productId, product, file)
     }
 

@@ -33,11 +33,7 @@ class ProductRepository(context: Context) {
         ) { ProductPagingSource(apiService, productApiRequest) }.flow
     }
 
-    fun createProduct(
-        token: String,
-        supplierId: Long,
-        product: Product,
-        file: List<MultipartBody.Part>
+    fun createProduct(token: String, supplierId: Long, product: Product, file: List<MultipartBody.Part>
     ): LiveData<ScreenState<Product?>> {
         val mutableLiveData = MutableLiveData<ScreenState<Product?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
@@ -80,13 +76,8 @@ class ProductRepository(context: Context) {
         return mutableLiveData
     }
 
-    fun updateProductAll(
-        token: String,
-        supplierId: Long,
-        productId: Long,
-        product: Product,
-        file: List<MultipartBody.Part>
-    ): LiveData<ScreenState<Product?>> {
+    fun updateProductAll(token: String, supplierId: Long, productId: Long, product: Product,
+        file: List<MultipartBody.Part>): LiveData<ScreenState<Product?>> {
         val mutableLiveData = MutableLiveData<ScreenState<Product?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 

@@ -49,6 +49,19 @@ class GardenDetailFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        fieldDetailAdapter.onClick = {
+            val b = Bundle().apply {
+                putString(Constants.SCREEN_KEY, "detail")
+                putParcelable(Constants.FIELD_KEY, it)
+            }
+            this@GardenDetailFragment.findNavController()
+                .navigate(R.id.action_gardenInfoFragment_to_updateGardenInfoFragment, b)
+        }
+    }
+
     private fun showFieldDetailData() {
         fieldList.addAll(currentField!!.fieldDetails)
         if (fieldList.isEmpty())
@@ -64,19 +77,6 @@ class GardenDetailFragment : Fragment() {
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             fieldDetailAdapter = FieldDetailAdapter(fieldList)
             adapter = fieldDetailAdapter
-        }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        fieldDetailAdapter.onClick = {
-            val b = Bundle().apply {
-                putString(Constants.SCREEN_KEY, "detail")
-                putParcelable(Constants.FIELD_KEY, it)
-            }
-            this@GardenDetailFragment.findNavController()
-                .navigate(R.id.action_gardenInfoFragment_to_updateGardenInfoFragment, b)
         }
     }
 

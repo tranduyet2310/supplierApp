@@ -1,8 +1,6 @@
 package com.example.suppileragrimart.network
 
-import android.content.Context
 import android.os.Build
-import com.example.suppileragrimart.R
 import com.example.suppileragrimart.utils.Constants.LOCALHOST
 import com.example.suppileragrimart.utils.Utils
 import okhttp3.OkHttpClient
@@ -19,9 +17,7 @@ import java.security.cert.CertificateException
 import java.security.cert.CertificateFactory
 import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
-import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.SSLContext
-import javax.net.ssl.SSLSession
 import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.TrustManager
 import javax.net.ssl.TrustManagerFactory
@@ -70,7 +66,6 @@ class RetrofitClient {
     @Throws(KeyStoreException::class, CertificateException::class, IOException::class,
         NoSuchAlgorithmException::class, KeyManagementException::class)
     fun addCustomTrustManager(builder: OkHttpClient.Builder) {
-//        val caFileInputStream: InputStream = context.resources.openRawResource(R.raw.server)
         val caFileInputStream: InputStream = Utils.certsInputStream
         val certificateFactory: CertificateFactory = CertificateFactory.getInstance("X.509")
         val yourCertificate: X509Certificate = certificateFactory.generateCertificate(caFileInputStream) as X509Certificate

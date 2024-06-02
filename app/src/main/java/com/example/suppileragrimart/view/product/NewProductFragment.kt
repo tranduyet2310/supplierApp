@@ -110,6 +110,24 @@ class NewProductFragment : Fragment(), View.OnClickListener {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+        binding.toolbarLayout.imgBack.setOnClickListener {
+            navController.navigateUp()
+        }
+
+        setupRadioGroupListener()
+        setupCategoryListener()
+        setupSubCategoryListener()
+        setupWarehouseListener()
+
+        binding.tvProductImage.setOnClickListener(this)
+        binding.tvProductAdditionalImage.setOnClickListener(this)
+        binding.btnCancel.setOnClickListener(this)
+        binding.btnSave.setOnClickListener(this)
+    }
+
     suspend fun getCategoryData() {
         withContext(Dispatchers.IO) {
             val response = apiService.getAllCategories()
@@ -140,8 +158,6 @@ class NewProductFragment : Fragment(), View.OnClickListener {
 
     suspend fun getWarehouseData() {
         withContext(Dispatchers.IO) {
-//            val aes = AES.getInstance()
-//            aes.initFromString(secretKey, iv)
             val response = apiService.getAllWarehouseBySupplierId(supplier!!.id)
             if (response.isSuccessful) {
                 val warehouseList = response.body()
@@ -149,8 +165,6 @@ class NewProductFragment : Fragment(), View.OnClickListener {
                 if (warehouseList != null) {
                     for (warehouse in warehouseList) {
                         if (warehouse.isActive) {
-//                            val decryptName = aes.decrypt(warehouse.warehouseName)
-//                            warehouseValues.add(decryptName)
                             warehouseValues.add(warehouse.warehouseName)
                         }
                     }
@@ -188,26 +202,6 @@ class NewProductFragment : Fragment(), View.OnClickListener {
                         uriList.add(imageUri)
                     }
                 }
-//                when (uriList.size) {
-//                    1 -> GlideApp.with(requireContext()).load(uriList[0]).into(binding.imagProduct1)
-//                    2 -> {
-//                        GlideApp.with(requireContext()).load(uriList[0]).into(binding.imagProduct1)
-//                        GlideApp.with(requireContext()).load(uriList[1]).into(binding.imagProduct2)
-//                    }
-//
-//                    3 -> {
-//                        GlideApp.with(requireContext()).load(uriList[0]).into(binding.imagProduct1)
-//                        GlideApp.with(requireContext()).load(uriList[1]).into(binding.imagProduct2)
-//                        GlideApp.with(requireContext()).load(uriList[2]).into(binding.imagProduct3)
-//                    }
-//
-//                    else -> {
-//                        GlideApp.with(requireContext()).load(uriList[0]).into(binding.imagProduct1)
-//                        GlideApp.with(requireContext()).load(uriList[1]).into(binding.imagProduct2)
-//                        GlideApp.with(requireContext()).load(uriList[2]).into(binding.imagProduct3)
-//                        GlideApp.with(requireContext()).load(uriList[3]).into(binding.imagProduct4)
-//                    }
-//                }
 
                 for (i in 1.. uriList.size){
                     when(i){
@@ -220,24 +214,6 @@ class NewProductFragment : Fragment(), View.OnClickListener {
                 }
 
             }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
-        binding.toolbarLayout.imgBack.setOnClickListener {
-            navController.navigateUp()
-        }
-
-        setupRadioGroupListener()
-        setupCategoryListener()
-        setupSubCategoryListener()
-        setupWarehouseListener()
-
-        binding.tvProductImage.setOnClickListener(this)
-        binding.tvProductAdditionalImage.setOnClickListener(this)
-        binding.btnCancel.setOnClickListener(this)
-        binding.btnSave.setOnClickListener(this)
     }
 
     private fun setupRadioGroupListener() {
@@ -349,18 +325,21 @@ class NewProductFragment : Fragment(), View.OnClickListener {
             showSnackbar(FIELD_REQUIRED)
             return
         } else if (isAvailable && quantity.isEmpty()) {
-            showSnackbar("Yêu cầu nhập số lượng sản phẩm")
+            showSnackbar(getString(R.string.quantity_required))
             return
         } else if (imageUri == null || uriList.size == 0) {
-            showSnackbar("Yêu cầu thêm ảnh cho sản phẩm")
+            showSnackbar(getString(R.string.images_required))
             return
         }
 
         if (categorySelected.equals(getString(R.string.category_placeholder))){
-            showSnackbar("Hãy chọn danh mục cho sản phẩm")
+            showSnackbar(getString(R.string.category_required))
             return
         } else if (subcategorySelected.equals(getString(R.string.subcategory_placeholder))){
-            showSnackbar("Hãy chọn danh mục con cho sản phẩm")
+            showSnackbar(getString(R.string.subcategory_required))
+            return
+        } else if (warehouseSelected.equals(getString(R.string.warehouse_placeholder))){
+            showSnackbar(getString(R.string.warehouse_required))
             return
         }
 
@@ -450,7 +429,7 @@ class NewProductFragment : Fragment(), View.OnClickListener {
         val imageFile = uriToFile(requireContext(), imageUri!!, 0)
         val image = fileToMultipartBodyPart(imageFile)
         images.add(image)
-        var i = 1;
+        var i = 1
         for (uri in uriList) {
             val file = uriToFile(requireContext(), uri, i)
             val img = fileToMultipartBodyPart(file)

@@ -21,56 +21,36 @@ class SupplierViewModel(
         return supplierRepository.getSupplierById(token, supplierId)
     }
 
-    fun updateGeneralInfo(
-        token: String,
-        supplierId: Long,
-        supplier: Supplier
+    fun updateGeneralInfo(token: String, supplierId: Long, supplier: Supplier
     ): LiveData<ScreenState<Supplier?>> {
         return supplierRepository.updateGeneralInfo(token, supplierId, supplier)
     }
 
-    fun updateBankInfo(
-        token: String,
-        supplierId: Long,
-        supplier: Supplier
+    fun updateBankInfo(token: String, supplierId: Long, supplier: Supplier
     ): LiveData<ScreenState<Supplier?>> {
         return supplierRepository.updateBankInfo(token, supplierId, supplier)
     }
 
-    fun getSupplierAvatar(
-        supplierId: Long
-    ): LiveData<ScreenState<Image?>> {
+    fun getSupplierAvatar(supplierId: Long): LiveData<ScreenState<Image?>> {
         return supplierRepository.getSupplierAvatar(supplierId)
     }
 
-    fun changeSupplierAvatar(
-        token: String,
-        supplierId: Long,
-        file: MultipartBody.Part
+    fun changeSupplierAvatar(token: String, supplierId: Long, file: MultipartBody.Part
     ): LiveData<ScreenState<Supplier?>> {
         return supplierRepository.uploadAvatar(token, supplierId, file)
     }
 
-    fun updateAccountInfo(
-        token: String,
-        supplierId: Long,
-        supplier: Supplier
+    fun updateAccountInfo(token: String, supplierId: Long, supplier: Supplier
     ): LiveData<ScreenState<Supplier?>> {
         return supplierRepository.updateAccountInfo(token, supplierId, supplier)
     }
 
-    fun changePassword(
-        token: String,
-        supplierId: Long,
-        passwordRequest: PasswordRequest
+    fun changePassword(token: String, supplierId: Long, passwordRequest: PasswordRequest
     ): LiveData<ScreenState<Supplier?>> {
         return supplierRepository.changePassword(token, supplierId, passwordRequest)
     }
 
-    fun updateRSAKey(
-        token: String,
-        supplierId: Long,
-        dto: AESResponse
+    fun updateRSAKey(token: String, supplierId: Long, dto: AESResponse
     ): LiveData<ScreenState<MessageResponse?>> {
         return supplierRepository.updateRSAKey(token, supplierId, dto)
     }

@@ -12,6 +12,6 @@ class LoginViewModel (
 ) : ViewModel() {
 
     fun getLoginResponseLiveData(loginRequest: LoginRequest): LiveData<ScreenState<LoginApiResponse?>> {
-        return repository.getLoginResponseData(loginRequest);
+        return repository.getLoginResponseData(loginRequest)
     }
 }

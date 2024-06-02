@@ -26,7 +26,6 @@ import com.example.suppileragrimart.utils.Constants
 import com.example.suppileragrimart.utils.GlideApp
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
-import com.example.suppileragrimart.utils.Utils.Companion.decryptData
 import com.example.suppileragrimart.utils.Utils.Companion.formatCurrentMonth
 import com.example.suppileragrimart.utils.Utils.Companion.formatPrice
 import com.example.suppileragrimart.utils.Utils.Companion.getCurrentDate
@@ -84,9 +83,6 @@ class HomeFragment : Fragment() {
             withContext(Dispatchers.Main){
                 alertDialog = progressDialog.createAlertDialog(requireActivity())
             }
-            if (supplier.avatar == null){
-                getSupplierAvatar()
-            }
             getMonthStatistic()
             getOrderToday()
             getRecentOrder()
@@ -94,11 +90,12 @@ class HomeFragment : Fragment() {
 
             iv = loginUtils.getIv()
             secretKey = loginUtils.getAESKey()
-//            val check = supplierViewModel.isValidPublicKey
-//            Log.d("TEST", "check "+check)
 
             if (supplier.contactName == null){
                 getSupplierById()
+            }
+            if (supplier.avatar == null){
+                getSupplierAvatar()
             }
 
             withContext(Dispatchers.Main){
@@ -228,12 +225,11 @@ class HomeFragment : Fragment() {
     suspend fun getSupplierById(){
         val token = loginUtils.getSupplierToken()
         withContext(Dispatchers.IO) {
-            val response = apiService.getSupplierByIdV2(token, supplier.id)
+            val response = apiService.getSupplierInfoById(token, supplier.id)
             if (response.isSuccessful) {
                 if (response.body() != null) {
-                    val data = decryptData(response.body()!!, secretKey, iv)
-                    supplier.contactName = data.contactName
-                    supplier.phone = data.phone
+                    supplier.contactName = response.body()!!.contactName
+                    supplier.phone = response.body()!!.phone
                     supplierViewModel.supplier = supplier
                     loginUtils.saveSupplierInfo(supplier)
                     withContext(Dispatchers.Main){

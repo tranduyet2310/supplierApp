@@ -9,10 +9,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.suppileragrimart.model.Cooperation
 import com.example.suppileragrimart.model.CooperationApiRequest
-import com.example.suppileragrimart.model.Product
-import com.example.suppileragrimart.model.ProductApiRequest
 import com.example.suppileragrimart.network.CooperationPagingSource
-import com.example.suppileragrimart.network.ProductPagingSource
 import com.example.suppileragrimart.network.RetrofitClient
 import com.example.suppileragrimart.utils.Constants
 import com.example.suppileragrimart.utils.ScreenState
@@ -25,9 +22,7 @@ import retrofit2.Response
 class CooperationRepository(context: Context) {
     private val apiService = RetrofitClient.getInstance().getApi()
 
-    fun getCooperationByFieldId(
-        supplierId: Long,
-        cooperationApiRequest: CooperationApiRequest
+    fun getCooperationByFieldId(supplierId: Long, cooperationApiRequest: CooperationApiRequest
     ): Flow<PagingData<Cooperation>> {
         return Pager(
             PagingConfig(
@@ -39,10 +34,7 @@ class CooperationRepository(context: Context) {
         }.flow
     }
 
-    fun updateCooperationStatus(
-        token: String,
-        cooperationId: Long,
-        cooperationResponse: Cooperation
+    fun updateCooperationStatus(token: String, cooperationId: Long, cooperationResponse: Cooperation
     ): LiveData<ScreenState<Cooperation?>> {
         val mutableLiveData = MutableLiveData<ScreenState<Cooperation?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))

@@ -1,10 +1,9 @@
 package com.example.suppileragrimart.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.net.toUri
+import android.widget.TextView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.resource.bitmap.FitCenter
@@ -38,20 +37,20 @@ class OrderAdapter(private val context: Context) :
 
     class ViewHolderClass(binding: SaleListItemBinding, val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
-        val tvOrderId = binding.tvOrderId
-        val imgProductAvatar = binding.imgProductAvatar
-        val tvProductName = binding.tvProductName
-        val tvOrderCreatedDate = binding.tvOrderCreatedDate
-        val tvOrderState = binding.tvOrderState
+        private val tvOrderId = binding.tvOrderId
+        private val imgProductAvatar = binding.imgProductAvatar
+        private val tvProductName: TextView = binding.tvProductName
+        private val tvOrderCreatedDate = binding.tvOrderCreatedDate
+        private val tvOrderState = binding.tvOrderState
 
         fun bind(orderInfo: OrderInfo) {
             tvOrderId.text = orderInfo.id.toString()
-            tvProductName.text = orderInfo.productList.get(0).productName
+            tvProductName.text = orderInfo.productList[0].productName
             tvOrderCreatedDate.text = orderInfo.dateCreated
 
             var requestOptions = RequestOptions()
             requestOptions = requestOptions.transform(FitCenter(), RoundedCorners(16))
-            val imageUrl = orderInfo.productList.get(0).productImage
+            val imageUrl = orderInfo.productList[0].productImage
             val modifiedUrl = imageUrl.replace("http://", "https://")
             GlideApp.with(context)
                 .load(modifiedUrl)
@@ -59,21 +58,29 @@ class OrderAdapter(private val context: Context) :
                 .skipMemoryCache(true)
                 .into(imgProductAvatar)
 
-            if (orderInfo.orderStatus == OrderStatus.PROCESSING) {
-                tvOrderState.text = context.getString(R.string.PROCESSING)
-                tvOrderState.setTextColor(context.getColor(R.color.orange))
-            } else if (orderInfo.orderStatus == OrderStatus.CANCELLED) {
-                tvOrderState.text = context.getString(R.string.CANCELLED)
-                tvOrderState.setTextColor(context.getColor(R.color.redAgri))
-            } else {
-                if (orderInfo.orderStatus == OrderStatus.CONFIRMED) {
-                    tvOrderState.text = context.getString(R.string.CONFIRMED)
-                } else if (orderInfo.orderStatus == OrderStatus.DELIVERING) {
-                    tvOrderState.text = context.getString(R.string.DELIVERING)
-                } else {
-                    tvOrderState.text = context.getString(R.string.COMPLETED)
+            when (orderInfo.orderStatus) {
+                OrderStatus.PROCESSING -> {
+                    tvOrderState.text = context.getString(R.string.PROCESSING)
+                    tvOrderState.setTextColor(context.getColor(R.color.orange))
                 }
-                tvOrderState.setTextColor(context.getColor(R.color.greenAgri))
+                OrderStatus.CANCELLED -> {
+                    tvOrderState.text = context.getString(R.string.CANCELLED)
+                    tvOrderState.setTextColor(context.getColor(R.color.redAgri))
+                }
+                else -> {
+                    when (orderInfo.orderStatus) {
+                        OrderStatus.CONFIRMED -> {
+                            tvOrderState.text = context.getString(R.string.CONFIRMED)
+                        }
+                        OrderStatus.DELIVERING -> {
+                            tvOrderState.text = context.getString(R.string.DELIVERING)
+                        }
+                        else -> {
+                            tvOrderState.text = context.getString(R.string.COMPLETED)
+                        }
+                    }
+                    tvOrderState.setTextColor(context.getColor(R.color.greenAgri))
+                }
             }
         }
     }

@@ -16,8 +16,7 @@ import kotlinx.coroutines.flow.Flow
 class OrderViewModel(application: Application) : AndroidViewModel(application) {
     private val orderRepository: OrderRepository = OrderRepository(application)
 
-    fun getOrderBySupplierId(
-        orderInfoApiRequest: OrderInfoApiRequest, datePattern: String
+    fun getOrderBySupplierId(orderInfoApiRequest: OrderInfoApiRequest, datePattern: String
     ): Flow<PagingData<OrderInfo>> {
         return orderRepository.getOrderBySupplierId(orderInfoApiRequest, datePattern).cachedIn(viewModelScope)
     }

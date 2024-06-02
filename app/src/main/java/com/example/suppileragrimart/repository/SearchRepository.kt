@@ -17,10 +17,7 @@ import kotlinx.coroutines.flow.Flow
 @OptIn(ExperimentalPagingApi::class)
 class SearchRepository(context: Context) {
     private val apiService = RetrofitClient.getInstance().getApi()
-    fun searchWarehouse(
-        searchApiRequest: SearchApiRequest,
-        supplierId: Long
-    ): Flow<PagingData<Warehouse>> {
+    fun searchWarehouse(searchApiRequest: SearchApiRequest, supplierId: Long): Flow<PagingData<Warehouse>> {
         return Pager(
             PagingConfig(
                 pageSize = Constants.DEFAULT_PAGE_SIZE.toInt(),
@@ -31,10 +28,7 @@ class SearchRepository(context: Context) {
         }.flow
     }
 
-    fun searchProduct(
-        searchApiRequest: SearchApiRequest,
-        supplierId: Long
-    ): Flow<PagingData<Product>> {
+    fun searchProduct(searchApiRequest: SearchApiRequest, supplierId: Long): Flow<PagingData<Product>> {
         return Pager(
             PagingConfig(
                 pageSize = Constants.DEFAULT_PAGE_SIZE.toInt(),

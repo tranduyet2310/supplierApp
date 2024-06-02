@@ -1,6 +1,5 @@
 package com.example.suppileragrimart.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -14,8 +13,7 @@ class ReviewAdapter(
     var onClick: ((ReviewInfo) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
         return ViewHolderClass(
-            RecentReviewListItemBinding.inflate(LayoutInflater.from(parent.context)),
-            parent.context
+            RecentReviewListItemBinding.inflate(LayoutInflater.from(parent.context))
         )
     }
 
@@ -31,11 +29,11 @@ class ReviewAdapter(
         }
     }
 
-    class ViewHolderClass(binding: RecentReviewListItemBinding, private val context: Context) :
+    class ViewHolderClass(binding: RecentReviewListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val tvProductName = binding.tvProductName
-        val tvCustomerName = binding.tvCustomerName
-        val ratingProduct = binding.ratingProduct
+        private val tvProductName = binding.tvProductName
+        private val tvCustomerName = binding.tvCustomerName
+        private val ratingProduct = binding.ratingProduct
         fun bind(reviewInfo: ReviewInfo) {
             tvProductName.text = reviewInfo.productName
             tvCustomerName.text = reviewInfo.userFullName

@@ -60,8 +60,6 @@ class ProductFragment : Fragment(), View.OnClickListener {
         binding.toolbarLayout.imgBack.visibility = View.GONE
 
         supplier = supplierViewModel.supplier
-//        val isValidPubKey = supplierViewModel.isValidPublicKey
-
         if (supplier != null) {
             setupRecyclerView()
             getProductData()
@@ -133,12 +131,7 @@ class ProductFragment : Fragment(), View.OnClickListener {
 
     private fun getProductData() {
         val productApiRequest = ProductApiRequest(supplier!!.id)
-//        val aesKey = loginUtils.getAESKey()
-//        val iv = loginUtils.getIv()
-//        Log.d("TEST", "pro aes "+aesKey)
-//        Log.d("TEST", "pro iv "+iv)
         lifecycleScope.launch {
-//            productViewModel.getProducts(productApiRequest, aesKey, iv)
             productViewModel.getProducts(productApiRequest)
                 .collectLatest { pagingData ->
                     productAdapter.addLoadStateListener { loadState ->

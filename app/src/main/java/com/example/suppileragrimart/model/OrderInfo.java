@@ -3,11 +3,8 @@ package com.example.suppileragrimart.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
-
 import com.example.suppileragrimart.utils.OrderStatus;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderInfo implements Parcelable {

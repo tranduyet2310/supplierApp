@@ -32,31 +32,39 @@ class RecentOrderAdapter(
 
     class ViewHolderClass(binding: RecentOrderListItemBinding, private val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
-        val tvOrderId = binding.tvOrderId
-        val tvFullName = binding.tvFullName
-        val tvOrderState = binding.tvOrderState
-        val tvTotal = binding.tvTotal
+        private val tvOrderId = binding.tvOrderId
+        private val tvFullName = binding.tvFullName
+        private val tvOrderState = binding.tvOrderState
+        private val tvTotal = binding.tvTotal
         fun bind(orderStatistic: OrderStatistic) {
             tvOrderId.text = orderStatistic.id.toString()
             tvFullName.text = orderStatistic.userFullName
             val total = "${orderStatistic.total.formatPrice()} đ"
             tvTotal.text = total
 
-            if (orderStatistic.orderStatus == OrderStatus.PROCESSING) {
-                tvOrderState.text = context.getString(R.string.PROCESSING)
-                tvOrderState.setTextColor(context.getColor(R.color.orange))
-            } else if (orderStatistic.orderStatus == OrderStatus.CANCELLED) {
-                tvOrderState.text = context.getString(R.string.CANCELLED)
-                tvOrderState.setTextColor(context.getColor(R.color.redAgri))
-            } else {
-                if (orderStatistic.orderStatus == OrderStatus.CONFIRMED) {
-                    tvOrderState.text = context.getString(R.string.CONFIRMED)
-                } else if (orderStatistic.orderStatus == OrderStatus.DELIVERING) {
-                    tvOrderState.text = context.getString(R.string.DELIVERING)
-                } else {
-                    tvOrderState.text = context.getString(R.string.completed)
+            when (orderStatistic.orderStatus) {
+                OrderStatus.PROCESSING -> {
+                    tvOrderState.text = context.getString(R.string.PROCESSING)
+                    tvOrderState.setTextColor(context.getColor(R.color.orange))
                 }
-                tvOrderState.setTextColor(context.getColor(R.color.greenAgri))
+                OrderStatus.CANCELLED -> {
+                    tvOrderState.text = context.getString(R.string.CANCELLED)
+                    tvOrderState.setTextColor(context.getColor(R.color.redAgri))
+                }
+                else -> {
+                    when (orderStatistic.orderStatus) {
+                        OrderStatus.CONFIRMED -> {
+                            tvOrderState.text = context.getString(R.string.CONFIRMED)
+                        }
+                        OrderStatus.DELIVERING -> {
+                            tvOrderState.text = context.getString(R.string.DELIVERING)
+                        }
+                        else -> {
+                            tvOrderState.text = context.getString(R.string.completed)
+                        }
+                    }
+                    tvOrderState.setTextColor(context.getColor(R.color.greenAgri))
+                }
             }
         }
     }

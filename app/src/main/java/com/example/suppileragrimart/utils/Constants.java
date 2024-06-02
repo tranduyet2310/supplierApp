@@ -2,7 +2,7 @@ package com.example.suppileragrimart.utils;
 
 public class Constants {
     // API
-    public static final String LOCALHOST = "https://172.20.10.3:8443/";
+    public static final String LOCALHOST = "https://tranduyet.online/";
     // SharedPreference
     public static final String SHARED_PREF_NAME = "shared_preference";
     public static final String PRODUCT_HISTORY = "product_history";
@@ -44,7 +44,7 @@ public class Constants {
     public static final String LOGIN_MESSAGE = "Email/Password không đúng";
     public static final String LOGIN_SUCCESS = "Đăng nhập thành công";
     public static final String FIELD_REQUIRED = "Yêu cầu nhập đủ thông tin";
-    public static final String SERVER_ERROR = "Lỗi phía máy chủ";
+    public static final String SERVER_ERROR = "Có lỗi vui lòng thử lại!";
     // const
     public static final String LONG_TERM_PLANT = "Cây lâu năm";
     public static final String SHORT_TERM_PLANT = "Cây ngắn ngày";

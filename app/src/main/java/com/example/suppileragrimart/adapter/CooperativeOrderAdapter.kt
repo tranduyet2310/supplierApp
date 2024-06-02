@@ -9,18 +9,18 @@ import com.example.suppileragrimart.model.CooperativePayment
 import com.example.suppileragrimart.utils.DiffUtilCooperativeOrder
 import com.example.suppileragrimart.utils.Utils
 
-class CooperativeOrderAdapter () :
+class CooperativeOrderAdapter :
     PagingDataAdapter<CooperativePayment, CooperativeOrderAdapter.ViewHolderClass>(DiffUtilCooperativeOrder()) {
 
     var onClick: ((CooperativePayment) -> Unit)? = null
 
     class ViewHolderClass(
-        private val binding: CooperativeOrderItemBinding,
+        binding: CooperativeOrderItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-        val tvShopName = binding.tvShopName
-        val tvCropsName = binding.tvCropsName
-        val tvRequiredYield = binding.tvRequiredYield
-        val tvDateCreated = binding.tvDateCreated
+        private val tvShopName = binding.tvShopName
+        private val tvCropsName = binding.tvCropsName
+        private val tvRequiredYield = binding.tvRequiredYield
+        private val tvDateCreated = binding.tvDateCreated
 
         fun bind(cooperativePayment: CooperativePayment){
             val dateCreated = "Ngày tạo: ${cooperativePayment.dateCreated}"

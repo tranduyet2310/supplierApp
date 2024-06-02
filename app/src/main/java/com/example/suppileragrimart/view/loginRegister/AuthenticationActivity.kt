@@ -1,9 +1,8 @@
 package com.example.suppileragrimart.view.loginRegister
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.suppileragrimart.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.suppileragrimart.databinding.ActivityAuthenticationBinding
 
 class AuthenticationActivity : AppCompatActivity() {

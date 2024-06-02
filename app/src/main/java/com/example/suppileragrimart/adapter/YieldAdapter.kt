@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.suppileragrimart.R
 import com.example.suppileragrimart.databinding.YieldListItemBinding
 import com.example.suppileragrimart.model.Cooperation
 import com.example.suppileragrimart.utils.CooperationDiffUtil
-import com.example.suppileragrimart.utils.OrderStatus
 import com.example.suppileragrimart.utils.Utils
 
 class YieldAdapter:
@@ -29,9 +27,9 @@ class YieldAdapter:
 
     class ViewHolderClass(binding: YieldListItemBinding, val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
-        val tvUserName = binding.tvUserName
-        val progressBar = binding.progressBar
-        val tvYield = binding.tvYield
+        private val tvUserName = binding.tvUserName
+        private val progressBar = binding.progressBar
+        private val tvYield = binding.tvYield
 
         fun bind(cooperation: Cooperation) {
             tvUserName.text = cooperation.fullName

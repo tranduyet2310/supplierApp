@@ -32,7 +32,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class SaleFragment : Fragment(), View.OnClickListener {
+class SaleFragment : Fragment() {
 
     private lateinit var binding: FragmentSaleBinding
     private lateinit var navController: NavController
@@ -74,7 +74,9 @@ class SaleFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        binding.tvSearch.setOnClickListener(this)
+        binding.tvSearch.setOnClickListener {
+            goToSearchFragment()
+        }
 
         setupSpinnerListener()
         setupMonthSpinnerListener()
@@ -84,12 +86,6 @@ class SaleFragment : Fragment(), View.OnClickListener {
                 putParcelable(Constants.ORDER_KEY, it)
             }
             navController.navigate(R.id.action_saleFragment_to_orderDetailsFragment, b)
-        }
-    }
-
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.tvSearch -> goToSearchFragment()
         }
     }
 

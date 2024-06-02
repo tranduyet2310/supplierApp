@@ -22,10 +22,7 @@ import retrofit2.Response
 class WarehouseRepository(context: Context) {
 
     private val apiService = RetrofitClient.getInstance().getApi()
-    fun createNewWarehouse(
-        token: String,
-        supplierId: Long,
-        warehouse: Warehouse
+    fun createNewWarehouse(token: String, supplierId: Long, warehouse: Warehouse
     ): LiveData<ScreenState<Warehouse?>> {
         val mutableLiveData = MutableLiveData<ScreenState<Warehouse?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
@@ -52,11 +49,7 @@ class WarehouseRepository(context: Context) {
         return mutableLiveData
     }
 
-    fun updateWarehouse(
-        token: String,
-        supplierId: Long,
-        warehouseId: Long,
-        warehouse: Warehouse
+    fun updateWarehouse(token: String, supplierId: Long, warehouseId: Long, warehouse: Warehouse
     ): LiveData<ScreenState<Warehouse?>> {
         val mutableLiveData = MutableLiveData<ScreenState<Warehouse?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
@@ -80,11 +73,7 @@ class WarehouseRepository(context: Context) {
         return mutableLiveData
     }
 
-    fun updateState(
-        token: String,
-        supplierId: Long,
-        warehouseId: Long,
-        messageResponse: MessageResponse
+    fun updateState(token: String, supplierId: Long, warehouseId: Long, messageResponse: MessageResponse
     ): LiveData<ScreenState<Warehouse?>> {
         val mutableLiveData = MutableLiveData<ScreenState<Warehouse?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
@@ -108,10 +97,7 @@ class WarehouseRepository(context: Context) {
         return mutableLiveData
     }
 
-    fun deleteWarehouse(
-        token: String,
-        supplierId: Long,
-        warehouseId: Long
+    fun deleteWarehouse(token: String, supplierId: Long, warehouseId: Long
     ): LiveData<ScreenState<MessageResponse?>> {
         val mutableLiveData = MutableLiveData<ScreenState<MessageResponse?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
@@ -135,18 +121,13 @@ class WarehouseRepository(context: Context) {
         return mutableLiveData
     }
 
-    fun getWarehouseBySupplierId(
-        warehouseApiRequest: WarehouseApiRequest
-//        secretKey: String,
-//        iv: String
-    ): Flow<PagingData<Warehouse>> {
+    fun getWarehouseBySupplierId(warehouseApiRequest: WarehouseApiRequest): Flow<PagingData<Warehouse>> {
         return Pager(
             PagingConfig(
                 pageSize = DEFAULT_PAGE_SIZE.toInt(),
                 enablePlaceholders = false
             )
         ) {
-//            WarehousePagingSource(apiService, warehouseApiRequest, secretKey, iv)
             WarehousePagingSource(apiService, warehouseApiRequest)
         }.flow
     }

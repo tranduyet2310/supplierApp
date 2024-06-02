@@ -38,11 +38,11 @@ class OrderDetailAdapter (
 
     class ViewHolderClass(binding: OrderProductListItemBinding, private val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
-        val imgProduct = binding.imgProduct
-        val tvProductName = binding.tvProductName
-        val tvProductPrice = binding.tvProductPrice
-        val tvProductQuantity = binding.tvProductQuantity
-        val tvWarehouse = binding.tvWarehouse
+        private val imgProduct = binding.imgProduct
+        private val tvProductName = binding.tvProductName
+        private val tvProductPrice = binding.tvProductPrice
+        private val tvProductQuantity = binding.tvProductQuantity
+        private val tvWarehouse = binding.tvWarehouse
         fun bind(orderProductDto: OrderProductDto) {
             tvProductName.text = orderProductDto.productName
             if (orderProductDto.discountPrice > 0){

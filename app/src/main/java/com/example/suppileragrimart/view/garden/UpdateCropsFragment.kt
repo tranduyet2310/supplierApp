@@ -61,16 +61,6 @@ class UpdateCropsFragment : Fragment() {
         return binding.root
     }
 
-    private fun setupSpinner() {
-        cropsTypeValues.add(Constants.LONG_TERM_PLANT)
-        cropsTypeValues.add(Constants.SHORT_TERM_PLANT)
-        val spinnerAdapter = ArrayAdapter(
-            requireContext(), android.R.layout.simple_spinner_dropdown_item,
-            cropsTypeValues
-        )
-        binding.spCropsType.adapter = spinnerAdapter
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
@@ -103,6 +93,16 @@ class UpdateCropsFragment : Fragment() {
         }
 
         setupSpinnerListener()
+    }
+
+    private fun setupSpinner() {
+        cropsTypeValues.add(Constants.LONG_TERM_PLANT)
+        cropsTypeValues.add(Constants.SHORT_TERM_PLANT)
+        val spinnerAdapter = ArrayAdapter(
+            requireContext(), android.R.layout.simple_spinner_dropdown_item,
+            cropsTypeValues
+        )
+        binding.spCropsType.adapter = spinnerAdapter
     }
 
     private fun setupSpinnerListener() {
@@ -138,7 +138,7 @@ class UpdateCropsFragment : Fragment() {
             is ScreenState.Success -> {
                 if (state.data != null) {
                     alertDialog.dismiss()
-                    showSnackbar("Tạo mới Vườn thành công!")
+                    showSnackbar(getString(R.string.create_garden_successfully))
                     navController.navigate(R.id.action_updateCropsFragment_to_cropsInfoFragment)
                 }
             }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightBlue"
-    tools:context=".view.profile.ChatDetailFragment">
+    tools:context=".view.chat.ChatDetailFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/barLayout_message_chat"

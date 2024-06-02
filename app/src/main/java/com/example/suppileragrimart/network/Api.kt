@@ -124,14 +124,6 @@ interface Api {
     ): Call<Warehouse>
 
     // Product
-//    @GET("api/products/suppliers/{supplierId}/v2")
-//    suspend fun getProductBySupplierId(
-//        @Path("supplierId") supplierId: Long,
-//        @Query("pageNo") pageNo: String,
-//        @Query("sortBy") sortBy: String,
-//        @Query("sortDir") sortDir: String
-//    ): Response<ProductApiResponse>
-
     @GET("api/products/suppliers/{supplierId}")
     suspend fun getProductBySupplierId(
         @Path("supplierId") supplierId: Long,
@@ -347,6 +339,12 @@ interface Api {
 
     @GET("api/suppliers/{supplierId}")
     suspend fun getSupplierByIdV2(
+        @Header("Authorization") token: String,
+        @Path("supplierId") supplierId: Long
+    ): Response<Supplier>
+
+    @GET("api/suppliers/{supplierId}/v2")
+    suspend fun getSupplierInfoById(
         @Header("Authorization") token: String,
         @Path("supplierId") supplierId: Long
     ): Response<Supplier>

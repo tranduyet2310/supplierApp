@@ -42,11 +42,7 @@ class SupplierRepository {
         return mutableLiveData
     }
 
-    fun updateGeneralInfo(
-        token: String,
-        supplierId: Long,
-        supplier: Supplier
-    ): LiveData<ScreenState<Supplier?>> {
+    fun updateGeneralInfo(token: String, supplierId: Long, supplier: Supplier): LiveData<ScreenState<Supplier?>> {
         val mutableLiveData = MutableLiveData<ScreenState<Supplier?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 
@@ -70,11 +66,7 @@ class SupplierRepository {
         return mutableLiveData
     }
 
-    fun updateBankInfo(
-        token: String,
-        supplierId: Long,
-        supplier: Supplier
-    ): LiveData<ScreenState<Supplier?>> {
+    fun updateBankInfo(token: String, supplierId: Long, supplier: Supplier): LiveData<ScreenState<Supplier?>> {
         val mutableLiveData = MutableLiveData<ScreenState<Supplier?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 
@@ -122,11 +114,7 @@ class SupplierRepository {
         return mutableLiveData
     }
 
-    fun uploadAvatar(
-        token: String,
-        supplierId: Long,
-        file: MultipartBody.Part
-    ): LiveData<ScreenState<Supplier?>> {
+    fun uploadAvatar(token: String, supplierId: Long, file: MultipartBody.Part): LiveData<ScreenState<Supplier?>> {
         val mutableLiveData = MutableLiveData<ScreenState<Supplier?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 
@@ -152,11 +140,7 @@ class SupplierRepository {
         return mutableLiveData
     }
 
-    fun updateAccountInfo(
-        token: String,
-        supplierId: Long,
-        supplier: Supplier
-    ): LiveData<ScreenState<Supplier?>> {
+    fun updateAccountInfo(token: String, supplierId: Long, supplier: Supplier): LiveData<ScreenState<Supplier?>> {
         val mutableLiveData = MutableLiveData<ScreenState<Supplier?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 
@@ -182,11 +166,7 @@ class SupplierRepository {
         return mutableLiveData
     }
 
-    fun changePassword(
-        token: String,
-        supplierId: Long,
-        password: PasswordRequest
-    ): LiveData<ScreenState<Supplier?>> {
+    fun changePassword(token: String, supplierId: Long, password: PasswordRequest): LiveData<ScreenState<Supplier?>> {
         val mutableLiveData = MutableLiveData<ScreenState<Supplier?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 
@@ -212,11 +192,7 @@ class SupplierRepository {
         return mutableLiveData
     }
 
-    fun updateRSAKey(
-        token: String,
-        supplierId: Long,
-        dto: AESResponse
-    ): LiveData<ScreenState<MessageResponse?>> {
+    fun updateRSAKey(token: String, supplierId: Long, dto: AESResponse): LiveData<ScreenState<MessageResponse?>> {
         val mutableLiveData = MutableLiveData<ScreenState<MessageResponse?>>()
         mutableLiveData.postValue(ScreenState.Loading(null))
 

@@ -15,18 +15,13 @@ import kotlinx.coroutines.flow.Flow
 class CooperationViewModel(application: Application) : AndroidViewModel(application) {
     private val cooperationRepository = CooperationRepository(application)
 
-    fun getCooperation(
-        supplierId: Long,
-        cooperationApiRequest: CooperationApiRequest
+    fun getCooperation(supplierId: Long, cooperationApiRequest: CooperationApiRequest
     ): Flow<PagingData<Cooperation>> {
         return cooperationRepository.getCooperationByFieldId(supplierId, cooperationApiRequest)
             .cachedIn(viewModelScope)
     }
 
-    fun updateCooperationStatus(
-        token: String,
-        cooperationId: Long,
-        cooperationResponse: Cooperation
+    fun updateCooperationStatus(token: String, cooperationId: Long, cooperationResponse: Cooperation
     ): LiveData<ScreenState<Cooperation?>> {
         return cooperationRepository.updateCooperationStatus(token, cooperationId, cooperationResponse)
     }

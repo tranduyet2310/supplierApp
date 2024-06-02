@@ -1,13 +1,12 @@
-package com.example.suppileragrimart.view.profile
+package com.example.suppileragrimart.view.chat
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.denzcoskun.imageslider.adapters.ViewPagerAdapter
 import com.example.suppileragrimart.R
 import com.example.suppileragrimart.adapter.ViewpagerAdapter
 import com.example.suppileragrimart.databinding.FragmentMessageBinding

@@ -1,4 +1,4 @@
-package com.example.suppileragrimart.view.profile
+package com.example.suppileragrimart.view.chat
 
 import android.os.Bundle
 import android.text.Editable

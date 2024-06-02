@@ -221,7 +221,7 @@ class CooperationDetailFragment : Fragment() {
                 binding.btnAgree.isEnabled = false
 
                 binding.btnCancel.visibility = View.VISIBLE
-                binding.btnCancel.text = "Liên hệ"
+                binding.btnCancel.text = getString(R.string.contact)
             }
         }
 

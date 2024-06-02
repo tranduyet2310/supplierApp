@@ -23,7 +23,6 @@ import com.example.suppileragrimart.model.MessageResponse
 import com.example.suppileragrimart.model.Supplier
 import com.example.suppileragrimart.network.Api
 import com.example.suppileragrimart.network.RetrofitClient
-import com.example.suppileragrimart.utils.Constants
 import com.example.suppileragrimart.utils.Constants.KG_UNIT
 import com.example.suppileragrimart.utils.Constants.LONG_TERM_PLANT
 import com.example.suppileragrimart.utils.Constants.TAN_UNIT
@@ -130,7 +129,7 @@ class UpdateGardenInfoFragment : Fragment() {
 
             if (!screen.equals("detail")) {
                 if (!checkValidStatus(currentState)) {
-                    showSnackbar("Giai đoạn này đã có trước đó")
+                    showSnackbar(getString(R.string.this_state_already_exists))
                     return@setOnClickListener
                 }
             }
@@ -190,12 +189,12 @@ class UpdateGardenInfoFragment : Fragment() {
         return withContext(Dispatchers.Main) {
             suspendCancellableCoroutine { continuation ->
                 val dialog = AlertDialog.Builder(requireActivity())
-                    .setTitle("Xác nhận")
-                    .setMessage("Số lượng nhập vào thấp hơn so với ban đầu? Hệ thống sẽ hủy đơn (nếu có) để đảm bảo khả năng cung cấp")
-                    .setPositiveButton("Đồng ý") { _, _ ->
+                    .setTitle(getString(R.string.check_out))
+                    .setMessage(getString(R.string.terminate_cooperation))
+                    .setPositiveButton(getString(R.string.ok)) { _, _ ->
                         continuation.resume(true) {}
                     }
-                    .setNegativeButton("Hủy") { _, _ ->
+                    .setNegativeButton(getString(R.string.cancel)) { _, _ ->
                         continuation.resume(false) {}
                     }
                     .setOnCancelListener {
@@ -333,7 +332,7 @@ class UpdateGardenInfoFragment : Fragment() {
 
     private fun setupRadioGroup() {
         if (currentField != null) {
-            if (currentField!!.cropsType.equals(Constants.LONG_TERM_PLANT)) {
+            if (currentField!!.cropsType.equals(LONG_TERM_PLANT)) {
                 binding.rgLong.visibility = View.VISIBLE
                 binding.rgShort.visibility = View.GONE
             } else {
@@ -412,7 +411,7 @@ class UpdateGardenInfoFragment : Fragment() {
     }
 
     private fun setupRadioListener() {
-        if (currentField!!.cropsType.equals(Constants.LONG_TERM_PLANT)) {
+        if (currentField!!.cropsType.equals(LONG_TERM_PLANT)) {
             binding.rgLong.setOnCheckedChangeListener { group, checkedId ->
                 when (checkedId) {
                     binding.rbTakeCareTimeV2.id -> {
@@ -496,7 +495,7 @@ class UpdateGardenInfoFragment : Fragment() {
             is ScreenState.Success -> {
                 if (state.data != null) {
                     alertDialog.dismiss()
-                    showSnackbar("Thêm mới thành công!")
+                    showSnackbar(getString(R.string.add_successfully))
                     currentField!!.fieldDetails.add(state.data)
                     fieldViewModel.fieldData = currentField
                     navController.navigate(R.id.action_updateGardenInfoFragment_to_gardenInfoFragment)

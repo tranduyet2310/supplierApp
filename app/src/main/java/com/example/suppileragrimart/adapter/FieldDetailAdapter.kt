@@ -35,10 +35,10 @@ class FieldDetailAdapter(
 
     class ViewHolderClass(binding: CropsDetailListItemBinding, private val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
-        val tvStatus = binding.tvStatus
-        val tvDateCreated = binding.tvDateCreated
-        val tvDetail = binding.tvDetail
-        val imgCropsStatus = binding.imgCropsStatus
+        private val tvStatus = binding.tvStatus
+        private val tvDateCreated = binding.tvDateCreated
+        private val tvDetail = binding.tvDetail
+        private val imgCropsStatus = binding.imgCropsStatus
         fun bind(fieldDetail: FieldDetail) {
             tvDateCreated.text = fieldDetail.dateCreated
             tvDetail.text = fieldDetail.details

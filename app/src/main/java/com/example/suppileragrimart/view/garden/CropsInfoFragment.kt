@@ -2,23 +2,19 @@ package com.example.suppileragrimart.view.garden
 
 import android.app.AlertDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.suppileragrimart.R
 import com.example.suppileragrimart.adapter.CropsAdapter
-import com.example.suppileragrimart.adapter.ItemLoadingAdapter
-import com.example.suppileragrimart.adapter.WarehouseAdapter
 import com.example.suppileragrimart.databinding.FragmentCropsInfoBinding
 import com.example.suppileragrimart.model.FieldApiResponse
 import com.example.suppileragrimart.model.Supplier
-import com.example.suppileragrimart.model.Warehouse
-import com.example.suppileragrimart.utils.Constants
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
 import com.example.suppileragrimart.utils.ScreenState
