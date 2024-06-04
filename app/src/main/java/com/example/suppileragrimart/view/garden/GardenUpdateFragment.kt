@@ -3,6 +3,7 @@ package com.example.suppileragrimart.view.garden
 import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +11,13 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.suppileragrimart.R
 import com.example.suppileragrimart.databinding.FragmentGardenUpdateBinding
 import com.example.suppileragrimart.model.FieldApiResponse
 import com.example.suppileragrimart.model.Supplier
+import com.example.suppileragrimart.network.Api
+import com.example.suppileragrimart.network.RetrofitClient
 import com.example.suppileragrimart.utils.Constants
 import com.example.suppileragrimart.utils.LoginUtils
 import com.example.suppileragrimart.utils.ProgressDialog
@@ -21,6 +25,9 @@ import com.example.suppileragrimart.utils.ScreenState
 import com.example.suppileragrimart.viewmodel.FieldViewModel
 import com.example.suppileragrimart.viewmodel.SupplierViewModel
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class GardenUpdateFragment : Fragment() {
@@ -37,6 +44,9 @@ class GardenUpdateFragment : Fragment() {
     }
     private val supplierViewModel: SupplierViewModel by lazy {
         ViewModelProvider(requireActivity()).get(SupplierViewModel::class.java)
+    }
+    private val apiService: Api by lazy {
+        RetrofitClient.getInstance().getApi()
     }
 
     private var supplier: Supplier? = null
@@ -64,7 +74,17 @@ class GardenUpdateFragment : Fragment() {
         setupSpinnerListener()
 
         binding.btnComplete.setOnClickListener {
-            completeField()
+            lifecycleScope.launch {
+                val check = checkRemainingCooperation()
+                if(check) {
+                    completeField()
+                }
+                else {
+                    withContext(Dispatchers.Main){
+                        showSnackbar("Vẫn còn đơn hàng chưa hoàn thành!")
+                    }
+                }
+            }
         }
 
         binding.btnSave.setOnClickListener {
@@ -84,6 +104,20 @@ class GardenUpdateFragment : Fragment() {
             field.area = area
 
             updateField(field)
+        }
+    }
+
+    suspend fun checkRemainingCooperation(): Boolean {
+        return withContext(Dispatchers.IO) {
+            val response = apiService.calculateRemainingCooperation(currentField!!.id)
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    val remainingCooperation = it.message.toLong()
+                    remainingCooperation == 0L
+                } ?: false
+            } else {
+                false
+            }
         }
     }
 

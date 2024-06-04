@@ -330,6 +330,9 @@ interface Api {
         @Path("supplierId") supplierId: Long
     ): Response<MessageResponse>
 
+    @GET("api/cooperation/{fieldId}/remaining")
+    suspend fun calculateRemainingCooperation(@Path("fieldId") fieldId: Long): Response<MessageResponse>
+
     // Supplier
     @GET("api/suppliers/{supplierId}")
     fun getSupplierById(
