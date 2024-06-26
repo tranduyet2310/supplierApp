@@ -1,163 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightBlue"
-    android:fillViewport="true"
     tools:context=".view.garden.GardenUpdateFragment">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/agrimart"
-            style="@style/h2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/lightBlue"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="@string/appName" />
-
-        <TextView
-            android:id="@+id/fullnameApp"
-            style="@style/h3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/lightBlue"
-            android:gravity="center"
-            android:paddingBottom="@dimen/dimen10dp"
-            android:text="@string/fullNameApp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="@dimen/dimen24dp"
-            android:fontFamily="@font/inter_semibold"
-            android:gravity="start"
-            android:text="@string/basic_info"
-            android:textAllCaps="true"
-            android:textColor="@color/yellowAgri"
-            android:textSize="18sp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen24dp"
-            android:layout_marginTop="@dimen/dimen8dp"
-            android:layout_marginEnd="@dimen/dimen24dp"
-            android:layout_marginBottom="@dimen/dimen8dp"
-            android:hint="@string/current_crop">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtCurrentCrop"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/custom_border"
-                android:inputType="text"
-                android:padding="@dimen/dimen5dp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Spinner
-            android:id="@+id/spCropsType"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="@dimen/dimen24dp"
-            android:layout_marginTop="@dimen/dimen8dp"
-            android:layout_marginEnd="@dimen/dimen24dp"
-            android:layout_marginBottom="@dimen/dimen8dp"
-            android:background="@drawable/custom_border"
-            android:hint="@string/crops_type" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen24dp"
-            android:layout_marginTop="@dimen/dimen8dp"
-            android:layout_marginEnd="@dimen/dimen24dp"
-            android:layout_marginBottom="@dimen/dimen8dp"
-            android:hint="@string/current_crops">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtCurrentCrops"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/custom_border"
-                android:inputType="text"
-                android:padding="@dimen/dimen5dp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen24dp"
-            android:layout_marginTop="@dimen/dimen8dp"
-            android:layout_marginEnd="@dimen/dimen24dp"
-            android:layout_marginBottom="@dimen/dimen8dp"
-            android:hint="@string/land_area">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtLandArea"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/custom_border"
-                android:inputType="text"
-                android:padding="@dimen/dimen5dp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen24dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="@dimen/dimen24dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnComplete"
+            <TextView
+                android:id="@+id/agrimart"
+                style="@style/h2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/lightBlue"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/appName" />
+
+            <TextView
+                android:id="@+id/fullnameApp"
                 style="@style/h3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/lightBlue"
+                android:gravity="center"
+                android:paddingBottom="@dimen/dimen10dp"
+                android:text="@string/fullNameApp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/dimen24dp"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="start"
+                android:text="@string/basic_info"
+                android:textAllCaps="true"
+                android:textColor="@color/yellowAgri"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen24dp"
+                android:layout_marginTop="@dimen/dimen8dp"
+                android:layout_marginEnd="@dimen/dimen24dp"
+                android:layout_marginBottom="@dimen/dimen8dp"
+                android:hint="@string/current_crop">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtCurrentCrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/custom_border"
+                    android:inputType="text"
+                    android:padding="@dimen/dimen5dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/spCropsType"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/dimen24dp"
+                android:layout_marginTop="@dimen/dimen8dp"
+                android:layout_marginEnd="@dimen/dimen24dp"
+                android:layout_marginBottom="@dimen/dimen8dp"
+                android:background="@drawable/custom_border"
+                android:hint="@string/crops_type" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen24dp"
+                android:layout_marginTop="@dimen/dimen8dp"
+                android:layout_marginEnd="@dimen/dimen24dp"
+                android:layout_marginBottom="@dimen/dimen8dp"
+                android:hint="@string/current_crops">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtCurrentCrops"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/custom_border"
+                    android:inputType="text"
+                    android:padding="@dimen/dimen5dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen24dp"
+                android:layout_marginTop="@dimen/dimen8dp"
+                android:layout_marginEnd="@dimen/dimen24dp"
+                android:layout_marginBottom="@dimen/dimen8dp"
+                android:hint="@string/land_area">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtLandArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/custom_border"
+                    android:inputType="text"
+                    android:padding="@dimen/dimen5dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen24dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="@dimen/dimen24dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnComplete"
+                    style="@style/h3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_white_border"
+                    android:text="@string/complete"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnSave"
+                    style="@style/h3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_yellow_border"
+                    android:text="@string/update"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/button_white_border"
-                android:text="@string/complete"
-                android:textAllCaps="false"
-                android:textColor="@color/black" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSave"
-                style="@style/h3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/button_yellow_border"
-                android:text="@string/update"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/complete_season"
+                android:textColor="@color/darkBlue"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/inter_semibold"
-            android:text="@string/complete_season"
-            android:textColor="@color/darkBlue"
-            android:textSize="14sp" />
+    </androidx.core.widget.NestedScrollView>
 
-    </LinearLayout>
-
-</androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
